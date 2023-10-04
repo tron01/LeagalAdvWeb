@@ -7,6 +7,6 @@ deactivate
 pip install django
 pip install mysqlclient
 
-
-
 django-admin startproject LeagalAdvWeb .
+py manage.py runserver
+
