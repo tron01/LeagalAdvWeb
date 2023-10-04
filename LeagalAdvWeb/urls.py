@@ -17,6 +17,16 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+#views
+from Administrator import views
+from User import user_views
+from Advocate import adv_views
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', views.index),
+    path('login/', views.login),
+    path('adv_register/', views.adv_register),
+    path('user_register/', views.user_register),
+    path('user_bank/', views.user_bank),
 ]

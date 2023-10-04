@@ -1,0 +1,150 @@
+<!--
+	Author: W3layouts
+	Author URL: http://w3layouts.com
+	License: Creative Commons Attribution 3.0 Unported
+	License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head -->
+
+<head>
+
+	<title>Legal Advisor</title>
+
+	<!-- Meta-Tags -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="keywords"
+		content="Custom Signup Form Responsive, Login Form Web Template, Flat Pricing Tables, Flat Drop-Downs, Sign-Up Web Templates, Flat Web Templates, Login Sign-up Responsive Web Template, Smartphone Compatible Web Template, Free Web Designs for Nokia, Samsung, LG, Sony Ericsson, Motorola Web Design">
+	<script
+		type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+	<!-- //Meta-Tags -->
+
+	<!-- Custom-Style-Sheet -->
+	<!-- Index-Page-CSS -->
+	<link rel="stylesheet" href="{% static 'login/css/style.css' %}" type="text/css" media="all">
+	<!-- Calendar-CSS -->
+	<link rel="stylesheet" href="{% static 'login/css/jquery-ui.css' %}" type="text/css" media="all">
+	<!-- //Custom-Style-Sheet -->
+
+	<!-- Fonts -->
+	<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" type="text/css"
+		media="all">
+	<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Montserrat:400,700" type="text/css" media="all">
+	<!-- //Fonts -->
+
+</head>
+<!-- //Head -->
+
+
+
+<!-- Body -->
+
+<body>
+
+	<script>
+		alert("Make Sure That you have added the account details. Otherwise registration will not be successfull");
+	</script>
+
+
+	{% if msg %}
+	<script>
+		alert("{{msg}}");
+		window.location.href = "/";
+	</script>
+	{% endif %}
+	<h1>Add Account Details</h1>
+
+	<div class="containerw3layouts-agileits">
+
+		<div class="w3imageaits">
+			<img class="user" src="{% static 'login/images/user.png' %}" alt="Custom Signup Form">
+			<h2>Let's get you set up</h2>
+			<p>It should only take you a minute to connect</p>
+		</div>
+
+		<div class="aitsloginwthree w3layouts agileits">
+
+			<form action="#" method="post">
+				{% csrf_token %}
+				<br><br><br><br><br><br><br>
+				<input type="text" Name="acc" maxlength="16" placeholder="Account No:" required="">
+				<!-- <div class="radio-btns agileits w3layouts">
+					<div class="cc-selector wthreeselector">
+						<p>Gender</p>
+					</div>
+					<div class="cc-selector wthreeselector">
+						<input id="visa" type="radio" name="credit-card" value="visa">
+						<label class="drinkcard-cc visa" for="visa"></label>
+					</div>
+					<div class="cc-selector wthreeselector">
+						<input id="mastercard" type="radio" name="credit-card" value="mastercard">
+						<label class="drinkcard-cc mastercard" for="mastercard"></label>
+					</div>
+				</div>
+				<div class="wthreedob">
+					<input class="date agileits w3layouts" id="datepicker1" type="text" value="Date" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}" required="">
+				</div>
+				<input class="fill email" type="text" name="Email" placeholder="Email" required=""> -->
+				<br>
+				<br>
+
+				<input type="password" Name="cvv" placeholder="Enter Cvv (4 digit)" maxlength="4" required="">
+				<br><br>
+				<!-- <input class="fill tel" name="Phone" placeholder="Phone" required=""> -->
+				<!-- <input type="text" Name="Customer ID" placeholder="Customer ID" required=""> -->
+				<div class="send-button wthree agileits">
+					<input type="submit" name="submit">
+				</div>
+				<br>
+				<p>Don't Have an Account ?...
+					<a href="/adv_register/" style="color: #223555;">&nbsp;&nbsp;<b>Advocate</b></a>&nbsp;&nbsp;<a
+						href="/user_register/" style="color: #223555;">&nbsp;&nbsp;<b>User</b></a>
+				</p>
+				<br>
+			</form>
+		</div>
+
+		<div class="clear"></div>
+
+	</div>
+
+	<div class="w3lsfooteragileits">
+		<p> &copy; 2020 Legal Advisor. All Rights Reserved </p>
+	</div>
+
+
+
+	<!-- Necessary-JavaScript-Files-&-Links -->
+
+	<!-- Default-JavaScript -->
+	<script type="text/javascript" src="{% static 'login/js/jquery-3.1.1.js' %}"></script>
+
+	<!-- Date-Picker-JavaScript -->
+	<script src="{% static 'login/js/jquery-ui.js' %}"></script>
+	<script>
+		$(function () {
+			$("#datepicker1").datepicker();
+		});
+	</script>
+	<!-- //Date-Picker-JavaScript -->
+
+	<!-- //Necessary-JavaScript-Files-&-Links -->
+
+	<script>
+		if (window.history.replaceState) {
+			window.history.replaceState(null, null, window.location.href);
+		}
+	</script>
+
+</body>
+<!-- //Body -->
+
+
+
+</html>

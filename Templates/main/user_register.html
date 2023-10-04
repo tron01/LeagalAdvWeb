@@ -1,0 +1,165 @@
+<!--
+	Author: W3layouts
+	Author URL: http://w3layouts.com
+	License: Creative Commons Attribution 3.0 Unported
+	License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head -->
+
+<head>
+
+	<title>Legal Advisor</title>
+
+	<!-- Meta-Tags -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="keywords"
+		content="Custom Signup Form Responsive, Login Form Web Template, Flat Pricing Tables, Flat Drop-Downs, Sign-Up Web Templates, Flat Web Templates, Login Sign-up Responsive Web Template, Smartphone Compatible Web Template, Free Web Designs for Nokia, Samsung, LG, Sony Ericsson, Motorola Web Design">
+	<script
+		type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+	<!-- //Meta-Tags -->
+
+	<!-- Custom-Style-Sheet -->
+	<!-- Index-Page-CSS -->
+	<link rel="stylesheet" href="{% static 'login/css/style.css' %}" type="text/css" media="all">
+	<!-- Calendar-CSS -->
+	<link rel="stylesheet" href="{% static 'login/css/jquery-ui.css' %}" type="text/css" media="all">
+	<!-- //Custom-Style-Sheet -->
+
+	<!-- Fonts -->
+	<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" type="text/css"
+		media="all">
+	<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Montserrat:400,700" type="text/css" media="all">
+	<!-- //Fonts -->
+
+</head>
+<!-- //Head -->
+
+
+
+<!-- Body -->
+
+<body>
+	{% if msg %}
+	<script>
+		alert("{{msg}}");
+	</script>
+	{% endif %}
+
+	<h1>User Registration</h1>
+
+	<div class="containerw3layouts-agileits">
+
+		<div class="w3imageaits">
+			<img class="user" src="{% static 'login/images/user.png' %}" alt="Custom Signup Form">
+			<h2>Let's get you set up</h2>
+			<p>It should only take you a minute to connect</p><br>
+			<br>
+			<a href="/" style="color: aliceblue;">
+				<p>HOME</p>
+			</a>
+		</div>
+
+		<!-- Preview Image-->
+		<script type='text/javascript'>
+			function preview_image(event) {
+				var reader = new FileReader();
+				reader.onload = function () {
+					var output = document.getElementById('output_image');
+					output.src = reader.result;
+				}
+				reader.readAsDataURL(event.target.files[0]);
+			}
+		</script>
+		<!-- End Preview Image-->
+
+
+		<div class="aitsloginwthree w3layouts agileits">
+			<form action="#" method="post" enctype="multipart/form-data">
+				{% csrf_token %}
+				<img src="{% static '/images/user.png' %}" width="150px;" height="150px;" id="output_image">
+				<input type="file" Name="img" placeholder="img" accept="image/*" onchange="preview_image(event)"
+					required="">
+				<br><br>
+				<input type="text" Name="name" placeholder="User Name" pattern="[A-Za-z]{1}[A-Za-z\s]{2,32}"
+					required="">
+				<input type="number" Name="age" placeholder="Age" required="">
+
+				<div class="radio-btns agileits w3layouts">
+					<div class="cc-selector wthreeselector">
+						<p>Gender</p>
+					</div>
+					<div class="cc-selector wthreeselector">
+						<input id="visa" type="radio" name="gender" value="male">
+						<label class="drinkcard-cc visa  " data-toggle="tooltip" data-placement="bottom" title="Male"
+							for="visa"> </label>
+					</div>
+					<div class="cc-selector wthreeselector">
+						<input id="mastercard" type="radio" name="gender" value="female">
+						<label class="drinkcard-cc mastercard " data-toggle="tooltip" data-placement="bottom"
+							title="Female" for="mastercard"></label>
+					</div>
+				</div>
+
+				<!-- <div class="wthreedob">
+					<input class="date agileits w3layouts" id="datepicker1" type="text" value="Date of Birth" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}" required="">
+				</div> -->
+				<input class="fill email" type="email" name="email" placeholder="Email" required="">
+				<input class="fill tel" type="text" name="phone" maxlength="10"
+					title="First 3 numbers should within 7-9" placeholder="Contact No." required="">
+				<input class="fill tel" type="text" name="aadhar" maxlength="12" minlength="12"
+					title="Enter 12 digits only" placeholder="Aadhar No." required="">
+
+				<textarea name="address" placeholder="address" rows="5" required></textarea>
+				<input type="password" Name="password" placeholder="Password" required="">
+
+				<div class="send-button wthree agileits">
+					<input type="submit" name="submit">
+				</div>
+			</form>
+		</div>
+
+		<div class="clear"></div>
+
+	</div>
+
+	<div class="w3lsfooteragileits">
+		<p> &copy; 2020 Legal Advisor. All Rights Reserved </p>
+	</div>
+
+
+
+	<!-- Necessary-JavaScript-Files-&-Links -->
+
+	<!-- Default-JavaScript -->
+	<script type="text/javascript" src="{% static 'login/js/jquery-3.1.1.js' %}"></script>
+
+	<!-- Date-Picker-JavaScript -->
+	<script src="{% static 'login/js/jquery-ui.js' %}"></script>
+	<script>
+		$(function () {
+			$("#datepicker1").datepicker();
+		});
+	</script>
+	<!-- //Date-Picker-JavaScript -->
+
+	<!-- //Necessary-JavaScript-Files-&-Links -->
+
+	<script>
+		if (window.history.replaceState) {
+			window.history.replaceState(null, null, window.location.href);
+		}
+	</script>
+
+</body>
+<!-- //Body -->
+
+
+
+</html>
