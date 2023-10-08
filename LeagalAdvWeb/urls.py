@@ -42,5 +42,6 @@ urlpatterns = [
 
     #-------------------------ADv-----------------------------------#
      path('adv_home/', adv_views.adv_home),
+     path('adv_logout/',adv_views.adv_logout),
 
 ]
