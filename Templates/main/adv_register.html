@@ -84,7 +84,7 @@
 		<div class="aitsloginwthree w3layouts agileits">
 			<form action="#" method="post" enctype="multipart/form-data">
 				{% csrf_token %}
-				<img src="" width="150px;" height="150px;" id="output_image">
+				<img src="{% static '/images/user.png' %}" width="150px;" height="150px;" id="output_image">
 				<input type="file" Name="img" placeholder="img" accept="image/*" onchange="preview_image(event)"
 					required="">
 				<br><br>
@@ -108,11 +108,13 @@
 					</div>
 					<div class="cc-selector wthreeselector">
 						<input id="visa" type="radio" name="gender" value="male">
-						<label class="drinkcard-cc visa" for="visa"></label>
+						<label class="drinkcard-cc visa" for="visa" data-toggle="tooltip" data-placement="bottom"
+							title="Male"></label>
 					</div>
 					<div class="cc-selector wthreeselector">
 						<input id="mastercard" type="radio" name="gender" value="female">
-						<label class="drinkcard-cc mastercard" for="mastercard"></label>
+						<label class="drinkcard-cc mastercard" for="mastercard" data-toggle="tooltip"
+							data-placement="bottom" title="female"></label>
 					</div>
 				</div>
 

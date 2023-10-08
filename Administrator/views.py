@@ -12,8 +12,8 @@ conn = MySQLdb.connect("localhost","root","","law")
 c = conn.cursor()
 
 def index(request):
-    if 'login' in request.POST:
-        return HttpResponseRedirect("/login")
+    if 'uid'  in request.session:
+        return HttpResponseRedirect("/user_home/")
     return render(request,"index.html")
 
 
@@ -34,6 +34,7 @@ def login(request):
             
         if log_count[4] == 'admin' :
             print("------------admin-----------")
+            request.session["admin_id"] = log_count[1]
             return HttpResponseRedirect("/admin_home")
         
         if log_count[4] == 'advocate' :
@@ -51,6 +52,7 @@ def login(request):
     return render(request,"login.html")
 
 def adv_register(request):
+
     s = "select * from category"
     c.execute(s)
     conn.commit()
@@ -87,8 +89,6 @@ def adv_register(request):
             c.execute(s3)
             conn.commit()
             msgg = "Dear "+str(name)+" \nYour Registration is Succesffull.\n Your account wil be activate soon..."
-            # sendsms(phone,msgg)
-            # return HttpResponseRedirect("http://dattaanjaneya.biz/API_Services/SMS_Service.php?content="+msgg+"&mobile="+phone+"")
             msg = "Advocate Registered Successfully,Your Account will be activate soon..."
             return render(request,"adv_register.html",{"data":data,"msg":msg})
         else:
@@ -96,7 +96,10 @@ def adv_register(request):
             return render(request,"adv_register.html",{"data":data,"msg":msg})
     return render(request,"adv_register.html",{"data":data})
 
+
 def user_register(request):
+    if 'uid'  in request.session:
+        return HttpResponseRedirect("/user_home/")
     print("-----------------------inside User register-------------------------")
     if 'submit' in request.POST:
         myfile = request.FILES["img"]
@@ -122,48 +125,27 @@ def user_register(request):
             return render(request,"user_register.html",{"msg":msg})
 
         else:
-            request.session["name"] = name
-            request.session["uploaded_file_url"] = uploaded_file_url
-            request.session["age"] = age
-            request.session["gender"] = gender
-            request.session["email"] = email
-            request.session["phone"] = phone
-            request.session["aadhar"] = aadhar
-            request.session["address"] = address
-            request.session["password"] = password
-            return HttpResponseRedirect("/user_bank")
-       
-    
-    return render(request,"user_register.html")
+            """
+            """
+            acc = ""
+            cvv = ""
+            s2 = "insert into user(`u_img`,`u_name`,`u_age`,`u_gender`,`u_email`,`u_phone`,`u_aadhar`,`u_address`,`u_account`,`u_cvv`) values('"+str(uploaded_file_url)+"','"+str(name)+"','"+str(age)+"','"+str(gender)+"','"+str(email)+"','"+str(phone)+"','"+str(aadhar)+"','"+str(address)+"','"+str(acc)+"','"+str(cvv)+"')"
+            print(s2)
+            c.execute(s2)
+            conn.commit()
+            s3 = "insert into login(`user_id`,`username`,`password`,`type`,`status`) values((select max(u_id) from user),'"+str(email)+"','"+str(password)+"','user','1')"
+            print(s3)
+            c.execute(s3)
+            conn.commit()
+            msgg = "Dear "+str(name)+" \nYour Registration is Succesffull.\n Your account wil be activate soon..."
+            msg = "User Registered Successfully,Your Account will be activate soon... Try Login now"
+            return render(request,"user_register.html",{"msg":msg})
+    return render(request,"user_register.html",{"msg":msg})
 
 def user_bank(request):
-    name = request.session["name"]
-    uploaded_file_url = request.session["uploaded_file_url"] 
-    age = request.session["age"]  
-    gender = request.session["gender"]
-    email = request.session["email"]
-    phone = request.session["phone"] 
-    aadhar= request.session["aadhar"]
-    address = request.session["address"]
-    password = request.session["password"] 
-    
-    if 'submit' in request.POST:
-        acc = request.POST.get("acc")
-        cvv = request.POST.get("cvv")
-        s2 = "insert into user(`u_img`,`u_name`,`u_age`,`u_gender`,`u_email`,`u_phone`,`u_aadhar`,`u_address`,`u_account`,`u_cvv`) values('"+str(uploaded_file_url)+"','"+str(name)+"','"+str(age)+"','"+str(gender)+"','"+str(email)+"','"+str(phone)+"','"+str(aadhar)+"','"+str(address)+"','"+str(acc)+"','"+str(cvv)+"')"
-        print(s2)
-        c.execute(s2)
-        conn.commit()
-        s3 = "insert into login(`user_id`,`username`,`password`,`type`,`status`) values((select max(u_id) from user),'"+str(email)+"','"+str(password)+"','user','0')"
-        print(s3)
-        c.execute(s3)
-        conn.commit()
-        msgg = "Dear "+str(name)+" \nYour Registration is Succesffull.\n Your account wil be activate soon..."
-        # sendsms(phone,msgg)
-        # return HttpResponseRedirect("http://dattaanjaneya.biz/API_Services/SMS_Service.php?content="+msgg+"&mobile="+phone+"")
-
-        msg = "User Registered Successfully,Your Account will be activate soon..."
-        return render(request,"user_bank.html",{"msg":msg})
     
         # return render(request,"user_bank.html") 
     return render(request,"user_bank.html")
+
+def admin_home(request):
+    return render(request,"admin_home.html")

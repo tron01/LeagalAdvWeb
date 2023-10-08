@@ -25,7 +25,7 @@ from Advocate import adv_views
 urlpatterns = [
      #-------------------------main-----------------------------------#
 
-    path('admin/', admin.site.urls),
+    path('admin_home/', views.admin_home),
     path('', views.index),
     path('login/', views.login),
     path('adv_register/', views.adv_register),
@@ -41,6 +41,6 @@ urlpatterns = [
     path('user_logout/', user_views.user_logout),
 
     #-------------------------ADv-----------------------------------#
-
+     path('adv_home/', adv_views.adv_home),
 
 ]

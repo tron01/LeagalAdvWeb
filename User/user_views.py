@@ -25,6 +25,6 @@ def user_logout(request):
         return HttpResponseRedirect("/login")
 
 def user_header_footer(request):
-    if not bool(request.session["uid"]):
+    if 'uid' not in request.session:
         return HttpResponseRedirect("/login")
     return render(request,"user_header_footer.html")
