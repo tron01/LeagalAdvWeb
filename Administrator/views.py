@@ -14,6 +14,9 @@ c = conn.cursor()
 def index(request):
     if 'uid'  in request.session:
         return HttpResponseRedirect("/user_home/")
+    if 'adv_id'  in request.session:
+        return HttpResponseRedirect("/adv_home/")
+
     return render(request,"index.html")
 
 
