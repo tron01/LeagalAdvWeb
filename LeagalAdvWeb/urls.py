@@ -23,10 +23,24 @@ from User import user_views
 from Advocate import adv_views
 
 urlpatterns = [
+     #-------------------------main-----------------------------------#
+
     path('admin/', admin.site.urls),
     path('', views.index),
     path('login/', views.login),
     path('adv_register/', views.adv_register),
     path('user_register/', views.user_register),
+    
+
+
+     #-------------------------User-----------------------------------#
+
+    path('user_home/', user_views.user_home),
+    path('user_header_footer/', user_views.user_header_footer),
     path('user_bank/', views.user_bank),
+    path('user_logout/', user_views.user_logout),
+
+    #-------------------------ADv-----------------------------------#
+
+
 ]
