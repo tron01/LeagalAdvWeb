@@ -26,10 +26,12 @@ urlpatterns = [
      #-------------------------main-----------------------------------#
 
     path('admin_home/', views.admin_home),
+    path('admin_logout/', views.admin_logout),
     path('', views.index),
     path('login/', views.login),
     path('adv_register/', views.adv_register),
     path('user_register/', views.user_register),
+
     
 
 

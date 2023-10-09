@@ -11,12 +11,14 @@ from django.core.files.storage import FileSystemStorage
 conn = MySQLdb.connect("localhost","root","","law")
 c = conn.cursor()
 
+#main home page
 def index(request):
     if 'uid'  in request.session:
         return HttpResponseRedirect("/user_home/")
     if 'adv_id'  in request.session:
         return HttpResponseRedirect("/adv_home/")
-
+    if 'admin_id'  in request.session:
+        return HttpResponseRedirect("/admin_home/")
     return render(request,"index.html")
 
 
@@ -38,6 +40,7 @@ def login(request):
         if log_count[4] == 'admin' :
             print("------------admin-----------")
             request.session["admin_id"] = log_count[1]
+            print( log_count[1])
             return HttpResponseRedirect("/admin_home")
         
         if log_count[4] == 'advocate' :
@@ -55,12 +58,13 @@ def login(request):
     return render(request,"login.html")
 
 def adv_register(request):
-
+    if 'adv_id'  in request.session:
+        return HttpResponseRedirect("/adv_home/")
+    print("-----------------------inside advocate register-------------------------")
     s = "select * from category"
     c.execute(s)
     conn.commit()
     data = c.fetchall()
-    print("-----------------------inside advocate register-------------------------")
     if 'submit' in request.POST:
         myfile = request.FILES["img"]
         fs = FileSystemStorage()        
@@ -151,4 +155,10 @@ def user_bank(request):
     return render(request,"user_bank.html")
 
 def admin_home(request):
+    if 'admin_id' not in request.session:
+        return HttpResponseRedirect("/login")
     return render(request,"admin_home.html")
+def admin_logout(request):
+    if 'admin_id'  in request.session:
+        request.session.pop('admin_id')
+        return HttpResponseRedirect("/login")
