@@ -23,6 +23,12 @@ def index(request):
 
 
 def login(request):
+    if 'uid'  in request.session:
+        return HttpResponseRedirect("/user_home/")
+    if 'adv_id'  in request.session:
+        return HttpResponseRedirect("/adv_home/")
+    if 'admin_id'  in request.session:
+        return HttpResponseRedirect("/admin_home/")
     if 'login' in request.POST:
         name = request.POST.get("name")
         password = request.POST.get("password")
@@ -58,8 +64,12 @@ def login(request):
     return render(request,"login.html")
 
 def adv_register(request):
+    if 'uid'  in request.session:
+        return HttpResponseRedirect("/user_home/")
     if 'adv_id'  in request.session:
         return HttpResponseRedirect("/adv_home/")
+    if 'admin_id'  in request.session:
+        return HttpResponseRedirect("/admin_home/")
     print("-----------------------inside advocate register-------------------------")
     s = "select * from category"
     c.execute(s)
@@ -105,8 +115,13 @@ def adv_register(request):
 
 
 def user_register(request):
+    msg=""
+    if 'adv_id'  in request.session:
+        return HttpResponseRedirect("/adv_home/")
     if 'uid'  in request.session:
         return HttpResponseRedirect("/user_home/")
+    if 'admin_id'  in request.session:
+        return HttpResponseRedirect("/admin_home/")
     print("-----------------------inside User register-------------------------")
     if 'submit' in request.POST:
         myfile = request.FILES["img"]
@@ -121,7 +136,7 @@ def user_register(request):
         aadhar = request.POST.get("aadhar")
         address = request.POST.get("address")
         password = request.POST.get("password")
-
+        
         s1 = "select count(*) from user where u_email = '"+str(email)+"' or u_phone= '"+str(phone)+"' or u_aadhar='"+str(aadhar)+"'"
         print(s1)
         c.execute(s1)
