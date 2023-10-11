@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <table>
+        <tr>
+            <th>Enrollment No</th>
+            <th>Photo</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Email ID</th>
+            <th>Phone</th>
+            <th>Qualification</th>
+            <th>Address</th>
+            <th>Case Category</th>
+            <th colspan="2">Remove</th>
+        </tr>
+        {% for d in data %}
+        <tr>
+            <td>{{d.3}}</td>
+            <td><img src="../static{{d.1}}" width="50px" height="50px"></td>
+            <td>{{d.2}}</td>
+            <td>{{d.5}}</td>
+            <td>{{d.7}}</td>
+            <td>{{d.8}}</td>
+            <td>{{d.4}}</td>
+            <td>{{d.9}}</td>
+            <td>{{d.10}}</td>
+            <td>
+                <center><a href="/adv_remove?reg_id={{d.0}}" title="Remove"><img src="{% static 'images/cancel.png' %}"
+                            width="30px;" height="30px;"></a>
+                </center>
+            </td>
+        </tr>
+        {% endfor %}
+    </table><br><br><br>
+</body>
+
+</html>

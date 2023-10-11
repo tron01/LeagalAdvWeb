@@ -11,7 +11,7 @@ from django.core.files.storage import FileSystemStorage
 conn = MySQLdb.connect("localhost","root","","law")
 c = conn.cursor()
 
-#main home page
+ #-------------------------main-----------------------------------#
 def index(request):
     if 'uid'  in request.session:
         return HttpResponseRedirect("/user_home/")
@@ -168,12 +168,53 @@ def user_bank(request):
     
         # return render(request,"user_bank.html") 
     return render(request,"user_bank.html")
+#-------------------------main end-----------------------------------#
 
+#-------------------------admin-----------------------------------#
 def admin_home(request):
     if 'admin_id' not in request.session:
         return HttpResponseRedirect("/login")
-    return render(request,"admin_home.html")
+    
+    s1 = "select COUNT(*) from user"
+    s2 ="select COUNT(*)from advocate" 
+    s3="" 
+    print(s1)
+    c.execute(s1)
+   
+    user_count = c.fetchone()[0]
+    c.execute(s2)
+    adv_count = c.fetchone()[0]
+    print(user_count)
+    print(adv_count)
+    
+    return render(request,"admin_home.html",{'user_count':user_count,'adv_count':adv_count})    
 def admin_logout(request):
     if 'admin_id'  in request.session:
         request.session.pop('admin_id')
         return HttpResponseRedirect("/login")
+def advocate_list(request):
+    s1 = "select * from advocate a , login l where l.status = '1' and l.type = 'advocate'"
+    print(s1)
+    c.execute(s1)
+    data = c.fetchall()
+    print(data)
+
+    if not bool(data):
+        msg = "No Advocates to show...."
+    
+        return render(request,"advocate_list.html",{"data":data,"msgg":msg})
+    return render(request,"advocate_list.html",{"data":data})
+
+def user_list(request):
+    s1 = "select * from user u , login l where u.u_id = l.user_id and l.status = '1' and l.type = 'user'"
+    print(s1)
+    c.execute(s1)
+    data = c.fetchall()
+    print(data)
+
+    if not bool(data):
+        msg = "No Users to show...."
+    
+        return render(request,"user_list.html",{"data":data,"msgg":msg})
+    return render(request,"user_list.html",{"data":data})
+#-------------------------admin end-----------------------------------#
