@@ -49,6 +49,10 @@ urlpatterns = [
     path('user_cat_list/', user_views.user_cat_list),
     path('user_adv_list/', user_views.user_adv_list),
     path('view_adv/', user_views.view_adv),
+
+    path('add_case/', user_views.add_case),
+    path('case_status/', user_views.case_status),
+    path('user_view_case_status/', user_views.user_view_case_status),
     #-------------------------User End -----------------------------------#
 
     #-------------------------Advocate End -----------------------------------#

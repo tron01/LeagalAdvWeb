@@ -1,0 +1,226 @@
+{% extends 'user_header_footer.html' %}
+{% block user_view_case_status %}
+{% load static %}
+
+	<!-- CTA -->
+<div class="section bg-primary">
+    <div class="content-wrap py-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-12">
+                    <div class="text-center text-white">
+                          <h3>View Case Status </h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <!-- CTA -->
+	<div class="section">
+		<div class="content-wrap py-0">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-12 col-md-12">
+						<div class="cta-overlap clearfix">
+			              	<div class="body-text mb-3">
+			                	<img src="../static{{data.0.9}}" width="80px;" height="80px"; style="border-radius: 50%;"><h3 class="my-1 text-white">CASE : {{data.0.3}}</h3>
+			                	<p class="uk18 mb-0 text-primary">Advocate : {{data.0.21}}</p>
+			              	</div>
+			              	<div class="body-action">
+                                <a href="#" class="btn btn-primary" >{{data.0.6}}</a>
+                                <br><br>
+                                <a href="/add_rating?case_id={{data.0.0}}&adv_id={{data.0.1}}" class="btn btn-secondary">Rating</a>
+                                 
+			              	</div>
+			            </div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>	
+
+	<!-- OUR PROMISE? -->
+	<div class="section">
+		<div class="content-wrap pb-0">
+			<div class="container">
+				<div class="row align-items-start">
+					<div class="col-sm-12 col-md-12 col-lg-6">
+						<blockquote class="quote">
+                            <footer class="blockquote-footer">Status :  </footer>
+							<p class="uk18">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{data.0.6}}</p>
+                            <footer class="blockquote-footer">Case Description :  </footer>
+							<p class="uk18">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{data.0.4}}</p>
+                            <footer class="blockquote-footer">View Documents :  </footer>
+                            <p class="uk18"><a href="../static{{data.0.5}}" target="_blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Case document</a></p>
+                            <footer class="blockquote-footer">Category :  </footer>
+                            <p class="uk18">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{data.0.29}}</p>
+                            
+                            <footer class="blockquote-footer">Advocates Email :  </footer>
+                            <p class="uk18">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{data.0.26}}</p>
+                            <footer class="blockquote-footer">Advoctes Contact No  :  </footer>
+                            <p class="uk18">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{data.0.27}}</p>
+                            <footer class="blockquote-footer">Address :  </footer>
+                            <p class="uk18">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{data.0.16}}</p>
+                            <!-- <footer class="blockquote-footer">Ip Sections :  </footer> -->
+                            {% if data.0.7 == None %}
+                            <!-- <p style="color: green;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/case_ipc?case_id={{data.0.0}}&u_id={{data.0.2}}" >ADD</a></p> -->
+                            {% endif %}
+                            {% if data.0.7 != None %}
+
+                            <p class="uk18">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{data.0.7}}</p>
+                            
+                            {% endif %}
+                            
+						</blockquote>
+					</div>
+					<div class="col-sm-12 col-md-12 col-lg-6">
+            <h2 class="section-heading mt-3">
+							Documents
+						</h2>
+						<p class="subheading mb-4">"Documents regarding the case"</p>
+						<!-- <p class="subheading mb-4">"we always take care of clients seriously"</p> -->
+                                <!-- <p><a href="/{{data.0.5}}" target="_blank" class="btn btn-secondary">View Document</a></p> -->
+                                
+
+                                
+                                <!-- {%  if data.0.6 == 'Applied' %}
+                                {% endif %} -->
+                                <table >
+                                   
+                                <tr >
+                                  <th>Sl No</th>
+                                  <th>File Name</th>
+                                  <th>Posted On</th>
+                                  <th>Document</th>
+                                  <!-- <th>Status</th> -->
+                                  <!-- <th>Payment</th>
+                                  <th>Next Review</th> -->
+                                  <!-- <th>View</th> -->
+                                  
+                                </tr>
+                                
+                                {% for d in data2 %}
+                                <tr>
+                                  <td>{{ forloop.counter }}</td><td>{{d.4}}</td><td><a href="../static{{d.5}}" target="_blank">View</a></td><td>{{d.6}}</td>
+                                  <!-- {% if d.7 == None %}<td><a href="" style="color: green;">ADD</a></td>{% endif %}
+                                  {% if d.7 != None %}<td>{{d.7}}</td>{% endif %}<td>{{d.6}}</td><td><a href="">Fees</a></td> -->
+            
+                                  <!-- <td><a href="">ADD</a></td> -->
+            
+                                </tr>
+                                {% endfor %}
+                              </table><br><br><br>
+
+
+						<h2 class="section-heading mt-3">
+							Payments
+						</h2>
+						<p class="subheading mb-4">"we always take care of clients seriously"</p>
+			                	
+						<style>
+                            table {
+                              font-family: arial, sans-serif;
+                              border-collapse: collapse;
+                              width: 95%;
+                              margin-left:2%;
+                              border: #000000;
+                              
+                            }
+                            
+                            td, th {
+                              border: 1px solid #dddddd;
+                              text-align: left;
+                              padding: 8px;
+                            }
+                            th{
+                                background-color: #223555;
+                            }
+                            td{
+                                color: black;
+                            }
+                            tr:nth-child(even) {
+                              background-color: #dddddd;
+                            }
+                            </style>
+                            <!-- <center><a href="/add_fee?case_id={{data.0.0}}&u_id={{data.0.2}}" class="btn btn-primary">ADD FEE</a></center> -->
+                    <table >
+                            <tr >
+                              <th>Sl No</th>
+                              <th>Fee</th>
+                              <th>Posted On</th>
+                              <th>Paid Date</th>
+                              <th>Status</th>
+                             <th>Payment</th>
+                               <!-- <th>Next Review</th> -->
+                              <!-- <th>View</th> -->
+                              
+                            </tr>
+                            {% for d in data1 %}
+                            <tr>
+                              <td>{{ forloop.counter }}</td><td>{{d.5}}</td><td>{{d.4}}</td><td>{{d.6}}</td><td>{{d.7}}</td>
+
+                              {% if d.7 == 'Paid' %}
+                              <td>Payment Successfull</td>
+                              {% endif %}
+                              {% if d.7 == 'Not Paid' %}
+                              <td ><b><a href="/payment1?case_id= {{data.0.0}}&adv_id={{data.0.1}}&amt={{d.5}}" style="color: green;">Pay</a></b></td>
+                              {% endif %}
+
+                              <!-- {% if d.7 == None %}<td><a href="" style="color: green;">ADD</a></td>{% endif %}
+                              {% if d.7 != None %}<td>{{d.7}}</td>{% endif %}<td>{{d.6}}</td><td><a href="">Fees</a></td> -->
+        
+                              <!-- <td><a href="">ADD</a></td> -->
+        
+                            </tr>
+                            {% endfor %}
+                          </table><br><br><br>
+
+                          <h2 class="section-heading mt-3">
+                              Rating
+                            </h2>
+                            <p class="subheading mb-4">"Reviews here"</p>
+
+                            <table >
+                                <tr >
+                                  <th>Sl No</th>
+                                  <th>Rating</th>
+                                  <th>Review</th>
+                                  <!-- <th>Paid Date</th>
+                                  <th>Status</th>
+                                 <th>Payment</th> -->
+                                   <!-- <th>Next Review</th> -->
+                                  <!-- <th>View</th> -->
+                                  
+                                </tr>
+                                {% for d in data3 %}
+                                <tr>
+                                  <td>{{ forloop.counter }}</td><td>{{d.4}}</td><td>{{d.5}}</td>
+    
+                                  <!-- {% if d.7 == 'Paid' %}
+                                  <td>Payment Successfull</td>
+                                  {% endif %}
+                                  {% if d.7 == 'Not Paid' %}
+                                  <td ><b><a href="/payment1?case_id= {{data.0.0}}&adv_id={{data.0.1}}&amt={{d.5}}" style="color: green;">Pay</a></b></td>
+                                  {% endif %} -->
+    
+                                  <!-- {% if d.7 == None %}<td><a href="" style="color: green;">ADD</a></td>{% endif %}
+                                  {% if d.7 != None %}<td>{{d.7}}</td>{% endif %}<td>{{d.6}}</td><td><a href="">Fees</a></td> -->
+            
+                                  <!-- <td><a href="">ADD</a></td> -->
+            
+                                </tr>
+                                {% endfor %}
+                              </table><br><br><br>
+                                        
+						<div class="spacer-content"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	
+{% endblock %}
