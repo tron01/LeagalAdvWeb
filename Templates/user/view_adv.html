@@ -1,0 +1,89 @@
+{% extends 'user_header_footer.html' %}
+{% block view_adv %}
+{% load static %}
+<div class="section bg-primary">
+	<div class="content-wrap py-3">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12 col-md-12">
+					<div class="text-center text-white">
+						<h3>View Advocate</h3>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- CTA -->
+<div class="section">
+	<div class="content-wrap py-0">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12 col-md-12">
+					<div class="cta-overlap clearfix">
+						<div class="body-text mb-3">
+							<h3 class="my-1 text-white">Adv. {{data.2}}</h3>
+							<p class="uk18 mb-0 text-primary">Enrollment No : {{data.3}}</p>
+						</div>
+						<div class="body-action">
+							<a href="/add_case?adv_id={{data.0}}" class="btn btn-primary">Request Consultation</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- OUR PROMISE? -->
+<div class="section">
+	<div class="content-wrap pb-0">
+		<div class="container">
+			<div class="row align-items-start">
+
+				<div class="col-sm-12 col-md-12 col-lg-6">
+					<img src="../{{data.1}}" alt="" class="img-fluid img-border" width="350px;" height="50px;">
+				</div>
+				<div class="col-sm-12 col-md-12 col-lg-6">
+					<blockquote class="quote">
+						<footer class="blockquote-footer">Qualification : </footer>
+						<p class="uk18">{{data.4}}</p>
+						<footer class="blockquote-footer">Age : </footer>
+						<p class="uk18">{{data.5}}</p>
+						<footer class="blockquote-footer">Gender : </footer>
+						<p class="uk18">{{data.6}}</p>
+						<footer class="blockquote-footer">Email : </footer>
+						<p class="uk18">{{data.7}}</p>
+						<footer class="blockquote-footer">Contact No : </footer>
+						<p class="uk18">{{data.8}}</p>
+						<footer class="blockquote-footer">Address : </footer>
+						<p class="uk18">{{data.9}}</p>
+						<footer class="blockquote-footer">Category : </footer>
+						<p class="uk18">{{data.10}}</p>
+
+					</blockquote>
+
+					<div class="spacer-content"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<!-- CTA -->
+<div class="section bg-primary">
+	<div class="content-wrap py-3">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12 col-md-12">
+					<div class="text-center text-white">
+						<h3>Get Free Legal Consultant :{{data.8}} </h3>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

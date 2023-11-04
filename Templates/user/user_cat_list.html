@@ -1,0 +1,106 @@
+{% extends 'user_header_footer.html' %}
+{% block user_cat_list %}
+{% load static %}
+<!-- CTA -->
+
+<div class="section bg-primary">
+    <div class="content-wrap py-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-12">
+                    <div class="text-center text-white">
+                          <h3>Case Category</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% if msg %}
+	<script>
+		alert("{{msg}}");
+	</script>
+	{% endif %}
+<!-- CONTACT -->
+<div class="section bgi-cover-center" data-background="{% static 'images/hammer.png' %}">
+    <div class="content-wrap pb-0">
+        <div class="container">
+            <div class="row align-items-end">
+                
+                    <style>
+                            table {
+                              font-family: arial, sans-serif;
+                              border-collapse: collapse;
+                              width: 100%;
+                              /* margin-left: 5%; */
+                              border: #000000;
+                              
+                            }
+                            
+                            td, th {
+                              border: 1px solid #dddddd;
+                              text-align: left;
+                              padding: 8px;
+                            }
+                            th{
+                                background-color: #223555;
+                            }
+                            td{
+                                color: black;
+                            }
+                            tr:nth-child(even) {
+                              background-color: #dddddd;
+                            }
+                            </style>
+                    <table >
+                            <tr >
+                              <th>Sl No</th>
+                              <th>Category Name</th>
+                              <th>Description</th>
+                              
+                            </tr>
+                            {% for d in data %}
+                            <tr>
+                              <td>{{ forloop.counter }}</td><td>{{d.1}}</td><td>{{d.2}}</td>
+                            </tr>
+                            {% endfor %}
+                          </table><br><br><br>
+                          {% if msgg %}
+                          <label style="color: red; margin-left: 45%;"><center>{{msgg}}</center></label>
+        
+            {% endif %}
+                
+            </div>
+        </div>
+    </div>
+</div>
+<!-- OUR PROMISE? -->
+<div class="section">
+    <div class="content-wrap pb-0">
+        <div class="container">
+            <div class="row align-items-end">
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section bg-primary">
+    <div class="content-wrap py-3" style="background-color: white;">
+        <div class="container">
+            <div class="row">
+                <br>
+                <br>
+                
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    if ( window.history.replaceState ) {
+        window.history.replaceState( null, null, window.location.href );
+    }
+    </script>
+
+{% endblock %}
