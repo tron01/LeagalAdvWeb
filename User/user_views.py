@@ -64,3 +64,37 @@ def user_cat_list(request):
     # if 'login' in request.POST:
         # return HttpResponseRedirect("/login")
     return render(request,"user_cat_list.html",{"data":data})
+
+def user_adv_list(request):
+    s = "select * from category order by cat_name"
+    print(s)
+    c.execute(s)
+    data =c.fetchall()
+    print(data)
+
+    if 'cat' in request.POST:
+        category = request.POST.get("category")
+        print(category)
+        if category == 'All':
+            s2 = "select * from advocate order by adv_category"
+            print(s2)
+            c.execute(s2)
+            data2 =c.fetchall()
+            print(data2)
+            if not bool(data2):
+                msg = "No Advocate List To show"
+                return render(request,"user_adv_list.html",{"data":data,"data2":data2,"msg":msg})
+            return render(request,"user_adv_list.html",{"data":data,"data2":data2})
+        else:
+            s1 = " select * from advocate where adv_category = '"+str(category)+"' "
+            print(s1)
+            c.execute(s1)
+            data1 =c.fetchall()
+            print(data1)
+            if not bool(data1):
+                msg = "No Advocate List To show"
+                return render(request,"user_adv_list.html",{"data":data,"data2":data1,"msg":msg})
+            return render(request,"user_adv_list.html",{"data":data,"data2":data1})
+    # if 'login' in request.POST:
+        # return HttpResponseRedirect("/login")
+    return render(request,"user_adv_list.html",{"data":data})

@@ -23,30 +23,37 @@ from User import user_views
 from Advocate import adv_views
 
 urlpatterns = [
-    #-------------------------admin-----------------------------------#
+    #-------------------------main-----------------------------------#
     path('', views.index),
     path('login/', views.login),
     path('adv_register/', views.adv_register),
-    path('user_register/', views.user_register),
-    
-    #-------------------------main-----------------------------------#
+    path('user_register/', views.user_register), 
+    #------------------------- end main-----------------------------------#
 
+    #-------------------------Admin-----------------------------------#
     path('admin_home/', views.admin_home),
     path('admin_logout/', views.admin_logout),
     path('advocate_list/', views.advocate_list),
     path('user_list/', views.user_list),
-
+    #-------------------------Admin End-----------------------------------#
 
     #-------------------------User-----------------------------------#
-
     path('user_home/', user_views.user_home),
     path('user_header_footer/', user_views.user_header_footer),
     path('user_bank/', views.user_bank),
     path('user_logout/', user_views.user_logout),
 
-    #-------------------------ADv-----------------------------------#
+    path('user_ipc/', user_views.user_ipc),
+    path('user_about/', user_views.user_about),
+    path('user_profile/', user_views.user_profile),
+    path('user_cat_list/', user_views.user_cat_list),
+    path('user_adv_list/', user_views.user_adv_list),
+    #-------------------------User End -----------------------------------#
+
+    #-------------------------Advocate End -----------------------------------#
      path('adv_home/', adv_views.adv_home),
      path('adv_logout/',adv_views.adv_logout),
+    #-------------------------Advocate End -----------------------------------#
 
 ]
 
