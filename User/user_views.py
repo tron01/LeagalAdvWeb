@@ -98,3 +98,15 @@ def user_adv_list(request):
     # if 'login' in request.POST:
         # return HttpResponseRedirect("/login")
     return render(request,"user_adv_list.html",{"data":data})
+
+def view_adv(request):
+    adv_id = request.GET.get("adv_id")
+    print(adv_id)
+    s = "select * from advocate where adv_id = '"+str(adv_id)+"' "
+    c.execute(s)
+    conn.commit()
+    data = c.fetchone()
+    print(data)
+    # if 'login' in request.POST:
+        # return HttpResponseRedirect("/login")
+    return render(request,"view_adv.html",{"data":data})

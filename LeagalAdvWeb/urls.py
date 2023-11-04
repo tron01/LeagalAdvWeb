@@ -48,6 +48,7 @@ urlpatterns = [
     path('user_profile/', user_views.user_profile),
     path('user_cat_list/', user_views.user_cat_list),
     path('user_adv_list/', user_views.user_adv_list),
+    path('view_adv/', user_views.view_adv),
     #-------------------------User End -----------------------------------#
 
     #-------------------------Advocate End -----------------------------------#
