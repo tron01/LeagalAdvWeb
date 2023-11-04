@@ -52,3 +52,15 @@ def user_ipc(request):
     # if 'login' in request.POST:
         # return HttpResponseRedirect("/login")
     return render(request,"user_ipc.html",{"data":data})
+
+def user_cat_list(request):
+    s = "select * from category order by cat_id"
+    # s = "SELECT *,BIN(ipc_section) AS binray_not_needed_column FROM ipc ORDER BY binray_not_needed_column ASC , ipc_section ASC"
+    # s = "SELECT *  CAST(ipc_section as SIGNED) AS casted_column FROM ipc ORDER BY casted_column ASC , ipc_section ASC"
+    print(s)
+    c.execute(s)
+    data =c.fetchall()
+    print(data)
+    # if 'login' in request.POST:
+        # return HttpResponseRedirect("/login")
+    return render(request,"user_cat_list.html",{"data":data})
