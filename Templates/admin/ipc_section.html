@@ -1,0 +1,139 @@
+{% extends 'admin_header_footer.html' %}
+{% block ipc_section %}
+{% load static %}
+<!-- CTA -->
+
+<div class="section bg-primary">
+    <div class="content-wrap py-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-12">
+                    <div class="text-center text-white">
+                          <h3>IPC SECTION</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- CONTACT -->
+<div class="section bgi-cover-center" data-background="{% static 'images/hammer.png' %}">
+    <div class="content-wrap pb-0">
+        <div class="container">
+            <div class="row align-items-end">
+                
+                <div class="col-12 col-md-12">
+                   <center> <h2 class="section-heading">
+                        Add IPC SECTION
+                    </h2></center>
+                    <center><p class="subheading mb-5">Advice from the Heart</p></center>
+                    
+                   <center><form action="#" class="form-contact"  method="POST">
+                       {% csrf_token %}
+                        <div class="row" style="margin-left: 15%;">
+                            <div class="col-sm-10 col-md-10">
+                                <div class="form-group">
+                                    <input type="text"  class="form-control" id="p_name" name="ipc_section" placeholder="Enter IPC SECTION" required="">
+                                    <!-- <div class="help-block with-errors"></div> -->
+                                </div>
+                                <div class="form-group">
+                                    <textarea name="ipc_description" class="form-control" rows="5" placeholder="Description"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <!-- <div id="success"></div> -->
+                                <input type="submit" name="ipc" value="Add Now" class="btn btn-primary">
+                                <!-- <button type="submit" name="submit" class="btn btn-primary"><Add Now</button> -->
+                            </div>
+                    </form></center> 
+                    
+
+                </div>
+
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+<!-- OUR PROMISE? -->
+<div class="section">
+    <div class="content-wrap pb-0">
+        
+        <div class="container">
+            <center> <h4 class="section-heading">
+                IPC SECTIONS
+               </h4></center>
+            <div class="row align-items-end">
+                
+                <style>
+                    table {
+                      font-family: arial, sans-serif;
+                      border-collapse: collapse;
+                      width: 95%;
+                      /* margin-left: 5%; */
+                      border: #000000;
+                      
+                    }
+                    
+                    td, th {
+                      border: 1px solid #dddddd;
+                      text-align: left;
+                      padding: 8px;
+                    }
+                    th{
+                        background-color: #223555;
+                    }
+                    td{
+                        color: black;
+                    }
+                    tr:nth-child(even) {
+                      background-color: #dddddd;
+                    }
+                    </style>
+            <table >
+                    <tr >
+                        <th> No</th>
+                        <th>IPC Section Name</th>
+                        <th>Description</th>
+                        
+                        <th colspan="2">Action</th>
+                    </tr>
+                    {% for d in data1 %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td><td>{{d.1}}</td><td>{{d.2}}</td><td><center><a href="/ipc_remove?ipc_id={{d.0}}"><img src="{% static 'images/cancel.png' %}" width="30px;" height="30px;"></a></center></td>
+                    </tr>
+                    {% endfor %}
+                  </table><br><br><br>
+                  {% if msgg %}
+                  <label style="color: red; margin-left: 45%;"><center>{{msgg}}</center></label>
+	{% endif %}
+                    <div class="spacer-content"></div>
+                <!-- </div> -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section bg-primary">
+    <div class="content-wrap py-3" style="background-color: white;">
+        <div class="container">
+            <div class="row">
+                <br>
+                <br>
+                {% if msg %}
+	<script>
+		alert("{{msg}}");
+	</script>
+	{% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    if ( window.history.replaceState ) {
+        window.history.replaceState( null, null, window.location.href );
+    }
+    </script>
+{% endblock %}

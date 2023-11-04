@@ -1,28 +1,49 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'admin_header_footer.html' %}
+{% block admin_home %}
+{% load static %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin</title>
-</head>
+<!-- BANNER -->
+<div id="oc-fullslider" class="banner">
+	<div class="owl-carousel owl-theme full-screen">
+		<div class="item">
+			<img src="{% static 'images/home01.jpg' %}" alt="Slider">
+			<div class="overlay-bg"></div>
+			<div class="container d-flex align-items-center">
+				<div class="wrap-caption">
+					<h1 class="caption-heading">Welcome to<br>Legal Advisor</h1>
+					<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod.</p>
+					<a href="#" class="btn btn-primary">LEARN MORE</a>
+				</div>
+			</div>
+		</div>
+		<div class="item">
+			<img src="{% static 'images/home02.jpg' %}" alt="Slider">
+			<div class="overlay-bg"></div>
+			<div class="container d-flex align-items-center">
+				<div class="wrap-caption">
+					<h1 class="caption-heading">Welcome to<br>Law & Attorney.</h1>
+					<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod.</p>
+					<a href="#" class="btn btn-primary">LEARN MORE</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="custom-nav owl-nav"></div>
+</div>
 
-<body>
-    <h1>
-        Admin page
-    </h1>
-    <a href="/admin_logout/"><button type="submit" name="login" class="btn btn-secondary-index"><b>LOGOUT</b></button>
-    </a>
-    <div>
-        <h1>UserCount : {{ user_count }} </h1>
-        <h1>adv count :{{ adv_count }} </h1>
 
-        <h1>Case Count : {{ user_count }} </h1>
-        <h1>Feedback Count :{{ adv_count }} </h1>
-
-
-    </div>
-</body>
-
-</html>
+<!-- CTA -->
+<div class="section bg-primary">
+	<div class="content-wrap py-3">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12 col-md-12">
+					<div class="text-center text-white">
+						<h3>Get Free Legal Consultant : (0761) 654-123987</h3>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

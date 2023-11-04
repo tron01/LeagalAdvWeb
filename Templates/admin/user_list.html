@@ -1,15 +1,103 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'admin_header_footer.html' %}
+{% block user_list %}
+{% load static %}
+<!-- CTA -->
+<div class="section bg-primary">
+    <div class="content-wrap py-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-12">
+                    <div class="text-center text-white">
+                        <h3>User List</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- OUR PROMISE? -->
+<div class="section">
+    <div class="content-wrap pb-0">
+        <div class="container">
+            <div class="row align-items-end">
+                <style>
+                    table {
+                        font-family: arial, sans-serif;
+                        border-collapse: collapse;
+                        width: 95%;
+                        /* margin-left: 5%; */
+                        border: #000000;
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+                    }
 
-<body>
+                    td,
+                    th {
+                        border: 1px solid #dddddd;
+                        text-align: left;
+                        padding: 8px;
+                    }
 
-</body>
+                    th {
+                        background-color: #223555;
+                    }
 
-</html>
+                    td {
+                        color: black;
+                    }
+
+                    tr:nth-child(even) {
+                        background-color: #dddddd;
+                    }
+                </style>
+                <table>
+                    <tr>
+                        <th> No</th>
+                        <th>Photo</th>
+                        <th>Name</th>
+                        <th>Age</th>
+                        <th>Email ID</th>
+                        <th>Phone</th>
+                        <th>Address</th>
+                        <th colspan="2">Action</th>
+                    </tr>
+                    {% for d in data %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td><img src="../static{{d.1}}" width="50px" height="50px"></td>
+                        <td>{{d.2}}</td>
+                        <td>{{d.3}}</td>
+                        <td>{{d.5}}</td>
+                        <td>{{d.6}}</td>
+                        <td>{{d.7}}</td>
+                        <td>
+                            <center><a href="/user_remove?reg_id={{d.0}}"><img src="{% static 'images/cancel.png' %}"
+                                        width="30px;" height="30px;"></a></center>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </table><br><br><br>
+                {% if msgg %}
+                <label style="color: red; margin-left: 45%;">
+                    <center>{{msgg}}</center>
+                </label>
+                {% endif %}
+                <div class="spacer-content"></div>
+                <!-- </div> -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section bg-primary">
+    <div class="content-wrap py-3" style="background-color: white;">
+        <div class="container">
+            <div class="row">
+                <br>
+                <br>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

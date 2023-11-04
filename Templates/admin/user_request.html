@@ -1,5 +1,5 @@
 {% extends 'admin_header_footer.html' %}
-{% block advocate_list %}
+{% block user_request %}
 {% load static %}
 <!-- CTA -->
 <div class="section bg-primary">
@@ -8,7 +8,7 @@
             <div class="row">
                 <div class="col-sm-12 col-md-12">
                     <div class="text-center text-white">
-                        <h3>Advocate List</h3>
+                        <h3>User Request</h3>
                     </div>
                 </div>
             </div>
@@ -24,7 +24,7 @@
                     table {
                         font-family: arial, sans-serif;
                         border-collapse: collapse;
-                        width: 100%;
+                        width: 95%;
                         /* margin-left: 5%; */
                         border: #000000;
 
@@ -52,31 +52,29 @@
                 <table>
                     <tr>
                         <th> No</th>
-                        <th>Enrollment No</th>
                         <th>Photo</th>
                         <th>Name</th>
                         <th>Age</th>
                         <th>Email ID</th>
                         <th>Phone</th>
-                        <th>Qualification</th>
                         <th>Address</th>
-                        <th>Case Category</th>
-                        <th colspan="2">Remove</th>
+                        <th colspan="2">Action</th>
                     </tr>
                     {% for d in data %}
                     <tr>
                         <td>{{ forloop.counter }}</td>
-                        <td>{{d.3}}</td>
                         <td><img src="../static{{d.1}}" width="50px" height="50px"></td>
                         <td>{{d.2}}</td>
+                        <td>{{d.3}}</td>
                         <td>{{d.5}}</td>
+                        <td>{{d.6}}</td>
                         <td>{{d.7}}</td>
-                        <td>{{d.8}}</td>
-                        <td>{{d.4}}</td>
-                        <td>{{d.9}}</td>
-                        <td>{{d.10}}</td>
                         <td>
-                            <center><a href="/adv_remove?reg_id={{d.0}}" title="Remove"><img
+                            <center><a href="/action_user?reg_id={{d.0}}&st=Approve"><img
+                                        src="{% static 'images/tick1.png' %}" width="30px;" height="30px;"></a></center>
+                        </td>
+                        <td>
+                            <center><a href="/action_user?reg_id={{d.0}}&st=Reject"><img
                                         src="{% static 'images/cancel.png' %}" width="30px;" height="30px;"></a>
                             </center>
                         </td>
@@ -87,6 +85,7 @@
                 <label style="color: red; margin-left: 45%;">
                     <center>{{msgg}}</center>
                 </label>
+
                 {% endif %}
                 <div class="spacer-content"></div>
                 <!-- </div> -->
