@@ -4,7 +4,6 @@ from django.shortcuts import render
 import MySQLdb
 import datetime
 now = datetime.datetime.now()
-# import simplejson as json
 from django.core.files.storage import FileSystemStorage
 
 
@@ -171,11 +170,16 @@ def user_bank(request):
 #-------------------------main end-----------------------------------#
 
 #-------------------------admin-----------------------------------#
+
+def admin_header_footer(request):
+    
+    return render(request,"admin_header_footer.html")
+
 def admin_home(request):
     if 'admin_id' not in request.session:
         return HttpResponseRedirect("/login")
     
-    s1 = "select COUNT(*) from user"
+    s1 ="select COUNT(*) from user"
     s2 ="select COUNT(*)from advocate" 
     s3="" 
     print(s1)
@@ -186,14 +190,16 @@ def admin_home(request):
     adv_count = c.fetchone()[0]
     print(user_count)
     print(adv_count)
-    
-    return render(request,"admin_home.html",{'user_count':user_count,'adv_count':adv_count})    
+    return render(request,"admin_home.html")
+
 def admin_logout(request):
     if 'admin_id'  in request.session:
         request.session.pop('admin_id')
         return HttpResponseRedirect("/login")
+    
+
 def advocate_list(request):
-    s1 = "select * from advocate a , login l where l.status = '1' and l.type = 'advocate'"
+    s1 = "select * from advocate a , login l where l.status = '1' and l.type = 'advocate' and a.adv_email = l.username "
     print(s1)
     c.execute(s1)
     data = c.fetchall()
@@ -201,12 +207,73 @@ def advocate_list(request):
 
     if not bool(data):
         msg = "No Advocates to show...."
-    
         return render(request,"advocate_list.html",{"data":data,"msgg":msg})
     return render(request,"advocate_list.html",{"data":data})
 
+
+def adv_request(request):
+
+    s1 = "select * from advocate a , login l where  l.status =0 and l.type = 'advocate' and a.adv_email = l.username"
+    print(s1)
+    c.execute(s1)
+    data = c.fetchall()
+    print(data)
+    if not bool(data):
+        msg = "No Requests to show...."
+    
+        return render(request,"adv_request.html",{"data":data,"msgg":msg})
+    
+    return render(request,"adv_request.html",{"data":data})
+
+
+def action_adv(request):
+    reg_id = request.GET.get("reg_id")
+    st = request.GET.get("st")
+    print("inside action_adv")
+    if st == 'Approve' :
+        print("Approve")
+
+        s = "update login set status = '1' where user_id = '"+str(reg_id)+"' and type = 'advocate'"
+        print(s)
+        c.execute(s)
+        conn.commit()
+       
+        return HttpResponseRedirect("/adv_request")
+    
+    if st == 'Reject' :
+        print("Reject")
+
+        s = "delete from login  where user_id = '"+str(reg_id)+"' and type = 'advocate'"
+        print(s)
+        c.execute(s)
+        conn.commit()
+        s = "delete from advocate  where adv_id = '"+str(reg_id)+"'"
+        print(s)
+        c.execute(s)
+        conn.commit()
+        return HttpResponseRedirect("/adv_request")
+    
+    return HttpResponseRedirect("/adv_request")
+
+def adv_remove(request):
+    reg_id = request.GET.get("reg_id")
+    
+    print("inside action_adv")
+    
+    s = "delete from login where user_id = '"+str(reg_id)+"' and type='advocate'"
+    print(s)
+    c.execute(s)
+    conn.commit()
+    s1 = "delete from advocate  where adv_id = '"+str(reg_id)+"'"
+    print(s1)
+    c.execute(s1)
+    conn.commit()
+    
+    return HttpResponseRedirect("/advocate_list")
+
+
 def user_list(request):
-    s1 = "select * from user u , login l where u.u_id = l.user_id and l.status = '1' and l.type = 'user'"
+    s1 = "select * from user u , login l where u.u_email = l.username and l.status = '1' and l.type = 'user'"
     print(s1)
     c.execute(s1)
     data = c.fetchall()
@@ -214,7 +281,6 @@ def user_list(request):
 
     if not bool(data):
         msg = "No Users to show...."
-    
         return render(request,"user_list.html",{"data":data,"msgg":msg})
     return render(request,"user_list.html",{"data":data})
 #-------------------------admin end-----------------------------------#
