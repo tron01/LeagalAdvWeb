@@ -110,3 +110,93 @@ def view_adv(request):
     # if 'login' in request.POST:
         # return HttpResponseRedirect("/login")
     return render(request,"view_adv.html",{"data":data})
+
+
+
+def add_case(request):
+    uid = request.session["uid"]
+    print(uid)
+    adv_id = request.GET.get("adv_id")
+    print(adv_id)
+    s = "select * from advocate where adv_id = '"+str(adv_id)+"' "
+    c.execute(s)
+    conn.commit()
+    data = c.fetchone()
+    print(data)
+    if 'register' in request.POST:
+        case_title = request.POST.get("case_title")
+        case_desc = request.POST.get("case_desc")
+        # case_file = request.POST.get("case_file")
+
+        myfile = request.FILES["case_file"]
+        fs = FileSystemStorage()        
+        filename = fs.save(myfile.name, myfile)
+        uploaded_file_url = fs.url(filename)
+
+        s1 = "insert into case_request(`adv_id`,`user_id`,`case_title`,`case_desc`,`case_file`,`status`) values('"+str(adv_id)+"','"+str(uid)+"','"+str(case_title)+"','"+str(case_desc)+"','"+str(uploaded_file_url)+"','Applied')"
+        c.execute(s1)
+        conn.commit()   
+        msg = "Case Registered Successfully"    
+        # return HttpResponseRedirect("/login")
+        return render(request,"add_case.html",{"msg":msg})
+
+    return render(request,"add_case.html",{"data":data})
+
+def case_status(request):
+    uid = request.session["uid"]
+    s = "select * from case_request c , user u, advocate a  where c.user_id = '"+str(uid)+"' and c.user_id = u.u_id and c.adv_id = a.adv_id  order by c.case_id desc"
+
+    print(s)
+    c.execute(s)
+    conn.commit()
+    data = c.fetchall()
+    print(data)
+    if not bool(data):
+        msgg = "No case Applications"
+    # if 'login' in request.POST:
+        # return HttpResponseRedirect("/login")
+        return render(request,"case_status.html",{"data":data,"msgg":msgg})
+    return render(request,"case_status.html",{"data":data})
+
+def user_view_case_status(request):
+    u_id = request.session["uid"]
+    case_id = request.GET.get("case_id")
+    adv_id = request.GET.get("adv_id")
+
+
+
+    s = "select * from case_request c , user u,advocate a  where c.case_id = '"+str(case_id)+"' and  c.user_id = '"+str(u_id)+"' and c.user_id = u.u_id and c.adv_id = a.adv_id  order by c.case_id desc"
+    print(s)
+    c.execute(s)
+    conn.commit()
+    data = c.fetchall()
+
+    s1 = "select * from payment where case_id= '"+str(case_id)+"' order by pay_id desc"
+    print(s1)
+    c.execute(s1)
+    conn.commit()
+    data1 = c.fetchall()
+
+    s2 = "select * from documents where case_id = '"+str(case_id)+"' order by doc_id"
+    print(s2)
+    print("haiiiiiiiiii")
+    c.execute(s2)
+    conn.commit()
+    data2 = c.fetchall()
+
+
+    s3 = "select * from rating  where case_id = '"+str(case_id)+"' and  adv_id = '"+str(adv_id)+"' "
+    print(s3)
+    print("haiiiiiiiiii")
+    c.execute(s3)
+    conn.commit()
+    data3 = c.fetchall()
+    
+    print(data)
+    if not bool(data):
+        msgg = "No case Applications"
+    # if 'login' in request.POST:
+        # return HttpResponseRedirect("/login")
+        return render(request,"user_view_case_status.html",{"data":data,"msgg":msgg,"data1":data1,"data2":data2,"data3":data3})
+    return render(request,"user_view_case_status.html",{"data":data,"data1":data1,"data2":data2,"data3":data3})
+
