@@ -200,3 +200,44 @@ def user_view_case_status(request):
         return render(request,"user_view_case_status.html",{"data":data,"msgg":msgg,"data1":data1,"data2":data2,"data3":data3})
     return render(request,"user_view_case_status.html",{"data":data,"data1":data1,"data2":data2,"data3":data3})
 
+def add_rating(request):
+    if 'rating' in request.POST:
+        u_id = request.session["uid"]
+        case_id = request.GET.get("case_id")
+        adv_id = request.GET.get("adv_id")
+        u_rating = request.POST.get("u_rating")
+        rating_desc = request.POST.get("rating_desc")
+
+
+        s = "select count(*) from rating where case_id = '"+str(case_id)+"' and adv_id = '"+str(adv_id)+"' and user_id = '"+str(u_id)+"'"
+        print(s)
+        c.execute(s)
+        conn.commit()
+        cnt = c.fetchone()
+        if cnt[0] == 0 :
+
+            
+            s1 = "insert into rating(`case_id`,`user_id`,`adv_id`,`rating`,`rate_desc`) values('"+str(case_id)+"','"+str(u_id)+"','"+str(adv_id)+"','"+str(u_rating)+"' ,'"+str(rating_desc)+"')"
+            c.execute(s1)
+            conn.commit()
+            # msg = str(ipc_section)+" added Successfully"
+            # return render(request,"add_rating.html")
+            return HttpResponseRedirect("/user_view_case_status?case_id="+str(case_id)+"&adv_id="+str(adv_id))
+
+        else:
+            msg = " already done rating"
+            # return render(request,"add_rating.html",{"msg":msg})
+            return HttpResponseRedirect("/user_view_case_status?case_id="+str(case_id)+"&adv_id="+str(adv_id))
+
+    return render(request,"add_rating.html")
+
+def change_password(request):
+    u_id = request.session["uid"]
+    if 'change_pass' in request.POST:
+        password = request.POST.get("new_pass")
+        s = "update login set password = '"+str(password)+"' where user_id = '"+str(u_id)+"' and type= 'user' "
+        c.execute(s)
+        conn.commit()
+        
+        return HttpResponseRedirect("/user_profile/")
+    return render(request,"user_password.html")

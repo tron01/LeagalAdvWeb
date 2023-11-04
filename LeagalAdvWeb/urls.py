@@ -53,6 +53,8 @@ urlpatterns = [
     path('add_case/', user_views.add_case),
     path('case_status/', user_views.case_status),
     path('user_view_case_status/', user_views.user_view_case_status),
+    path('add_rating/', user_views.add_rating),
+    path('change_password/', user_views.change_password),
     #-------------------------User End -----------------------------------#
 
     #-------------------------Advocate End -----------------------------------#
