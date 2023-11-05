@@ -96,14 +96,22 @@ def adv_register(request):
         reg_count = c.fetchone()
 
         if reg_count[0] == 0 :
-            s2 = "insert into advocate(`adv_img`,`adv_name`,`adv_enroll_no`,`adv_qual`,`adv_age`,`adv_gender`,`adv_email`,`adv_phone`,`adv_address`,`adv_category`) values('"+str(uploaded_file_url)+"','"+str(name)+"','"+str(enr_id)+"','"+str(qual)+"','"+str(age)+"','"+str(gender)+"','"+str(email)+"','"+str(phone)+"','"+str(address)+"','"+str(category)+"')"
-            print(s2)
-            c.execute(s2)
-            conn.commit()
-            s3 = "insert into login(`user_id`,`username`,`password`,`type`,`status`) values((select max(adv_id) from advocate),'"+str(email)+"','"+str(password)+"','advocate','0')"
+
+
+            s3 = "insert into login(`username`,`password`,`type`,`status`) values('"+str(email)+"','"+str(password)+"','advocate','0')"
             print(s3)
             c.execute(s3)
             conn.commit()
+
+            c.execute("select last_insert_id()")
+            last_U_id = c.fetchone()[0]
+            print(last_U_id)
+
+            s2 = "insert into advocate(`user_id`,`adv_img`,`adv_name`,`adv_enroll_no`,`adv_qual`,`adv_age`,`adv_gender`,`adv_email`,`adv_phone`,`adv_address`,`adv_category`) values('"+str(last_U_id)+"','"+str(uploaded_file_url)+"','"+str(name)+"','"+str(enr_id)+"','"+str(qual)+"','"+str(age)+"','"+str(gender)+"','"+str(email)+"','"+str(phone)+"','"+str(address)+"','"+str(category)+"')"
+            print(s2)
+            c.execute(s2)
+            conn.commit()
+            
             msgg = "Dear "+str(name)+" \nYour Registration is Succesffull.\n Your account wil be activate soon..."
             msg = "Advocate Registered Successfully,Your Account will be activate soon..."
             return render(request,"adv_register.html",{"data":data,"msg":msg})
@@ -149,7 +157,7 @@ def user_register(request):
             """
             """
 
-            s3 = "insert into login(`username`,`password`,`type`,`status`) values("+str(email)+"','"+str(password)+"','user','1')"
+            s3 = "insert into login(`username`,`password`,`type`,`status`) values('"+str(email)+"','"+str(password)+"','user','1')"
             print(s3)
             c.execute(s3)
             conn.commit()
@@ -160,7 +168,7 @@ def user_register(request):
 
             acc = ""
             cvv = ""
-            s2 = "insert into user(`user_id`,`u_img`,`u_name`,`u_age`,`u_gender`,`u_email`,`u_phone`,`u_aadhar`,`u_address`,`u_account`,`u_cvv`) values('"+last_U_id+"','"+str(uploaded_file_url)+"','"+str(name)+"','"+str(age)+"','"+str(gender)+"','"+str(email)+"','"+str(phone)+"','"+str(aadhar)+"','"+str(address)+"','"+str(acc)+"','"+str(cvv)+"')"
+            s2 = "insert into user(`user_id`,`u_img`,`u_name`,`u_age`,`u_gender`,`u_email`,`u_phone`,`u_aadhar`,`u_address`,`u_account`,`u_cvv`) values('"+str(last_U_id)+"','"+str(uploaded_file_url)+"','"+str(name)+"','"+str(age)+"','"+str(gender)+"','"+str(email)+"','"+str(phone)+"','"+str(aadhar)+"','"+str(address)+"','"+str(acc)+"','"+str(cvv)+"')"
             print(s2)
             c.execute(s2)
             conn.commit()
