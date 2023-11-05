@@ -37,7 +37,7 @@ def login(request):
         print("inside login")
         c.execute(s1)
         log_count = c.fetchone()
-        print( log_count[0])
+        print(log_count[0])
         if not bool(log_count):
             msg = "User Does Not Exists"
             return render(request,"login.html",{"msg":msg})
