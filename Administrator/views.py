@@ -34,29 +34,29 @@ def login(request):
         st="1"
         s1 = "select * from login where username = '"+str(name)+"' and password= '"+str(password)+"' and status='"+str(st)+"'"
         print(s1)
+        print("inside login")
         c.execute(s1)
         log_count = c.fetchone()
-        print(log_count)
-
+        print( log_count[0])
         if not bool(log_count):
             msg = "User Does Not Exists"
             return render(request,"login.html",{"msg":msg})
             
-        if log_count[4] == 'admin' :
+        if log_count[3] == 'admin' :
             print("------------admin-----------")
-            request.session["admin_id"] = log_count[1]
+            request.session["admin_id"] = log_count[0]
             print( log_count[1])
             return HttpResponseRedirect("/admin_home")
         
-        if log_count[4] == 'advocate' :
+        if log_count[3] == 'advocate' :
             print("---------advocate----------")
-            request.session["adv_id"] = log_count[1]
+            request.session["adv_id"] = log_count[0]
 
             return HttpResponseRedirect("/adv_home")
 
-        elif log_count[4] == 'user' :
+        elif log_count[3] == 'user' :
             print("------------user-----")
-            request.session["uid"] = log_count[1]
+            request.session["uid"] = log_count[0]
             return HttpResponseRedirect("/user_home")
         
         # return render(request,"user_register.html")
@@ -148,16 +148,27 @@ def user_register(request):
         else:
             """
             """
-            acc = ""
-            cvv = ""
-            s2 = "insert into user(`u_img`,`u_name`,`u_age`,`u_gender`,`u_email`,`u_phone`,`u_aadhar`,`u_address`,`u_account`,`u_cvv`) values('"+str(uploaded_file_url)+"','"+str(name)+"','"+str(age)+"','"+str(gender)+"','"+str(email)+"','"+str(phone)+"','"+str(aadhar)+"','"+str(address)+"','"+str(acc)+"','"+str(cvv)+"')"
-            print(s2)
-            c.execute(s2)
-            conn.commit()
-            s3 = "insert into login(`user_id`,`username`,`password`,`type`,`status`) values((select max(u_id) from user),'"+str(email)+"','"+str(password)+"','user','1')"
+
+            s3 = "insert into login(`username`,`password`,`type`,`status`) values("+str(email)+"','"+str(password)+"','user','1')"
             print(s3)
             c.execute(s3)
             conn.commit()
+
+            c.execute("select last_insert_id()")
+            last_U_id = c.fetchone()[0]
+            print(last_U_id)
+
+            acc = ""
+            cvv = ""
+            s2 = "insert into user(`user_id`,`u_img`,`u_name`,`u_age`,`u_gender`,`u_email`,`u_phone`,`u_aadhar`,`u_address`,`u_account`,`u_cvv`) values('"+last_U_id+"','"+str(uploaded_file_url)+"','"+str(name)+"','"+str(age)+"','"+str(gender)+"','"+str(email)+"','"+str(phone)+"','"+str(aadhar)+"','"+str(address)+"','"+str(acc)+"','"+str(cvv)+"')"
+            print(s2)
+            c.execute(s2)
+            conn.commit()
+           
+
+            
+            
+
             msgg = "Dear "+str(name)+" \nYour Registration is Succesffull.\n Your account wil be activate soon..."
             msg = "User Registered Successfully,Your Account will be activate soon... Try Login now"
             return render(request,"user_register.html",{"msg":msg})
