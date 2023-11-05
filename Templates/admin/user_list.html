@@ -63,12 +63,12 @@
                     {% for d in data %}
                     <tr>
                         <td>{{ forloop.counter }}</td>
-                        <td><img src="../static{{d.1}}" width="50px" height="50px"></td>
-                        <td>{{d.2}}</td>
+                        <td><img src="../static{{d.2}}" width="50px" height="50px"></td>
                         <td>{{d.3}}</td>
+                        <td>{{d.4}}</td>
                         <td>{{d.5}}</td>
-                        <td>{{d.6}}</td>
                         <td>{{d.7}}</td>
+                        <td>{{d.9}}</td>
                         <td>
                             <center><a href="/user_remove?reg_id={{d.0}}"><img src="{% static 'images/cancel.png' %}"
                                         width="30px;" height="30px;"></a></center>
