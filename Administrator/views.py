@@ -180,6 +180,10 @@ def user_bank(request):
     return render(request,"user_bank.html")
 #-------------------------main end-----------------------------------#
 
+
+
+
+
 #-------------------------admin-----------------------------------#
 
 def admin_header_footer(request):
@@ -294,4 +298,84 @@ def user_list(request):
         msg = "No Users to show...."
         return render(request,"user_list.html",{"data":data,"msgg":msg})
     return render(request,"user_list.html",{"data":data})
+
+
+
+def case_category(request):
+    ss = "select * from category"
+    c.execute(ss)
+    data1 = c.fetchall()
+    if 'cat' in request.POST:
+        category = request.POST.get("category")
+        cat_description = request.POST.get("cat_description")
+        s = "select count(*) from category where cat_name = '"+str(category)+"'"
+        c.execute(s)
+        data = c.fetchone()
+
+        if data[0] == 0 :
+            s1 = "insert into category(`cat_name`,`cat_description`) values('"+str(category)+"','"+str(cat_description)+"')"
+            c.execute(s1)
+            conn.commit()
+            msg = str(category)+" added Successfully"
+            return render(request,"case_category.html",{"msg":msg,"data1":data1})
+        else:
+            msg = str(category)+" already exists"
+            return render(request,"case_category.html",{"msg":msg,"data1":data1})
+    return render(request,"case_category.html",{"data1":data1})
+
+def ipc_section(request):
+    ss = "select * from ipc"
+    c.execute(ss)
+    data1 = c.fetchall()
+    if 'ipc' in request.POST:
+        ipc_section = request.POST.get("ipc_section")
+        ipc_description = request.POST.get("ipc_description")
+        s = "select count(*) from ipc where ipc_section = '"+str(ipc_section)+"'"
+        c.execute(s)
+        data = c.fetchone()
+
+        if data[0] == 0 :
+            s1 = "insert into ipc(`ipc_section`,`ipc_description`) values('"+str(ipc_section)+"','"+str(ipc_description)+"')"
+            c.execute(s1)
+            conn.commit()
+            msg = str(ipc_section)+" added Successfully"
+            return render(request,"ipc_section.html",{"data1":data1,"msg":msg})
+        else:
+            msg = str(ipc_section)+" already exists"
+            return render(request,"ipc_section.html",{"msg":msg,"data1":data1})
+    return render(request,"ipc_section.html",{"data1":data1})
+
+def view_feedback(request):
+    print("inside feedback")
+
+    if 'submit' in request.POST:
+        print("inside submit")
+        user_type = request.POST.get("user_type")
+        print(user_type)
+        if user_type == 'user' :
+            s = "select * from feedback f,user u where f.type='user'"
+            print(s)
+            c.execute(s)
+            data_feed = c.fetchall()
+            print(data_feed)
+            if not bool(data_feed):
+                msg = "No Users to show...."
+
+                return render(request,"view_feedback.html",{"msgg":msg})
+            else:
+                return render(request,"view_feedback.html",{"data_feed":data_feed,"user":user_type})
+
+        if user_type == 'advocate' :
+            s = "select * from feedback f,advocate a where f.type='advocate'"
+            print(s)
+            c.execute(s)
+            data_feed = c.fetchall()
+            print(data_feed)
+            if not bool(data_feed):
+                msg = "No Users to show...."
+
+                return render(request,"view_feedback.html",{"msgg":msg})
+            else:
+                return render(request,"view_feedback.html",{"data_feed":data_feed,"user":user_type})
+    return render(request,"view_feedback.html")
 #-------------------------admin end-----------------------------------#
