@@ -35,7 +35,7 @@ def user_about(request):
 
 def user_profile(request):
     u_id = request.session["uid"]
-    s = "select * from user u , login l where u.u_id = '"+str(u_id)+"' and u.u_id = l.user_id and l.type = 'user' "
+    s = "select * from user u , login l where u.user_id = '"+str(u_id)+"' and u.user_id = l.user_id and l.type = 'user' "
     c.execute(s)
     data = c.fetchone()
     print(data)
