@@ -61,20 +61,26 @@
                         <th>Qualification</th>
                         <th>Address</th>
                         <th>Case Category</th>
-                        <th colspan="2">Remove</th>
+                        <th colspan="2">Action</th>
+
                     </tr>
                     {% for d in data %}
                     <tr>
                         <td>{{ forloop.counter }}</td>
                         <td>{{d.4}}</td>
-                        <td><img src="../static{{d.3}}" width="50px" height="50px"></td>
-                        <td>{{d.5}}</td>
+                        <td><img src="../static{{d.2}}" width="50px" height="50px"></td>
+                        <td>{{d.3}}</td>
                         <td>{{d.6}}</td>
-                        <td>{{d.7}}</td>
                         <td>{{d.8}}</td>
                         <td>{{d.9}}</td>
+                        <td>{{d.5}}</td>
                         <td>{{d.10}}</td>
                         <td>{{d.11 }}</td>
+                        <td>
+                            <center><a href="/adv_remove?reg_id={{d.0}}" title="Remove"><img
+                                        src="{% static 'images/cancel.png' %}" width="30px;" height="30px;"></a>
+                            </center>
+                        </td>
                         <td>
                             <center><a href="/adv_remove?reg_id={{d.0}}" title="Remove"><img
                                         src="{% static 'images/cancel.png' %}" width="30px;" height="30px;"></a>

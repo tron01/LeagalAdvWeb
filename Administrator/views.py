@@ -256,7 +256,7 @@ def action_adv(request):
     if st == 'Approve' :
         print("Approve")
 
-        s = "update login set status = '1' where user_id = '"+str(reg_id)+"' and type = 'advocate'"
+        s = "update login set status = '1' where user_id = "+(reg_id)+" and type = 'advocate'"
         print(s)
         c.execute(s)
         conn.commit()
@@ -270,7 +270,7 @@ def action_adv(request):
         print(s)
         c.execute(s)
         conn.commit()
-        s = "delete from advocate  where adv_id = '"+str(reg_id)+"'"
+        s = "delete from advocate  where user_id = '"+str(reg_id)+"'"
         print(s)
         c.execute(s)
         conn.commit()
@@ -306,6 +306,20 @@ def user_list(request):
         msg = "No Users to show...."
         return render(request,"user_list.html",{"data":data,"msgg":msg})
     return render(request,"user_list.html",{"data":data})
+
+def user_status(request):
+    reg_id = request.GET.get("reg_id")
+    
+    print("inside user_status")
+    
+    s = "update login set status = '0' where user_id = "+(reg_id)+" and type = 'user'"
+    print(s)
+    c.execute(s)
+    conn.commit()
+  
+    
+    return HttpResponseRedirect("/advocate_list")
+
 
 
 

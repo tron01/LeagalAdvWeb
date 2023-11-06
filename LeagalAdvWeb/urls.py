@@ -33,9 +33,15 @@ urlpatterns = [
     #-------------------------Admin-----------------------------------#
     path('admin_home/', views.admin_home),
     path('admin_logout/', views.admin_logout),
-    path('advocate_list/', views.advocate_list),
+ 
+    
     path('user_list/', views.user_list),
+    path('user_status/', views.user_status),
+    
+    path('advocate_list/', views.advocate_list),
     path('adv_request/', views.adv_request),
+    path('action_adv/', views.action_adv),
+
     path('ipc_section/', views.ipc_section),
     path('case_category/', views.case_category), 
     path('view_feedback/', views.view_feedback),
