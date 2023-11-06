@@ -36,7 +36,7 @@ urlpatterns = [
  
     
     path('user_list/', views.user_list),
-     path('user_request/', views.user_request),
+    path('user_request/', views.user_request),
     path('user_status/', views.user_status),
     path('user_remove/', views.user_remove),
     path('action_user/', views.action_user),
