@@ -102,7 +102,7 @@ def user_adv_list(request):
 def view_adv(request):
     adv_id = request.GET.get("adv_id")
     print(adv_id)
-    s = "select * from advocate where adv_id = '"+str(adv_id)+"' "
+    s = "select * from advocate where user_id = '"+str(adv_id)+"' "
     c.execute(s)
     conn.commit()
     data = c.fetchone()
