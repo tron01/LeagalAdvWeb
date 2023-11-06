@@ -76,12 +76,14 @@
                         <td>{{d.10}}</td>
                         <td>{{d.11}}</td>
                         <td>
-                            <center><a href="/action_adv?reg_id={{d.1}}&st=Approve"><img
+                            <center><a href="/action_adv?reg_id={{d.1}}&st=Approve"><img data-toggle="tooltip"
+                                        data-placement="bottom" title="Approve User"
                                         src="{% static 'images/tick1.png' %}" width="30px;" height="30px;"></a></center>
                         </td>
                         <td>
-                            <center><a href="/action_adv?reg_id={{d.1}}&st=Reject"><img
-                                        src="{% static 'images/cancel.png' %}" width="30px;" height="30px;"></a>
+                            <center><a href="/action_adv?reg_id={{d.1}}&st=Reject"><img ata-toggle="tooltip"
+                                        data-placement="bottom" title="Reject User"
+                                        src="{% static 'images/delete.png' %}" width="30px;" height="30px;"></a>
                             </center>
                         </td>
                     </tr>

@@ -223,7 +223,7 @@ def admin_logout(request):
 
 #--------------------------------- Advocate_list manage- -----------------------------#
 def advocate_list(request):
-    s1 = "select * from advocate a , login l where l.status = '1' and l.type = 'advocate' and a.adv_email = l.username "
+    s1 = "select * from advocate a , login l where l.status = '1' and l.type = 'advocate' and a.user_id = l.user_id "
     print(s1)
     c.execute(s1)
     data = c.fetchall()
@@ -237,7 +237,7 @@ def advocate_list(request):
 
 def adv_request(request):
 
-    s1 = "select * from advocate a , login l where  l.status =0 and l.type = 'advocate' and a.adv_email = l.username"
+    s1 = "select * from advocate a , login l where  l.status =0 and l.type = 'advocate' and a.user_id = l.user_id"
     print(s1)
     c.execute(s1)
     data = c.fetchall()
@@ -284,7 +284,7 @@ def adv_remove(request):
     
     print("inside adv_remove")
     
-    s = "delete from login where user_id = '"+str(reg_id)+"' and type='advocate'"
+    s = "delete from login where user_id = "+(reg_id)+" and type='advocate'"
     print(s)
     c.execute(s)
     conn.commit()
@@ -293,6 +293,19 @@ def adv_remove(request):
     c.execute(s1)
     conn.commit()
     
+    return HttpResponseRedirect("/advocate_list")
+
+
+
+def advocate_status(request):
+    reg_id = request.GET.get("reg_id")
+    
+    print("inside adv_status")
+    
+    s = "update login set status = '0' where user_id = "+(reg_id)+" and type = 'advocate'"
+    print(s)
+    c.execute(s)
+    conn.commit()
     return HttpResponseRedirect("/advocate_list")
 #--------------------------------- Advocate_list manage End---------------------------#
 #--------------------------------- user List manage------------------------------------#

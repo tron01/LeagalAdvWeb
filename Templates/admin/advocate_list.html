@@ -77,13 +77,15 @@
                         <td>{{d.10}}</td>
                         <td>{{d.11 }}</td>
                         <td>
-                            <center><a href="/adv_remove?reg_id={{d.0}}" title="Remove"><img
+                            <center><a href="/adv_status?reg_id={{d.1}}" title="Remove"><img data-toggle="tooltip"
+                                        data-placement="bottom" title="Remove Status"
                                         src="{% static 'images/cancel.png' %}" width="30px;" height="30px;"></a>
                             </center>
                         </td>
                         <td>
-                            <center><a href="/adv_remove?reg_id={{d.0}}" title="Remove"><img
-                                        src="{% static 'images/cancel.png' %}" width="30px;" height="30px;"></a>
+                            <center><a href="/adv_remove?reg_id={{d.1}}" title="Remove user"><img data-toggle="tooltip"
+                                        data-placement="bottom" title="Remove" src="{% static 'images/delete.png' %}"
+                                        width="30px;" height="30px;"></a>
                             </center>
                         </td>
                     </tr>
