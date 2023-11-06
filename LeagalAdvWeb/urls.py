@@ -47,7 +47,10 @@ urlpatterns = [
     path('adv_status/', views.advocate_status),
 
     path('ipc_section/', views.ipc_section),
-    path('case_category/', views.case_category), 
+    path('ipc_remove/', views.ipc_remove),
+    
+    path('case_category/', views.case_category),
+    path('cat_remove/', views.cat_remove), 
     path('view_feedback/', views.view_feedback),
     #-------------------------Admin End-----------------------------------#
 

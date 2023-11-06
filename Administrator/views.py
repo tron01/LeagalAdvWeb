@@ -411,6 +411,19 @@ def case_category(request):
             return render(request,"case_category.html",{"msg":msg,"data1":data1})
     return render(request,"case_category.html",{"data1":data1})
 
+def cat_remove(request):
+    cat_id = request.GET.get("cat_id")
+    
+    print("inside action_adv")
+    
+    s = "delete from category where cat_id = '"+str(cat_id)+"'"
+    print(s)
+    c.execute(s)
+    conn.commit()
+    
+    return HttpResponseRedirect("/case_category")
+
+
 def ipc_section(request):
     ss = "select * from ipc"
     c.execute(ss)
@@ -432,6 +445,18 @@ def ipc_section(request):
             msg = str(ipc_section)+" already exists"
             return render(request,"ipc_section.html",{"msg":msg,"data1":data1})
     return render(request,"ipc_section.html",{"data1":data1})
+
+def ipc_remove(request):
+    ipc_id = request.GET.get("ipc_id")
+    
+    print("inside action_adv")
+    
+    s = "delete from ipc where ipc_id = '"+str(ipc_id)+"'"
+    print(s)
+    c.execute(s)
+    conn.commit()
+    
+    return HttpResponseRedirect("/ipc_section")
 
 def view_feedback(request):
     print("inside feedback")
