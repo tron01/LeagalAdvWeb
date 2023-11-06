@@ -37,6 +37,8 @@ urlpatterns = [
     
     path('user_list/', views.user_list),
     path('user_status/', views.user_status),
+    path('user_remove/', views.user_remove),
+    path('action_user/', views.action_user),
     
     path('advocate_list/', views.advocate_list),
     path('adv_request/', views.adv_request),
