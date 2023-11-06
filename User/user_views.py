@@ -118,7 +118,7 @@ def add_case(request):
     print(uid)
     adv_id = request.GET.get("adv_id")
     print(adv_id)
-    s = "select * from advocate where adv_id = '"+str(adv_id)+"' "
+    s = "select * from advocate where user_id = '"+str(adv_id)+"' "
     c.execute(s)
     conn.commit()
     data = c.fetchone()
@@ -144,7 +144,7 @@ def add_case(request):
 
 def case_status(request):
     uid = request.session["uid"]
-    s = "select * from case_request c , user u, advocate a  where c.user_id = '"+str(uid)+"' and c.user_id = u.u_id and c.adv_id = a.adv_id  order by c.case_id desc"
+    s = "select * from case_request c , user u, advocate a  where c.user_id = '"+str(uid)+"' and c.user_id = u.user_id and c.adv_id = a.user_id  order by c.case_id desc"
 
     print(s)
     c.execute(s)
@@ -163,14 +163,15 @@ def user_view_case_status(request):
     case_id = request.GET.get("case_id")
     adv_id = request.GET.get("adv_id")
 
+    print(" inside user_view_case_status")
 
-
-    s = "select * from case_request c , user u,advocate a  where c.case_id = '"+str(case_id)+"' and  c.user_id = '"+str(u_id)+"' and c.user_id = u.u_id and c.adv_id = a.adv_id  order by c.case_id desc"
+    s = "select * from case_request c , user u,advocate a  where c.case_id = '"+str(case_id)+"' and  c.user_id = '"+str(u_id)+"' and c.user_id = u.user_id and c.adv_id = a.user_id  order by c.case_id desc"
     print(s)
     c.execute(s)
     conn.commit()
     data = c.fetchall()
-
+    print(data)
+    
     s1 = "select * from payment where case_id= '"+str(case_id)+"' order by pay_id desc"
     print(s1)
     c.execute(s1)
@@ -179,7 +180,7 @@ def user_view_case_status(request):
 
     s2 = "select * from documents where case_id = '"+str(case_id)+"' order by doc_id"
     print(s2)
-    print("haiiiiiiiiii")
+    
     c.execute(s2)
     conn.commit()
     data2 = c.fetchall()
@@ -187,7 +188,7 @@ def user_view_case_status(request):
 
     s3 = "select * from rating  where case_id = '"+str(case_id)+"' and  adv_id = '"+str(adv_id)+"' "
     print(s3)
-    print("haiiiiiiiiii")
+    
     c.execute(s3)
     conn.commit()
     data3 = c.fetchall()
