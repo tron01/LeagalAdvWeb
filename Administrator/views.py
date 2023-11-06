@@ -319,6 +319,84 @@ def user_status(request):
   
     
     return HttpResponseRedirect("/advocate_list")
+def user_request(request):
+
+    s1 = "select * from user u , login l where u.u_id = l.user_id and l.status = '0' and l.type = 'user'"
+    print(s1)
+    c.execute(s1)
+    data = c.fetchall()
+    print(data)
+    if not bool(data):
+        msg = "No Requests to show...."
+        return render(request,"user_request.html",{"data":data,"msgg":msg})
+    
+    return render(request,"user_request.html",{"data":data})
+
+def action_user(request):
+    reg_id = request.GET.get("reg_id")
+    st = request.GET.get("st")
+    print("inside action_adv")
+    if st == 'Approve' :
+        print("Approve")
+
+        s = "update login set status = '1' where user_id = '"+str(reg_id)+"' and type = 'user'"
+        print(s)
+        c.execute(s)
+        conn.commit()
+        s1 = "select * from user u , login l where  u.u_id = '"+str(reg_id)+"' and u.u_id = l.user_id and l.type = 'user'"
+        print(s1)
+        c.execute(s1)
+        data = c.fetchone()
+        msg = " Dear "+str(data[2])+"... , Welcome to LEGAL ADVISOR .You can Login using  Username  :  "+str(data[5])+"  Password  :  "+str(data[11])
+        # sendsms(data[6],msg)
+        # return HttpResponseRedirect("http://dattaanjaneya.biz/API_Services/SMS_Service.php?content="+msg+"&mobile="+data[6]+"")
+
+        return HttpResponseRedirect("/user_request")
+    
+    if st == 'Reject' :
+        print("Reject")
+
+        s = "delete from login  where user_id = '"+str(reg_id)+"' and type = 'user'"
+        print(s)
+        c.execute(s)
+        conn.commit()
+        s = "delete from user  where u_id = '"+str(reg_id)+"'"
+        print(s)
+        c.execute(s)
+        conn.commit()
+        return HttpResponseRedirect("/user_request")
+    
+    return HttpResponseRedirect("/user_request")
+
+def user_list(request):
+
+    s1 = "select * from user u , login l where u.u_id = l.user_id and l.status = '1' and l.type = 'user'"
+    print(s1)
+    c.execute(s1)
+    data = c.fetchall()
+    print(data)
+
+    if not bool(data):
+        msg = "No Users to show...."
+    
+        return render(request,"user_list.html",{"data":data,"msgg":msg})
+    return render(request,"user_list.html",{"data":data})
+
+def user_remove(request):
+    reg_id = request.GET.get("reg_id")
+    
+    print("inside action_adv")
+    
+    s = "delete from login where user_id = '"+str(reg_id)+"' and type='user'"
+    print(s)
+    c.execute(s)
+    conn.commit()
+    s1 = "delete from user  where u_id = '"+str(reg_id)+"'"
+    print(s1)
+    c.execute(s1)
+    conn.commit()
+    
+    return HttpResponseRedirect("/user_list")
 
 
 
