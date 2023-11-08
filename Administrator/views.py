@@ -479,17 +479,25 @@ def ipc_remove(request):
     return HttpResponseRedirect("/ipc_section")
 
 def edit_ipc(request):
-    cat_id = request.GET.get("cat_id")
-    
-    print("inside edit_ipc ")
-    
-    s = "delete from category where cat_id = '"+str(cat_id)+"'"
+    ipc_id = request.GET.get("ipc_id")
+    print("inside edit_ipc")
+    s = "select * from ipc where ipc_id = "+(ipc_id)+""
     print(s)
     c.execute(s)
-    conn.commit()
+    data = c.fetchone()
+    print(data)
     
-    #return HttpResponseRedirect("/ipc_section")
-    return render(request,"update_case_cat.html.html")
+    if 'ipc_update' in request.POST:
+        ipc_section = request.POST.get("ipc_section")
+        ipc_description = request.POST.get("ipc_description")
+        s1 = "update ipc set ipc_section ='"+str(ipc_section)+"', ipc_description ='"+str(ipc_description)+"' where ipc_id = "+(ipc_id)+""
+        print(s1)
+        data1 =c.execute(s1)
+        conn.commit()
+        return HttpResponseRedirect("/ipc_section")
+    return render(request,"update_ipc.html",{"data":data})
+
+
 
 def view_feedback(request):
     print("inside feedback")
