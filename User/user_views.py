@@ -178,12 +178,19 @@ def user_view_case_status(request):
     conn.commit()
     data1 = c.fetchall()
 
-    s2 = "select * from documents where case_id = '"+str(case_id)+"' order by doc_id"
+    s2 = "select * from documents where case_id = '"+str(case_id)+"' and u_id ='"+str(u_id)+"' order by doc_id"
     print(s2)
-    
     c.execute(s2)
     conn.commit()
     data2 = c.fetchall()
+    print(data2)
+
+    s4 = "select * from documents where case_id = '"+str(case_id)+"'  and adv_id ='"+str(adv_id)+"'  order by doc_id"
+    print(s4)
+    c.execute(s4)
+    conn.commit()
+    data4 = c.fetchall()
+    print(data4)
 
 
     s3 = "select * from rating  where case_id = '"+str(case_id)+"' and  adv_id = '"+str(adv_id)+"' "
@@ -198,8 +205,8 @@ def user_view_case_status(request):
         msgg = "No case Applications"
     # if 'login' in request.POST:
         # return HttpResponseRedirect("/login")
-        return render(request,"user_view_case_status.html",{"data":data,"msgg":msgg,"data1":data1,"data2":data2,"data3":data3})
-    return render(request,"user_view_case_status.html",{"data":data,"data1":data1,"data2":data2,"data3":data3})
+        return render(request,"user_view_case_status.html",{"data":data,"msgg":msgg,"data1":data1,"data2":data2,"data3":data3,"data4":data4})
+    return render(request,"user_view_case_status.html",{"data":data,"data1":data1,"data2":data2,"data3":data3,"data4":data4})
 
 def add_rating(request):
     if 'rating' in request.POST:
@@ -242,3 +249,31 @@ def change_password(request):
         
         return HttpResponseRedirect("/user_profile/")
     return render(request,"user_password.html")
+
+
+def add_doc(request):
+    case_id = request.GET.get("case_id")
+    u_id = request.GET.get("u_id")
+    # st = request.GET.get("st")
+    tdate = now.date()
+    if 'doc' in request.POST:
+        file_name = request.POST.get("file_name")
+        # file_doc = request.POST.get("file_doc")
+        myfile = request.FILES["file_doc"]
+        fs = FileSystemStorage()        
+        filename = fs.save(myfile.name, myfile)
+        uploaded_file_url = fs.url(filename)
+        ss = "select count(*) from documents where document = '"+str(uploaded_file_url)+"'"
+        c.execute(ss)
+        doc_count = c.fetchone()
+        if doc_count[0] == 0: 
+            s = "insert into documents(`case_id`,`u_id`,`doc_name`,`document`,`posted_date`) values('"+str(case_id)+"','"+str(u_id)+"','"+str(file_name)+"','"+str(uploaded_file_url)+"',  '"+str(tdate)+"')"
+            print(s)
+            c.execute(s)
+            conn.commit()
+            return HttpResponseRedirect("/case_status")
+        else:
+            msg = "file Already Exists"
+        return render(request,"add_doc.html",{"msg":msg})
+    return render(request,"add_doc.html")
+        

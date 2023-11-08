@@ -83,9 +83,12 @@
         </div>
         <div class="col-sm-12 col-md-12 col-lg-6">
           <h2 class="section-heading mt-3">
-            Documents
+            Documents &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a
+              href="/add_doc?case_id={{data.0.0}}&u_id={{data.0.2}}" class="btn btn-secondary bg-success ">Add
+              Documents </a>
           </h2>
-          <p class="subheading mb-4">"Documents regarding the case"</p>
+          <p class="subheading mb-4">&nbsp; My Documents </p>
+
           <!-- <p class="subheading mb-4">"we always take care of clients seriously"</p> -->
           <!-- <p><a href="/{{data.0.5}}" target="_blank" class="btn btn-secondary">View Document</a></p> -->
 
@@ -100,10 +103,7 @@
               <th>File Name</th>
               <th>Posted On</th>
               <th>Document</th>
-              <!-- <th>Status</th> -->
-              <!-- <th>Payment</th>
-                                  <th>Next Review</th> -->
-              <!-- <th>View</th> -->
+
 
             </tr>
 
@@ -123,10 +123,39 @@
           </table><br><br><br>
 
 
+          <p class="subheading mb-4"> &nbsp;Documents submited by Advocates </p>
+
+          <table>
+
+            <tr>
+              <th>Sl No</th>
+              <th>File Name</th>
+              <th>Posted On</th>
+              <th>Document</th>
+
+
+            </tr>
+
+            {% for d in data4 %}
+            <tr>
+              <td>{{ forloop.counter }}</td>
+              <td>{{d.4}}</td>
+              <td><a href="../static{{d.5}}" target="_blank">View</a></td>
+              <td>{{d.6}}</td>
+              <!-- {% if d.7 == None %}<td><a href="" style="color: green;">ADD</a></td>{% endif %}
+                                  {% if d.7 != None %}<td>{{d.7}}</td>{% endif %}<td>{{d.6}}</td><td><a href="">Fees</a></td> -->
+
+              <!-- <td><a href="">ADD</a></td> -->
+
+            </tr>
+            {% endfor %}
+          </table><br><br><br>
+
+
           <h2 class="section-heading mt-3">
             Payments
           </h2>
-          <p class="subheading mb-4">"we always take care of clients seriously"</p>
+          <p class="subheading mb-4">&nbsp;we always take care of clients seriously</p>
 
           <style>
             table {
@@ -198,7 +227,7 @@
           <h2 class="section-heading mt-3">
             Rating
           </h2>
-          <p class="subheading mb-4">"Reviews here"</p>
+          <p class="subheading mb-4">&nbsp;Reviews here</p>
 
           <table>
             <tr>
