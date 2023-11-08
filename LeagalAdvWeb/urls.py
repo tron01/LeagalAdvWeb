@@ -72,7 +72,9 @@ urlpatterns = [
     path('user_view_case_status/', user_views.user_view_case_status),
     path('add_rating/', user_views.add_rating),
     path('change_password/', user_views.change_password),
+    
     path('add_doc/', user_views.add_doc),
+    path('status1/', user_views.status1),
     #-------------------------User End -----------------------------------#
 
     #-------------------------Advocate End -----------------------------------#

@@ -276,4 +276,22 @@ def add_doc(request):
             msg = "file Already Exists"
         return render(request,"add_doc.html",{"msg":msg})
     return render(request,"add_doc.html")
-        
+    
+
+
+def status1(request):
+    u_id = request.session["uid"]
+    case_id = request.GET.get("case_id")
+    adv_id = request.GET.get("adv_id")
+    st = request.GET.get("st")
+    
+    if st == 'Rejected':
+        s = "update case_request set status= '"+str(st)+"' where case_id='"+str(case_id)+"'"
+        print(s)
+        c.execute(s)
+        conn.commit()
+        msg = "Mark as Rejected"
+        # return render(request,"adv_case_request.html",{"msg":msg})
+        return HttpResponseRedirect("/case_status")
+
+    return render(request,"case_status.html")
