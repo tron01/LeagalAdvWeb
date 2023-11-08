@@ -414,7 +414,7 @@ def case_category(request):
 def cat_remove(request):
     cat_id = request.GET.get("cat_id")
     
-    print("inside action_adv")
+    print("inside cat_remove")
     
     s = "delete from category where cat_id = '"+str(cat_id)+"'"
     print(s)
@@ -422,6 +422,26 @@ def cat_remove(request):
     conn.commit()
     
     return HttpResponseRedirect("/case_category")
+
+
+def edit_cat(request):
+    cat_id = request.GET.get("cat_id")
+    print("inside edit_cat")
+    s = "select * from category where cat_id = "+(cat_id)+""
+    print(s)
+    c.execute(s)
+    data = c.fetchone()
+    print(data)
+    
+    if 'cat_sub' in request.POST:
+        category = request.POST.get("category")
+        cat_description = request.POST.get("cat_description")
+        s1 = "update category set cat_name ='"+str(category)+"', cat_description ='"+str(cat_description)+"' where cat_id = "+(cat_id)+""
+        print(s1)
+        data1 =c.execute(s1)
+        conn.commit()
+        return HttpResponseRedirect("/case_category")
+    return render(request,"update_case_cat.html",{"data":data})
 
 
 def ipc_section(request):
@@ -449,7 +469,7 @@ def ipc_section(request):
 def ipc_remove(request):
     ipc_id = request.GET.get("ipc_id")
     
-    print("inside action_adv")
+    print("inside ipc_remove")
     
     s = "delete from ipc where ipc_id = '"+str(ipc_id)+"'"
     print(s)
@@ -457,6 +477,19 @@ def ipc_remove(request):
     conn.commit()
     
     return HttpResponseRedirect("/ipc_section")
+
+def edit_ipc(request):
+    cat_id = request.GET.get("cat_id")
+    
+    print("inside edit_ipc ")
+    
+    s = "delete from category where cat_id = '"+str(cat_id)+"'"
+    print(s)
+    c.execute(s)
+    conn.commit()
+    
+    #return HttpResponseRedirect("/ipc_section")
+    return render(request,"update_case_cat.html.html")
 
 def view_feedback(request):
     print("inside feedback")

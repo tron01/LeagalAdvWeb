@@ -48,9 +48,12 @@ urlpatterns = [
 
     path('ipc_section/', views.ipc_section),
     path('ipc_remove/', views.ipc_remove),
+    path('edit_ipc_section',views.edit_ipc),
     
     path('case_category/', views.case_category),
-    path('cat_remove/', views.cat_remove), 
+    path('cat_remove/', views.cat_remove),
+    path('edit_case_category',views.edit_cat),
+
     path('view_feedback/', views.view_feedback),
     #-------------------------Admin End-----------------------------------#
 
