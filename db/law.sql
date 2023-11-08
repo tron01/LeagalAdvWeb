@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 06, 2023 at 06:50 PM
+-- Generation Time: Nov 08, 2023 at 06:50 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -63,15 +63,16 @@ CREATE TABLE `case_request` (
   `case_desc` varchar(100) DEFAULT NULL,
   `case_file` varchar(100) DEFAULT NULL,
   `status` varchar(100) DEFAULT NULL,
-  `ipc_sections` varchar(100) DEFAULT NULL
+  `ipc_sections` varchar(100) DEFAULT NULL,
+  `posted_date` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `case_request`
 --
 
-INSERT INTO `case_request` (`case_id`, `adv_id`, `user_id`, `case_title`, `case_desc`, `case_file`, `status`, `ipc_sections`) VALUES
-(1, '3', '2', 'test 1', 'test111', '/Media/case.txt', 'Applied', NULL);
+INSERT INTO `case_request` (`case_id`, `adv_id`, `user_id`, `case_title`, `case_desc`, `case_file`, `status`, `ipc_sections`, `posted_date`) VALUES
+(1, '3', '2', 'test 1', 'test111', '/Media/case.txt', 'Applied', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -90,8 +91,7 @@ CREATE TABLE `category` (
 --
 
 INSERT INTO `category` (`cat_id`, `cat_name`, `cat_description`) VALUES
-(1, 'Criminal lawyer', 'A criminal lawyer will be knowledgeable in areas related to criminal law, including issues related to bail, arraignment, arrest, pleas, and any issues relating to the criminal trial itself.'),
-(2, 'Family lawyer', ' family lawyer is the type of lawyer who’ll be best equipped to guide you through the process which lies before you.'),
+(2, 'Family lawyer', ' family lawyer is the type of lawyer who’ll be best equipped to guide you through the process which lies before you'),
 (3, 'Intellectual Property  Lawyer', 'Intellectual property (IP) lawyers protect and enforce the rights and creations of inventors, authors, artists, and businesses.'),
 (4, 'Tax lawyer', ' A tax attorney specializes in the many intricacies of federal, state, and local tax laws and should be able to provide advice on the particular tax issue you face.'),
 (5, 'Personal injury lawyer', 'Personal injury lawyers work primarily in civil litigations, representing clients who have sustained an injury. '),
@@ -114,6 +114,13 @@ CREATE TABLE `documents` (
   `document` varchar(100) DEFAULT NULL,
   `posted_date` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `documents`
+--
+
+INSERT INTO `documents` (`doc_id`, `case_id`, `u_id`, `adv_id`, `doc_name`, `document`, `posted_date`) VALUES
+(1, '1', '2', NULL, 'doctest1', '/Media/case2.txt', '2023-11-08');
 
 -- --------------------------------------------------------
 
@@ -147,7 +154,7 @@ CREATE TABLE `ipc` (
 --
 
 INSERT INTO `ipc` (`ipc_id`, `ipc_section`, `ipc_description`) VALUES
-(1, 'Sections 120A to 120B', 'criminal conspiracy'),
+(1, 'Sections 120A to 120B.', 'criminal conspiracy.'),
 (2, 'Sections 121 to 130', 'Offences against the State'),
 (3, 'Sections 141 to 160', 'Offences against the Public Tranquillity'),
 (4, 'Sections 171A to 171I', 'Offences Relating to Elections'),
@@ -337,7 +344,7 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `documents`
 --
 ALTER TABLE `documents`
-  MODIFY `doc_id` int(100) NOT NULL AUTO_INCREMENT;
+  MODIFY `doc_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `feedback`
