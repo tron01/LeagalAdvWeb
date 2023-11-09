@@ -1,0 +1,91 @@
+{% extends 'adv_header_footer.html' %}
+{% block adv_case_request %}
+{% load static %}
+<!-- CTA -->
+<div class="section bg-primary">
+    <div class="content-wrap py-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-12">
+                    <div class="text-center text-white">
+                          <h3>Case Requests </h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- OUR PROMISE? -->
+<div class="section">
+    <div class="content-wrap pb-0">
+                <style>
+                    table {
+                      font-family: arial, sans-serif;
+                      border-collapse: collapse;
+                      width: 95%;
+                      margin-left:2%;
+                      border: #000000;
+                      
+                    }
+                    
+                    td, th {
+                      border: 1px solid #dddddd;
+                      text-align: left;
+                      padding: 8px;
+                    }
+                    th{
+                        background-color: #223555;
+                    }
+                    td{
+                        color: black;
+                    }
+                    tr:nth-child(even) {
+                      background-color: #dddddd;
+                    }
+                    </style>
+            <table >
+                    <tr >
+                      <th>Sl No</th>
+                      <th>Case Name</th>
+                      <th>Description</th>
+                      <th>Document</th>
+                      <th>Petitioner</th>
+                      <th>Contact No</th>
+                      <!-- <th>Status</th> -->
+                      <!-- <th>Payment</th>
+                      <th>Next Review</th> -->
+                      <th>View</th>
+                      
+                    </tr>
+                    {% for d in data %}
+                    <tr>
+                      <td>{{ forloop.counter }}</td><td>{{d.3}}</td><td>{{d.4}}</td><td><a href="../static{{d.5}}" target="_blank" style="color: green;">View Document</a></td><td>{{d.21}}</td><td>{{d.25}}</td><td><center><a href="/view_case_request?case_id={{d.0}}&u_id={{d.2}}"><img src="{% static 'images/list.png' %}" width="30px;" height="30px;"></a></center></td>
+                      <!-- {% if d.7 == None %}<td><a href="" style="color: green;">ADD</a></td>{% endif %}
+                      {% if d.7 != None %}<td>{{d.7}}</td>{% endif %}<td>{{d.6}}</td><td><a href="">Fees</a></td> -->
+
+                    </tr>
+                    {% endfor %}
+                  </table><br><br><br>
+                  {% if msgg %}
+                  <label style="color: red; margin-left: 45%;"><center>{{msgg}}</center></label>
+
+	{% endif %}
+                    <div class="spacer-content"></div>
+                <!-- </div> -->
+            </div>
+        
+</div>
+
+<div class="section bg-primary">
+    <div class="content-wrap py-3" style="background-color: white;">
+        <div class="container">
+            <div class="row">
+                <br>
+                <br>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

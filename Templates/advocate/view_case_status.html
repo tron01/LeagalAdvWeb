@@ -1,0 +1,202 @@
+{% extends 'adv_header_footer.html' %}
+{% block view_case_status %}
+{% load static %}
+
+	<!-- CTA -->
+<div class="section bg-primary">
+    <div class="content-wrap py-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-12">
+                    <div class="text-center text-white">
+                          <h3>IPC SECTIONS </h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <!-- CTA -->
+	<div class="section">
+		<div class="content-wrap py-0">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-12 col-md-12">
+						<div class="cta-overlap clearfix">
+			              	<div class="body-text mb-3">
+			                	<img src="../static{{data.0.9}}" width="80px;" height="80px"; style="border-radius: 50%;"><h3 class="my-1 text-white">Petitioner : {{data.0.10}}</h3>
+			                	<p class="uk18 mb-0 text-primary">CASE : {{data.0.3}}</p>
+			              	</div>
+			              	<div class="body-action">
+                                  <!-- {% if data.0.6 == 'Applied' %}
+			                	<a href="/status?case_id={{data.0.0}}&u_id={{data.0.2}}&st=Approved" class="btn btn-primary" title="Accept the case request">ACCEPT</a>
+                                <a href="/status?case_id={{data.0.0}}&u_id={{data.0.2}}&st=Rejected" class="btn btn-primary" title="Reject the case request">REJECT</a>
+                                {% endif %} -->
+
+                                {% if data.0.6 == 'Approved'  %}
+			                	<a href="/status1?case_id={{data.0.0}}&u_id={{data.0.2}}&st=Proceeding" class="btn btn-primary" title="Proceed the case request">PROCEED</a>
+                                <a href="/status1?case_id={{data.0.0}}&u_id={{data.0.2}}&st=Completed" class="btn btn-primary" title="Completed the case request">COMPLETED</a>
+                                <a href="/status1?case_id={{data.0.0}}&u_id={{data.0.2}}&st=Rejected" class="btn btn-primary" title="Reject the case request">REJECT</a>
+                                {% endif %}
+                                
+                                 {% if data.0.6 == 'Proceeding'  %}
+                                 <a href="/status1?case_id={{data.0.0}}&u_id={{data.0.2}}&st=Completed" class="btn btn-primary" title="Completed the case request">COMPLETED</a>
+			                	<!-- <a href="/status?case_id={{data.0.0}}&u_id={{data.0.2}}&st=Proceeding" class="btn btn-primary" title="Proceed the case request">PROCEED</a>  -->
+                                <a href="/status1?case_id={{data.0.0}}&u_id={{data.0.2}}&st=Rejected" class="btn btn-primary" title="Reject the case request">REJECT</a>
+                                {% endif %} 
+			              	</div>
+			            </div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>	
+
+	<!-- OUR PROMISE? -->
+	<div class="section">
+		<div class="content-wrap pb-0">
+			<div class="container">
+				<div class="row align-items-start">
+					<div class="col-sm-12 col-md-12 col-lg-6">
+						<blockquote class="quote">
+                            <footer class="blockquote-footer" ><b>Status :  </b></footer>
+							<p class="uk18"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{data.0.6}}</b></p>
+                            <footer class="blockquote-footer"><b>Case Description :  </b></footer>
+							<p class="uk18"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{data.0.4}}</b></p>
+                            <footer class="blockquote-footer">View Documents :  </footer>
+                            <p class="uk18"><a href="../static{{data.0.5}}" target="_blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Case document</a></p>
+                            <footer class="blockquote-footer"><b>Age :  </b></footer>
+                            <p class="uk18"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{data.0.11}}</b></p>
+                            <footer class="blockquote-footer"><b>Gender :  </b></footer>
+                            <p class="uk18"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{data.0.12}}</b></p>
+                            <footer class="blockquote-footer"><b>Email :  </b></footer>
+                            <p class="uk18"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{data.0.13}}</b></p>
+                            <footer class="blockquote-footer"><b>Contact No  :  </b></footer>
+                            <p class="uk18"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{data.0.14}}</b></p>
+                            <footer class="blockquote-footer"><b>Address :  </b></footer>
+                            <p class="uk18"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{data.0.15}}</b></p>
+                            <footer class="blockquote-footer"><b>Ip Sections :  </b></footer>
+                            <!-- <p class="uk18"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Not Yet Added</b></p> -->
+
+                            {% if data.0.7 == None %}
+                            <p style="color: green;"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/case_ipc?case_id={{data.0.0}}&u_id={{data.0.2}}" >ADD</b></a></p>
+                            {% endif %}
+                            {% if data.0.7 != None %}
+
+                            <p class="uk18"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{data.0.7}}</b></p>
+                            
+                            {% endif %}
+                            
+						</blockquote>
+					</div>
+					<div class="col-sm-12 col-md-12 col-lg-6">
+						<h2 class="section-heading mt-3">
+							Documents
+						</h2>
+						<p class="subheading mb-4">"Documents regarding the case"</p>
+						<!-- <p class="subheading mb-4">"we always take care of clients seriously"</p> -->
+                                <!-- <p><a href="/{{data.0.5}}" target="_blank" class="btn btn-secondary">View Document</a></p> -->
+                                
+
+                                {% if data.0.6 == 'Proceeding'  %}
+                                <center><a href="/add_doc?case_id={{data.0.0}}&u_id={{data.0.2}}" class="btn btn-primary">ADD Document</a></center>
+                                <br>
+                                {% endif %}
+                                <!-- {%  if data.0.6 == 'Applied' %}
+                                {% endif %} -->
+                                <table >
+                                   
+                                <tr >
+                                  <th>Sl No</th>
+                                  <th>File Name</th>
+                                  <th>Posted On</th>
+                                  <th>Document</th>
+                                  <!-- <th>Status</th> -->
+                                  <!-- <th>Payment</th>
+                                  <th>Next Review</th> -->
+                                  <!-- <th>View</th> -->
+                                  
+                                </tr>
+                                {% for d in data2 %}
+                                <tr>
+                                  <td>{{ forloop.counter }}</td><td>{{d.4}}</td><td><a href="../static{{d.5}}" target="_blank">View</a></td><td>{{d.6}}</td>
+                                  <!-- {% if d.7 == None %}<td><a href="" style="color: green;">ADD</a></td>{% endif %}
+                                  {% if d.7 != None %}<td>{{d.7}}</td>{% endif %}<td>{{d.6}}</td><td><a href="">Fees</a></td> -->
+            
+                                  <!-- <td><a href="">ADD</a></td> -->
+            
+                                </tr>
+                                {% endfor %}
+                              </table><br><br><br>
+
+
+
+						<style>
+                            table {
+                              font-family: arial, sans-serif;
+                              border-collapse: collapse;
+                              width: 95%;
+                              margin-left:2%;
+                              border: #000000;
+                              
+                            }
+                            
+                            td, th {
+                              border: 1px solid #dddddd;
+                              text-align: left;
+                              padding: 8px;
+                            }
+                            th{
+                                background-color: #223555;
+                            }
+                            td{
+                                color: black;
+                            }
+                            tr:nth-child(even) {
+                              background-color: #dddddd;
+                            }
+                            </style>
+                            <h2 class="section-heading mt-3">
+                                Payment
+                            </h2>
+                            <p class="subheading mb-4">"Payment regarding the case Review"</p>
+                            {% if data.0.6 == 'Proceeding'  %}
+                            <center><a href="/add_fee?case_id={{data.0.0}}&u_id={{data.0.2}}" class="btn btn-primary">ADD FEE</a></center>
+                            <br>
+                            {% endif %}
+                            <!-- {%  if data.0.6 == 'Applied' %}
+                            {% endif %} -->
+                            <table >
+                            <tr >
+                              <th>Sl No</th>
+                              <th>Fee</th>
+                              <th>Posted On</th>
+                              <th>Paid Date</th>
+                              <th>Status</th>
+                              <!-- <th>Payment</th>
+                              <th>Next Review</th> -->
+                              <!-- <th>View</th> -->
+                              
+                            </tr>
+                            {% for d in data1 %}
+                            <tr>
+                              <td>{{ forloop.counter }}</td><td>{{d.5}}</td><td>{{d.4}}</td><td>{{d.6}}</td><td>{{d.7}}</td>
+                              <!-- {% if d.7 == None %}<td><a href="" style="color: green;">ADD</a></td>{% endif %}
+                              {% if d.7 != None %}<td>{{d.7}}</td>{% endif %}<td>{{d.6}}</td><td><a href="">Fees</a></td> -->
+        
+                              <!-- <td><a href="">ADD</a></td> -->
+        
+                            </tr>
+                            {% endfor %}
+                          </table><br><br><br>
+						<div class="spacer-content"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	
+{% endblock %}
