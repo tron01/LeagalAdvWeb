@@ -42,3 +42,25 @@ def adv_ipc(request):
     # if 'login' in request.POST:
         # return HttpResponseRedirect("/login")
     return render(request,"adv_ipc.html",{"data":data})
+
+def advocate_profile(request):
+    adv_id = request.session["adv_id"]
+
+    s = "select * from advocate a , login l where a.user_id = '"+str(adv_id)+"' and a.user_id = l.user_id and l.type = 'advocate' "
+    c.execute(s)
+    data = c.fetchone()
+    print(data)
+    return render(request,"advocate_profile.html",{"data":data})
+
+def adv_change_password(request):
+    adv_id = request.session["adv_id"]
+
+    
+    if 'change_pass' in request.POST:
+        password = request.POST.get("new_pass")
+        s = "update login set password = '"+str(password)+"' where user_id = '"+str(adv_id)+"' and type = 'advocate' "
+        c.execute(s)
+        conn.commit()
+        
+        return HttpResponseRedirect("/advocate_profile/")
+    return render(request,"adv_change_password.html")

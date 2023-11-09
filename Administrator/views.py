@@ -37,7 +37,7 @@ def login(request):
         print("inside login")
         c.execute(s1)
         log_count = c.fetchone()
-        print(log_count[0])
+        print(log_count)
         if not bool(log_count):
             msg = "User Does Not Exists"
             return render(request,"login.html",{"msg":msg})
@@ -45,7 +45,7 @@ def login(request):
         if log_count[3] == 'admin' :
             print("------------admin-----------")
             request.session["admin_id"] = log_count[0]
-            print( log_count[1])
+            
             return HttpResponseRedirect("/admin_home")
         
         if log_count[3] == 'advocate' :

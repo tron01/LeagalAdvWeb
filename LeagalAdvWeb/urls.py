@@ -86,6 +86,8 @@ urlpatterns = [
     path('adv_header_footer/', adv_views.adv_header_footer),
     path('adv_home/', adv_views.adv_home),
     path('adv_ipc/', adv_views.adv_ipc),
+    path('advocate_profile/', adv_views.advocate_profile),
+    path('adv_change_password/', adv_views.adv_change_password),
     #-------------------------Advocate End -----------------------------------#
 
 ]
