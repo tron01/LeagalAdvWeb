@@ -191,8 +191,9 @@ def case_ipc(request):
         c.execute(s)
         conn.commit()
         
-        # return render(request,"case_ipc.html",{"msg":msg})
+        
         return HttpResponseRedirect("/view_case_status?case_id="+str(case_id)+"&u_id="+str(u_id))
+    return render(request,"case_ipc.html")
 
 
 def add_fee(request):
@@ -207,9 +208,9 @@ def add_fee(request):
         print(s)
         c.execute(s)
         conn.commit()
-        
-        # return render(request,"case_ipc.html",{"msg":msg})
         return HttpResponseRedirect("/view_case_status?case_id="+str(case_id)+"&u_id="+str(u_id))
+    return render(request,"add_fee.html")
+
 
 def add_doc(request):
     adv_id = request.session["adv_id"]
