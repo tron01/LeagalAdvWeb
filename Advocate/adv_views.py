@@ -54,8 +54,6 @@ def advocate_profile(request):
 
 def adv_change_password(request):
     adv_id = request.session["adv_id"]
-
-    
     if 'change_pass' in request.POST:
         password = request.POST.get("new_pass")
         s = "update login set password = '"+str(password)+"' where user_id = '"+str(adv_id)+"' and type = 'advocate' "
