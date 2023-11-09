@@ -36,19 +36,19 @@
                                 {% endif %} -->
 
               {% if data.0.6 == 'Approved' %}
-              <a href="/status1?case_id={{data.0.0}}&u_id={{data.0.2}}&st=Proceeding" class="btn btn-primary"
+              <a href="/Case_status1?case_id={{data.0.0}}&u_id={{data.0.2}}&st=Proceeding" class="btn btn-primary"
                 title="Proceed the case request">PROCEED</a>
-              <a href="/status1?case_id={{data.0.0}}&u_id={{data.0.2}}&st=Completed" class="btn btn-primary"
+              <a href="/Case_status1?case_id={{data.0.0}}&u_id={{data.0.2}}&st=Completed" class="btn btn-primary"
                 title="Completed the case request">COMPLETED</a>
-              <a href="/status1?case_id={{data.0.0}}&u_id={{data.0.2}}&st=Rejected" class="btn btn-primary"
+              <a href="/Case_status1?case_id={{data.0.0}}&u_id={{data.0.2}}&st=Rejected" class="btn btn-primary"
                 title="Reject the case request">REJECT</a>
               {% endif %}
 
               {% if data.0.6 == 'Proceeding' %}
-              <a href="/status1?case_id={{data.0.0}}&u_id={{data.0.2}}&st=Completed" class="btn btn-primary"
+              <a href="/Case_status1?case_id={{data.0.0}}&u_id={{data.0.2}}&st=Completed" class="btn btn-primary"
                 title="Completed the case request">COMPLETED</a>
               <!-- <a href="/status?case_id={{data.0.0}}&u_id={{data.0.2}}&st=Proceeding" class="btn btn-primary" title="Proceed the case request">PROCEED</a>  -->
-              <a href="/status1?case_id={{data.0.0}}&u_id={{data.0.2}}&st=Rejected" class="btn btn-primary"
+              <a href="/Case_status1?case_id={{data.0.0}}&u_id={{data.0.2}}&st=Rejected" class="btn btn-primary"
                 title="Reject the case request">REJECT</a>
               {% endif %}
             </div>

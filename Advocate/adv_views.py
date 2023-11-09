@@ -239,3 +239,57 @@ def add_doc(request):
         return render(request,"add_doc.html",{"msg":msg})
     return render(request,"add_doc.html")
         # return HttpResponseRedirect("/view_case_status?case_id="+str(case_id)+"&u_id="+str(u_id))
+
+        
+def status1(request):
+    adv_id = request.session["adv_id"]
+    case_id = request.GET.get("case_id")
+    u_id = request.GET.get("u_id")
+    st = request.GET.get("st")
+
+    # if st == 'Approved':
+    #     s = "update case_request set status= '"+str(st)+"' where case_id='"+str(case_id)+"'"
+    #     print(s)
+    #     c.execute(s)
+    #     conn.commit()
+    #     msg = "Mark as Accepted"
+    #     # return render(request,"adv_case_request.html",{"msg":msg})
+    #     return HttpResponseRedirect("/adv_case_request")
+
+
+    if st == 'Rejected':
+        s = "update case_request set status= '"+str(st)+"' where case_id='"+str(case_id)+"'"
+        print(s)
+        c.execute(s)
+        conn.commit()
+        msg = "Mark as Rejected"
+        # return render(request,"adv_case_request.html",{"msg":msg})
+        return HttpResponseRedirect("/adv_case_status")
+
+    if st == 'Completed':
+        s = "update case_request set status= '"+str(st)+"' where case_id='"+str(case_id)+"'"
+        print(s)
+        c.execute(s)
+        conn.commit()
+        msg = "Mark as Completed"
+        # return render(request,"adv_case_request.html",{"msg":msg})
+        return HttpResponseRedirect("/adv_case_status")
+
+
+    if st == 'Proceeding':
+        s = "update case_request set status= '"+str(st)+"' where case_id='"+str(case_id)+"'"
+        print(s)
+        c.execute(s)
+        conn.commit()
+        msg = "Mark as Proceeding"
+        # return render(request,"adv_case_request.html",{"msg":msg})
+        return HttpResponseRedirect("/view_case_status?case_id="+str(case_id)+"&u_id="+str(u_id))
+
+    # data = c.fetchall()
+    # print(data)
+    # if not bool(data):
+    #     msgg = "No case Applications"
+    # # if 'login' in request.POST:
+    #     # return HttpResponseRedirect("/login")
+    # return HttpResponseRedirect("/view_case_request?case_id=case_id&u_id=u_id")
+    return render(request,"adv_case_status.html")
