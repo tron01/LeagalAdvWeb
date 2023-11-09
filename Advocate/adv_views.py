@@ -177,3 +177,64 @@ def view_case_status(request):
         return render(request,"view_case_status.html",{"data":data,"msgg":msgg,"data1":data1,"data2":data2})
         
     return render(request,"view_case_status.html",{"data":data,"data1":data1,"data2":data2})
+
+def case_ipc(request):
+    adv_id = request.session["adv_id"]
+    case_id = request.GET.get("case_id")
+    u_id = request.GET.get("u_id")
+    # st = request.GET.get("st")
+
+    if 'ipc' in request.POST:
+        ipc_description = request.POST.get("ipc_description")
+        s = "update case_request set ipc_sections= '"+str(ipc_description)+"' where case_id='"+str(case_id)+"'"
+        print(s)
+        c.execute(s)
+        conn.commit()
+        
+        # return render(request,"case_ipc.html",{"msg":msg})
+        return HttpResponseRedirect("/view_case_status?case_id="+str(case_id)+"&u_id="+str(u_id))
+
+
+def add_fee(request):
+    adv_id = request.session["adv_id"]
+    case_id = request.GET.get("case_id")
+    u_id = request.GET.get("u_id")
+    # st = request.GET.get("st")
+    tdate = now.date()
+    if 'fee' in request.POST:
+        amount = request.POST.get("amount")
+        s = "insert into payment(`user_id`,`adv_id`,`case_id`,`posted_date`,`amount`,`status`) values('"+str(u_id)+"', '"+str(adv_id)+"', '"+str(case_id)+"','"+str(tdate)+"','"+str(amount)+"','Not Paid')"
+        print(s)
+        c.execute(s)
+        conn.commit()
+        
+        # return render(request,"case_ipc.html",{"msg":msg})
+        return HttpResponseRedirect("/view_case_status?case_id="+str(case_id)+"&u_id="+str(u_id))
+
+def add_doc(request):
+    adv_id = request.session["adv_id"]
+    case_id = request.GET.get("case_id")
+    u_id = request.GET.get("u_id")
+    # st = request.GET.get("st")
+    tdate = now.date()
+    if 'doc' in request.POST:
+        file_name = request.POST.get("file_name")
+        # file_doc = request.POST.get("file_doc")
+        myfile = request.FILES["file_doc"]
+        fs = FileSystemStorage()        
+        filename = fs.save(myfile.name, myfile)
+        uploaded_file_url = fs.url(filename)
+        ss = "select count(*) from documents where document = '"+str(uploaded_file_url)+"'"
+        c.execute(ss)
+        doc_count = c.fetchone()
+        if doc_count[0] == 0: 
+            s = "insert into documents(`case_id`,`u_id`,`adv_id`,`doc_name`,`document`,`posted_date`) values('"+str(case_id)+"','"+str(u_id)+"', '"+str(adv_id)+"','"+str(file_name)+"','"+str(uploaded_file_url)+"',  '"+str(tdate)+"')"
+            print(s)
+            c.execute(s)
+            conn.commit()
+            return HttpResponseRedirect("/view_case_status?case_id="+str(case_id)+"&u_id="+str(u_id))
+        else:
+            msg = "file Already Exists"
+        return render(request,"add_doc.html",{"msg":msg})
+    return render(request,"add_doc.html")
+        # return HttpResponseRedirect("/view_case_status?case_id="+str(case_id)+"&u_id="+str(u_id))

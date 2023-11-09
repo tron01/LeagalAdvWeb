@@ -93,6 +93,9 @@ urlpatterns = [
     path('status/', adv_views.status),
     path('adv_case_status/', adv_views.adv_case_status),
     path('view_case_status/', adv_views.view_case_status),
+     path('case_ipc/', adv_views.case_ipc),
+    path('add_fee/', adv_views.add_fee),
+     path('add_doc/', adv_views.add_doc),
 
     #-------------------------Advocate End -----------------------------------#
 
