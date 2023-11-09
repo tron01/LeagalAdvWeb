@@ -90,6 +90,10 @@ urlpatterns = [
     path('adv_change_password/', adv_views.adv_change_password),
     path('adv_case_request/', adv_views.adv_case_request),
     path('view_case_request/', adv_views.view_case_request),
+    path('status/', adv_views.status),
+    path('adv_case_status/', adv_views.adv_case_status),
+    path('view_case_status/', adv_views.view_case_status),
+
     #-------------------------Advocate End -----------------------------------#
 
 ]

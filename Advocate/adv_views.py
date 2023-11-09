@@ -108,3 +108,72 @@ def view_case_request(request):
         return render(request,"view_case_request.html",{"data":data,"msgg":msgg,"data1":data1})
     return render(request,"view_case_request.html",{"data":data,"data1":data1})
 
+
+def status(request):
+    adv_id = request.session["adv_id"]
+    case_id = request.GET.get("case_id")
+    u_id = request.GET.get("u_id")
+    st = request.GET.get("st")
+
+    if st == 'Approved':
+        s = "update case_request set status= '"+str(st)+"' where case_id='"+str(case_id)+"'"
+        print(s)
+        c.execute(s)
+        conn.commit()
+        msg = "Mark as Accepted"
+        # return render(request,"adv_case_request.html",{"msg":msg})
+        return HttpResponseRedirect("/adv_case_request")
+
+
+def adv_case_status(request):
+    adv_id = request.session["adv_id"]
+    print(adv_id)
+    s = "select * from case_request c , advocate a, user u where c.adv_id = '"+str(adv_id)+"' and c.adv_id = a.user_id  and c.user_id = u.user_id and c.status != 'Applied' and c.status != 'Rejected' and c.status != 'Completed'   order by c.case_id desc"
+
+    # s = "select * from case_request c , user u  where c.user_id = '"+str(uid)+"' and c.user_id = u.u_id  order by c.case_id desc"
+    print(s)
+    c.execute(s)
+    conn.commit()
+    data = c.fetchall()
+    print(data)
+    if not bool(data):
+        msgg = "No case Applications"
+    # if 'login' in request.POST:
+        # return HttpResponseRedirect("/login")
+        return render(request,"adv_case_status.html",{"data":data,"msgg":msgg})
+    return render(request,"adv_case_status.html",{"data":data})
+
+
+def view_case_status(request):
+    adv_id = request.session["adv_id"]
+    case_id = request.GET.get("case_id")
+    u_id = request.GET.get("u_id")
+
+    s = "select * from case_request c , user u  where c.case_id = '"+str(case_id)+"' and  c.user_id = '"+str(u_id)+"' and c.user_id = u.user_id  order by c.case_id desc"
+    print(s)
+    c.execute(s)
+    conn.commit()
+    data = c.fetchall()
+
+    s1 = "select * from payment where case_id= '"+str(case_id)+"' order by pay_id desc"
+    print(s1)
+    c.execute(s1)
+    conn.commit()
+    data1 = c.fetchall()
+    
+    s2 = "select * from documents where case_id = '"+str(case_id)+"' order by doc_id"
+    print(s2)
+    
+    c.execute(s2)
+    conn.commit()
+    data2 = c.fetchall()
+
+    
+    print(data)
+    if not bool(data):
+        msgg = "No case Applications"
+    # if 'login' in request.POST:
+        # return HttpResponseRedirect("/login")
+        return render(request,"view_case_status.html",{"data":data,"msgg":msgg,"data1":data1,"data2":data2})
+        
+    return render(request,"view_case_status.html",{"data":data,"data1":data1,"data2":data2})
