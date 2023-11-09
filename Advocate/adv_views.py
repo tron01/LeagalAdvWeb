@@ -11,10 +11,7 @@ from django.core.files.storage import FileSystemStorage
 conn = MySQLdb.connect("localhost","root","","law")
 c = conn.cursor()
 
-def adv_home(request):
-    if 'adv_id' not in request.session:
-        return HttpResponseRedirect("/login")
-    return render(request,"advocate_home.html")
+
 
 def adv_logout(request):
     if 'adv_id'  in request.session:
