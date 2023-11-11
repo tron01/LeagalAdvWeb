@@ -70,7 +70,7 @@
             <p class="uk18"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{data.0.6}}</b></p>
             <footer class="blockquote-footer"><b>Case Description : </b></footer>
             <p class="uk18"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{data.0.4}}</b></p>
-            <footer class="blockquote-footer">View Documents : </footer>
+            <footer class="blockquote-footer"><b>View Documents :</b> </footer>
             <p class="uk18"><a href="../static{{data.0.5}}"
                 target="_blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Case document</a></p>
             <footer class="blockquote-footer"><b>Age : </b></footer>
@@ -83,13 +83,12 @@
             <p class="uk18"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{data.0.16}}</b></p>
             <footer class="blockquote-footer"><b>Address : </b></footer>
             <p class="uk18"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{data.0.18}}</b></p>
-            <footer class="blockquote-footer"><b>Ip Sections : </b></footer>
-            <!-- <p class="uk18"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Not Yet Added</b></p> -->
+            <footer class="blockquote-footer"><b>Ip Sections : &nbsp;&nbsp;&nbsp;&nbsp;<a class="btn btn-primary"
+                  href="/case_ipc?case_id={{data.0.0}}&u_id={{data.0.2}}">ADD</a></b></footer>
 
-            {% if data.0.7 == None %}
-            <p style="color: green;"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a
-                  href="/case_ipc?case_id={{data.0.0}}&u_id={{data.0.2}}">ADD</b></a></p>
-            {% endif %}
+
+            <p style="color: green;"></p>
+
             {% if data.0.7 != None %}
 
             <p class="uk18"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{data.0.7}}</b></p>
@@ -102,18 +101,10 @@
           <h2 class="section-heading mt-3">
             Documents
           </h2>
-          <p class="subheading mb-4">"Documents regarding the case"</p>
-          <!-- <p class="subheading mb-4">"we always take care of clients seriously"</p> -->
-          <!-- <p><a href="/{{data.0.5}}" target="_blank" class="btn btn-secondary">View Document</a></p> -->
+          <p class="subheading mb-4">"Documents regarding the case submited by users"</p>
 
 
           {% if data.0.6 == 'Proceeding' %}
-          <center><a href="/add_doc?case_id={{data.0.0}}&u_id={{data.0.2}}" class="btn btn-primary">ADD Document</a>
-          </center>
-          <br>
-          {% endif %}
-          <!-- {%  if data.0.6 == 'Applied' %}
-                                {% endif %} -->
           <table>
 
             <tr>
@@ -141,6 +132,51 @@
             </tr>
             {% endfor %}
           </table><br><br><br>
+          {% endif %}
+          <!-- {%  if data.0.6 == 'Applied' %}
+                                {% endif %} -->
+
+
+          <p class="subheading mb-4">"Documents regarding the case submited by advocates"</p>
+
+
+
+          {% if data.0.6 == 'Proceeding' %}
+          <center><a href="/add_doc?case_id={{data.0.0}}&u_id={{data.0.2}}" class="btn btn-primary">ADD Document</a>
+          </center>
+          <br>
+          {% endif %}
+          <!-- {%  if data.0.6 == 'Applied' %}
+                                {% endif %} -->
+          <table>
+
+            <tr>
+              <th>Sl No</th>
+              <th>File Name</th>
+              <th>Posted On</th>
+              <th>Document</th>
+              <!-- <th>Status</th> -->
+              <!-- <th>Payment</th>
+                                  <th>Next Review</th> -->
+              <!-- <th>View</th> -->
+
+            </tr>
+            {% for d in data3 %}
+            <tr>
+              <td>{{ forloop.counter }}</td>
+              <td>{{d.4}}</td>
+              <td><a href="../static{{d.5}}" target="_blank">View</a></td>
+              <td>{{d.6}}</td>
+              <!-- {% if d.7 == None %}<td><a href="" style="color: green;">ADD</a></td>{% endif %}
+                                  {% if d.7 != None %}<td>{{d.7}}</td>{% endif %}<td>{{d.6}}</td><td><a href="">Fees</a></td> -->
+
+              <!-- <td><a href="">ADD</a></td> -->
+
+            </tr>
+            {% endfor %}
+          </table><br><br><br>
+
+
 
 
 

@@ -161,12 +161,19 @@ def view_case_status(request):
     conn.commit()
     data1 = c.fetchall()
     
-    s2 = "select * from documents where case_id = '"+str(case_id)+"' order by doc_id"
+    s2 = "select * from documents where case_id = '"+str(case_id)+"' and  u_id = '"+str(u_id)+"' order by doc_id"
     print(s2)
     
     c.execute(s2)
     conn.commit()
     data2 = c.fetchall()
+
+    s3 = "select * from documents where case_id = '"+str(case_id)+"' and  adv_id = '"+str(adv_id)+"' order by doc_id"
+    print(s3)
+    
+    c.execute(s3)
+    conn.commit()
+    data3 = c.fetchall()
 
     
     print(data)
@@ -174,9 +181,9 @@ def view_case_status(request):
         msgg = "No case Applications"
     # if 'login' in request.POST:
         # return HttpResponseRedirect("/login")
-        return render(request,"view_case_status.html",{"data":data,"msgg":msgg,"data1":data1,"data2":data2})
+        return render(request,"view_case_status.html",{"data":data,"msgg":msgg,"data1":data1,"data2":data2,"data3":data3})
         
-    return render(request,"view_case_status.html",{"data":data,"data1":data1,"data2":data2})
+    return render(request,"view_case_status.html",{"data":data,"data1":data1,"data2":data2,"data3":data3})
 
 def case_ipc(request):
     adv_id = request.session["adv_id"]
@@ -229,7 +236,7 @@ def add_doc(request):
         c.execute(ss)
         doc_count = c.fetchone()
         if doc_count[0] == 0: 
-            s = "insert into documents(`case_id`,`u_id`,`adv_id`,`doc_name`,`document`,`posted_date`) values('"+str(case_id)+"','"+str(u_id)+"', '"+str(adv_id)+"','"+str(file_name)+"','"+str(uploaded_file_url)+"',  '"+str(tdate)+"')"
+            s = "insert into documents(`case_id`,`adv_id`,`doc_name`,`document`,`posted_date`) values('"+str(case_id)+"','"+str(adv_id)+"','"+str(file_name)+"','"+str(uploaded_file_url)+"',  '"+str(tdate)+"')"
             print(s)
             c.execute(s)
             conn.commit()
