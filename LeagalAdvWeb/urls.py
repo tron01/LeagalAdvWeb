@@ -53,6 +53,9 @@ urlpatterns = [
     path('case_category/', views.case_category),
     path('cat_remove/', views.cat_remove),
     path('edit_case_category',views.edit_cat),
+    
+    path('user_case/',views.user_case),
+
 
     path('view_feedback/', views.view_feedback),
     #-------------------------Admin End-----------------------------------#

@@ -497,6 +497,15 @@ def edit_ipc(request):
         return HttpResponseRedirect("/ipc_section")
     return render(request,"update_ipc.html",{"data":data})
 
+def user_case(request):
+    
+    print("inside user_case")
+    s = "select * from case_request"
+    print(s)
+    c.execute(s)
+    data = c.fetchall()
+    print(data)
+    return render(request,"user_case.html",{"data":data})
 
 
 def view_feedback(request):
