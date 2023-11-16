@@ -117,16 +117,17 @@
                         <td>{{ forloop.counter }}</td>
                         <td>{{d.1}}</td>
                         <td>{{d.2}}</td>
+
                         <td>
-                            <center><a href="/cat_remove?cat_id={{d.0}}"><img src="{% static 'images/cancel.png' %}"
-                                        width="30px;" height="30px;">
+                            <center><a href="/edit_case_category?cat_id={{d.0}}"><img
+                                        src="{% static 'images/edit.png' %}" width="30px;" height="30px;">
 
 
                                 </a></center>
                         </td>
                         <td>
-                            <center><a href="/edit_case_category?cat_id={{d.0}}"><img
-                                        src="{% static 'images/edit.png' %}" width="30px;" height="30px;">
+                            <center><a href="/cat_remove?cat_id={{d.0}}"><img src="{% static 'images/cancel.png' %}"
+                                        width="30px;" height="30px;">
 
 
                                 </a></center>
