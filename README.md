@@ -10,3 +10,7 @@ pip install mysqlclient
 django-admin startproject LeagalAdvWeb .
 py manage.py runserver
 
+
+//to run
+myenv\Scripts\activate
+py manage.py runserver

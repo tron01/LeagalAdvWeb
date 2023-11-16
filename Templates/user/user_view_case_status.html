@@ -36,7 +36,7 @@
               {% endif %}
               <br><br>
 
-              {% if data.0.6 != 'Rejected' %}
+              {% if data.0.6 != 'Rejected' and data.0.6 != 'Completed' %}
 
               <a href="/status1?case_id={{data.0.0}}&adv_id={{data.0.1}}&st=Rejected"
                 class="btn btn-secondary bg-danger">Cancel</a>
@@ -77,10 +77,8 @@
             <p class="uk18">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{data.0.30}}</p>
             <footer class="blockquote-footer">Address : </footer>
             <p class="uk18">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{data.0.31}}</p>
-            <!-- <footer class="blockquote-footer">Ip Sections :  </footer> -->
-            {% if data.0.7 == None %}
-            <!-- <p style="color: green;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/case_ipc?case_id={{data.0.0}}&u_id={{data.0.2}}" >ADD</a></p> -->
-            {% endif %}
+            <footer class="blockquote-footer">Ip Sections : </footer>
+
             {% if data.0.7 != None %}
 
             <p class="uk18">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{data.0.7}}</p>
@@ -236,7 +234,9 @@
             {% endfor %}
           </table><br><br><br>
 
+          {% if data.0.6 == 'Completed' %}
           <h2 class="section-heading mt-3">
+
             Rating
           </h2>
           <p class="subheading mb-4">&nbsp;Reviews here</p>
@@ -274,7 +274,7 @@
             </tr>
             {% endfor %}
           </table><br><br><br>
-
+          {% endif %}
           <div class="spacer-content"></div>
         </div>
       </div>
