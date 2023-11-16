@@ -505,7 +505,7 @@ def user_case(request):
     c.execute(s)
     data = c.fetchall()
     print(data)
-    return render(request,"user_case.html",{"data":data})
+    return render(request,"case_list.html",{"data":data})
 
 
 def view_feedback(request):
