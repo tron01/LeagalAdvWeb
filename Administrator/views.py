@@ -508,6 +508,53 @@ def user_case(request):
     return render(request,"case_list.html",{"data":data})
 
 
+def view_case_list(request):
+    u_id = request.GET.get("u_id")
+    case_id = request.GET.get("case_id")
+    adv_id = request.GET.get("adv_id")
+    
+    print("inside view_case_list")
+    s = "select * from case_request c , user u,advocate a  where c.case_id = '"+str(case_id)+"' and  c.user_id = '"+str(u_id)+"' and c.user_id = u.user_id and c.adv_id = a.user_id  order by c.case_id desc"
+    print(s)
+    c.execute(s)
+    conn.commit()
+    data = c.fetchall()
+    print(data)
+
+    s1 = "select * from payment where case_id= '"+str(case_id)+"' order by pay_id desc"
+    print(s1)
+    c.execute(s1)
+    conn.commit()
+    data1 = c.fetchall()
+
+    s2 = "select * from documents where case_id = '"+str(case_id)+"' and u_id ='"+str(u_id)+"' order by doc_id"
+    print(s2)
+    c.execute(s2)
+    conn.commit()
+    data2 = c.fetchall()
+    print(data2)
+
+    s4 = "select * from documents where case_id = '"+str(case_id)+"'  and adv_id ='"+str(adv_id)+"'  order by doc_id"
+    print(s4)
+    c.execute(s4)
+    conn.commit()
+    data4 = c.fetchall()
+    print(data4)
+
+
+    s3 = "select * from rating  where case_id = '"+str(case_id)+"' and  adv_id = '"+str(adv_id)+"' "
+    print(s3)
+    c.execute(s3)
+    conn.commit()
+    data3 = c.fetchall()
+    
+    print(data)
+    if not bool(data):
+        msgg = "No case Applications"
+        return render(request,"view_case_list.html",{"data":data,"msgg":msgg,"data1":data1,"data2":data2,"data3":data3,"data4":data4})
+    
+    return render(request,"view_case_list.html",{"data":data,"data1":data1,"data2":data2,"data3":data3,"data4":data4})
+
 def view_feedback(request):
     print("inside feedback")
 
