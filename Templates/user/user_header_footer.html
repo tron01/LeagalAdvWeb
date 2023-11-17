@@ -121,9 +121,7 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="/user_feedback/">FEEDBACK</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="/user_about/">ABOUT</a>
-                            </li>
+
                         </ul>
                     </div>
                 </nav> <!-- -->
@@ -142,8 +140,7 @@
     {% block user_cat_list %}
     {% endblock %}
 
-    {% block user_about %}
-    {% endblock %}
+
 
     {% block user_profile %}
     {% endblock %}
@@ -174,6 +171,11 @@
     {% block add_doc %}
     {% endblock %}
 
+    {% block user_feedback %}
+    {% endblock %}
+
+    {% block user_about %}
+    {% endblock %}
     <!-- FOOTER SECTION -->
     <div class="footer" data-background="{% static 'images/footer2.jpg' %}">
         <div class="content-wrap">

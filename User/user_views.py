@@ -33,6 +33,7 @@ def user_header_footer(request):
 def user_about(request):
     return render(request,"user_about.html")
 
+
 def user_profile(request):
     u_id = request.session["uid"]
     s = "select * from user u , login l where u.user_id = '"+str(u_id)+"' and u.user_id = l.user_id and l.type = 'user' "
@@ -295,3 +296,20 @@ def status1(request):
         return HttpResponseRedirect("/case_status")
 
     return render(request,"case_status.html")
+
+def user_feedback(request):
+    u_id = request.session["uid"]
+    tdate = now.date()
+
+    if 'submit' in request.POST:
+        subject = request.POST.get("subject")
+        feedback_desc = request.POST.get("feedback_desc")
+        user="user"
+        s = "insert into feedback(`u_id`,`feed_subject`,`feed_description`,`type`,`posted_date`) values('"+str(u_id)+"','"+str(subject)+"','"+str(feedback_desc)+"','"+ user +"','"+str(tdate)+"')"
+        c.execute(s)
+        conn.commit()
+        msg = "Feedback Send Successfully"
+    # if request.POST:
+    #     return HttpResponseRedirect("/payment5/")
+        return render(request,"user_feedback.html",{"msg":msg})
+    return render(request,"user_feedback.html")

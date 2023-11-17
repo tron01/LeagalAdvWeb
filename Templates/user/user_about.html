@@ -1,0 +1,294 @@
+{% extends 'user_header_footer.html' %}
+{% block user_about %}
+{% load static %}
+<div class="section bg-primary">
+    <div class="content-wrap py-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-12">
+                    <div class="text-center text-white">
+                          <h3>About</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    
+<!-- WELCOME TO LAWE -->
+<div class="section">
+    <div class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-12 col-lg-6">
+                    <h2 class="section-heading">
+                        Welcome to Legal Advisor
+                    </h2>
+                    <p class="subheading mb-4">"we always take care of clients seriously"</p>
+                    <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.</p>
+                    <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    <a href="#" class="btn btn-primary">LEARN MORE</a>
+                </div>
+                <div class="col-sm-12 col-md-12 col-lg-6">
+                    <img src="{% static 'images/about.jpg' %}" alt="" class="img-fluid mt-3">
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+<!-- FUN FACT -->
+<div class="section bgi-cover-center" data-background="{% static 'images/static.jpg' %}">
+    <div class="content-wrap">
+        <div class="container">
+
+            <div class="row">
+                
+                <!-- Item 1 -->
+                <div class="col-sm-6 col-md-6 col-lg-3">
+                    <div class="rs-icon-funfact">
+                        <div class="icon">
+                            <i class="fa fa-balance-scale"></i>
+                        </div>
+                        <div class="body-content">
+                            <h2>2120</h2>
+                            <p class="uk18">Succesful Cases</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="col-sm-6 col-md-6 col-lg-3">
+                    <div class="rs-icon-funfact">
+                        <div class="icon">
+                            <i class="fa fa-gavel"></i>
+                        </div>
+                        <div class="body-content">
+                            <h2>312</h2>
+                            <p class="uk18">Cases Closed</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="col-sm-6 col-md-6 col-lg-3">
+                    <div class="rs-icon-funfact">
+                        <div class="icon">
+                            <i class="fa fa-users"></i>
+                        </div>
+                        <div class="body-content">
+                            <h2>3120</h2>
+                            <p class="uk18">Trusted Clients</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 4 -->
+                <div class="col-sm-6 col-md-6 col-lg-3">
+                    <div class="rs-icon-funfact">
+                        <div class="icon">
+                            <i class="fa fa-briefcase"></i>
+                        </div>
+                        <div class="body-content">
+                            <h2>25</h2>
+                            <p class="uk18">Expert Team</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- FAQS -->
+<div class="section">
+    <div class="content-wrap pb-0">
+        <div class="container">
+
+            <div class="row">
+                
+                <div class="col-sm-12 col-md-12">
+                    <h2 class="section-heading">
+                        Frequently Ask Question
+                    </h2>
+                    <p class="subheading mb-4">"we always take care of clients seriously"</p>
+                </div>
+            </div>
+
+            <div class="row align-items-end mt-5">
+                
+                <div class="col-sm-12 col-md-12 col-lg-5">
+                    <img src="{% static 'images/weoffer.png' %}" alt="" class="img-fluid img-border">
+                </div>
+                <div class="col-sm-12 col-md-12 col-lg-7">
+                                            
+                    <div class="accordion rs-accordion" id="accordionExample">
+                       <!-- Item 1 -->
+                       <div class="card">
+                          <div class="card-header" id="headingOne">
+                             <h3 class="title">
+                                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    Civil cases
+                                </button>
+                             </h3>
+                          </div>
+                          <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                             <div class="card-body">
+                                In the local court, civil cases are dispute about money or property, such as: 
+                                <ul>
+<li>loan agreements</li>
+<li>unpaid bills</li>
+<li>damages from a motor vehicle accident</li>
+<li>services paid for and not provided</li>
+<li>property not returned</li>
+</ul>
+<p>The NSW Local Court deals with civil disputes for claims up to $100,000.</p>
+
+<p>The local court has two divisions to determine civil cases; the Small Claims Division hears claims up to $20,000 and the General Division hears claims over $20,000 (up to $100,000).</p>
+
+<p>Types Of Cases In Civil Court</p> 
+
+<p>Civil courts handle a wide variety of cases involving numerous legal issues.  Very broadly, civil cases may involve such things as, for example,</p>
+
+<dt>Tort claims.</dt> <dl> A "tort" is a wrongful act (sometimes called a "tortious" act), other than a breach of contract, that results in injury to someone's person, property, reputation, or the like, for which the injured person is entitled to compensation.  Cases involving claims for such things as personal injury, battery, negligence, defamation, medical malpractice, fraud, and many others, are all examples.</dl>
+<dt>Breach of contract claims.</dt><dl>  A breach of contract case typically results from a person's failure to perform some term of a contract, whether the contract is written or oral, without some legitimate legal excuse. Cases involving claims for such things as not completing a job, not paying in full or on time, failing to deliver goods sold or promised, and many others, are all examples.</dl>
+<dt>Equitable claims.</dt>  <dl>An "equitable claim" asks the court to order a party to take some action or stop some action.  It may or may not be joined with a claim for monetary damages.  Cases where a party is seeking a temporary restraining order or injunction to stop something (perhaps the destruction of property, the improper transfer of land, the solicitation of a business' customers) are examples.</dl>
+<dt>Landlord/tenant issues.</dt> <dl> Civil courts handle disputes arising between landlords and tenants.  Cases where a landlord is trying to evict a tenant from a rental property or a tenant has moved out and is suing a landlord for the return of a security deposit are examples.</dl>
+                             </div>
+                          </div>
+                       </div>
+                       <!-- Item 2 -->
+                       <div class="card">
+                          <div class="card-header" id="headingTwo">
+                             <h3 class="title">
+                                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    Criminal cases
+                                </button>
+                             </h3>
+                          </div>
+                          <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                             <div class="card-body">
+                                A criminal case is a case to decide whether a person who has been charged is guilty of a crime or other offence.
+
+The majority of criminal cases in New South Wales first come before the NSW Local Court. Juries are not used in the local court.
+
+Less serious criminal cases, sometimes called summary cases, are typically dealt with by the NSW Local Court alone. Less serious criminal cases include those where a person has received a penalty or infringement notice or a fine and has chosen to have the matter heard by a court.
+
+Serious criminal cases first come to the local court but may progress to a higher court. This is called a committal.
+
+<p><b>Types of Criminal Offenses</b></p>
+<p>Although there are many different kinds of crimes, criminal acts can generally be divided into four primary categories: personal crimes, property crimes, inchoate crimes, statutory crimes, and financial crimes.</p>
+
+<dt>Personal Crimes</dt>
+<dl>Personal crimes are those that result in physical or mental harm to another person. They can be divided into two main categories, forms of homicide and other violent crimes. Where the physical harm to another individual is so severe that it causes death, a defendant may be charged with any one of several types of homicide, including, for example, first-degree murder, voluntary manslaughter, or vehicular homicide. Conversely violent crimes, which are also very severe, include:</dl>
+ <ol>
+     <li>assault and battery</li>
+     <li>arson    </li>
+     <li>child abuse</li>
+     <li>domestic abuse</li>
+     <li>kidnapping</li>
+     <li>rape and statutory rape</li>
+
+ </ol>
+
+
+ <dt>Property Crimes</dt>
+ <dl>Property crimes typically involve interference with the property of another. Although they may involve physical or mental harm to another, they primarily result in the deprivation of the use or enjoyment of property. Many property crimes are theft crimes, including burglary, larceny, robbery, auto theft, and shoplifting.</dl>
+ <dt>Inchoate Crimes</dt>
+ <dl>Inchoate crimes refer to those crimes that were initiated but not completed, and acts that assist in the commission of another crime. Inchoate crimes require more than a person simply intending or hoping to commit a crime. Rather, the individual must take a “substantial step” towards the completion of the crime in order to be found guilty. Inchoate crimes include aiding and abetting, attempt, and conspiracy. In some cases, inchoate crimes can be punished to the same degree that the underlying crime would be punished, while in other cases, the punishment might be less severe.</dl>
+ <dt>Statutory Crimes</dt>
+ <dl>Statutory crimes include those crimes, in addition to the crimes discussed above, which are proscribed by statute. Three significant types of statutory crimes are alcohol related crimes, drug crimes, traffic offenses, and financial/white collar crimes. These crimes are specifically prohibited by statute because society hopes to deter individuals from engaging in them. Alcohol-related crimes include a variety of offenses regarding how and where alcohol can be consumed, such as:</dl>
+ <ol>
+     <li>Driving Under the Influence (DUI/OWI/DWI)</li>
+     <li>Open Container Violations</li>
+     <li>Minor in Possession of Alcohol</li>
+     <li>Public Intoxication</li>
+     <li>Underage DUI</li>
+
+ </ol>
+ <dl>
+     <dl>Traffic offenses include crimes that may arise while an individual is driving a vehicle on public roadways. Because a DUI/OWI/DWI involves both alcohol and the use of a vehicle, it is considered both an alcohol related crime and a traffic offense. Additional traffic offenses include driving on a suspended or revoked license, driving without a license, hit-and-run accidents, reckless driving, and vehicular assault. Where a traffic offense results in death, it can be charged as a far more serious crime, such as a form of homicide.</dl>D<dt></dt>rug crimes concern any involvement in the creation or distribution of drugs, including drug possession, drug manufacturing, and drug trafficking. One area of criminal law that is currently receiving a great deal of attention is the regulation and prosecution of drug crimes related to medical marijuana. Due to state trends toward the legalization of medical marijuana, this is an area of criminal law that is in flux.</dl>
+ <dl>Traffic offenses include crimes that may arise while an individual is driving a vehicle on public roadways. Because a DUI/OWI/DWI involves both alcohol and the use of a vehicle, it is considered both an alcohol related crime and a traffic offense. Additional traffic offenses include driving on a suspended or revoked license, driving without a license, hit-and-run accidents, reckless driving, and vehicular assault. Where a traffic offense results in death, it can be charged as a far more serious crime, such as a form of homicide.</dl>
+<dt>Financial and Other Crimes
+</dt>
+<dl>Finally, financial crimes often involve deception or fraud for financial gain. Although white-collar crimes derive their name from the corporate officers who historically perpetrated them, anyone in any industry can commit a white-collar crime. These crimes include many types of fraud and blackmail, embezzlement and money laundering, tax evasion, and cybercrime.</dl>
+
+</div>
+                          </div>
+                       </div>
+                       <!-- Item 3 -->
+                       <div class="card">
+                          <div class="card-header" id="headingThree">
+                             <h3 class="title">
+                                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    Bail Applications.
+                                </button>
+                             </h3>
+                          </div>
+                          <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                             <div class="card-body">
+                                <p>Bail denotes the provisional release of an accused in a criminal matter in which the court is yet to announce a judgment. The expression 'bail' means a security deposited to appear before the court for release. Originally, the word is derived from an old French verb ‘bailer’ which means ‘to give’ or ‘to deliver’. A ball is granted to an accused after presenting a bail bond to the court.</p>
+                                <p>The primary objective of arrest is to ensure that the accused in a criminal case appears before the court for the conveyance of justice. However, if the person’s presence can be guaranteed for the court trial without putting the person in a jail, it would unfair and unjust to violate a person’s liberty. Thus, bail can be granted as a conditional liberty to the accused.</p>
+
+                                <p><b>Types Of Bail In India</b></p>
+                                <p>There are commonly 3 types of bail in India which a person can apply depending upon the stage of the criminal matter:</p>
+                                <dt>Regular Bail: </dt>
+                                <dl> A regular bail can be granted to a person who has already been arrested and kept in police custody. A person can file a bail application for regular bail under Section 437 and 439 of the CrPC.</dl>
+                                <dt>Interim Bail:</dt>
+                                <dl> Interim bail is a bail granted for a short period of time. Interim bail is granted to an accused before the hearing for the grant of regular bail or anticipatory bail.</dl>
+                                <dt>Anticipatory Bail:</dt>
+                                <dl>A person who discerns that he may be arrested by the police for a non-bailable offence, can file an application for anticipatory bail. It is like an advance bail obtained under Section 438 of the CrPC. A bail under Section 438 is a bail before arrest and a person cannot be arrested by the police if the anticipatory bail has been granted by the court.</dl>
+                             </div>
+                          </div>
+                       </div>
+                       <!-- Item 4 -->
+                       <div class="card">
+                          <div class="card-header" id="headingFour">
+                             <h3 class="title">
+                                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                    Domestic Relations
+                                </button>
+                             </h3>
+                          </div>
+                          <div id="collapseFour" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                             <div class="card-body">
+                                <p>Family cases are a type of civil case, but they generally involve issues between or concerning spouses, parents, and children.</p>
+                                <p>Family courts handle a wide variety of cases involving domestic matters. The most common issues handled at family court include:</p>
+                                <dt>Marriage Dissolution.</dt>
+                                <dl>When someone wants to end a marriage, they can file a case at family court to ask for a court order ending the marriage. Marriages can be terminated through divorce or annulment cases. The court can also grant a separation, where the court issues orders regarding property, alimony, and child custody, but the parties remain legally married. You can find more information on the Divorce, Annulment, or Separation sections of this site.</dl>
+                                <dt>Paternity and Child Custody</dt>
+                                <dl>When a man needs to be declared the father of a child, either parent can file a case asking the family court to determine paternity. This permanently establishes the father of the child. Unmarried parents can also ask the court to order legal custody, physical custody, visitation schedules, and child support. You can find more information about these types of cases on the Custody, Paternity, & Child Support section of this website.</dl>
+                                <dt>Protection Orders Against Domestic Violence</dt>
+                                <dl>Victims of domestic violence can ask the family court to issue protection orders to keep their abuser away. Please visit the DV Protection Orders for more information.</dl>
+                                <dt>Name Changes.</dt>
+                                <dl>A child or an adult may be able to legally change their name through a name change case at family court. Please visit the Name Change section for more information.</dl>
+                                <dt>Guardianship</dt>
+                                <dl>Guardianship involves determining who will be responsible for the medical, personal, and financial decisions over a child or an adult who cannot care for themself. More information can be found on the Guardianship section of this website.</dl>
+                                <dt>Termination of Parental Rights and Adoptions</dt>
+                                <dl>If there are serious reasons why a parent should no longer have a parental relationship with a child (such as abandonment, neglect, abuse, etc.), the family court may terminate that parent’s rights. If someone else wants to become a child’s legal parent, the family court can grant an adoption where the parent-child relationship is legally created. More information is located on the Adoptions and Terminating Parental Rights section of this website.</dl>
+                                <dt>Juvenile Matters</dt>
+                                <dl>Family court oversees all matters where there are allegations of child abuse, child neglect, or where minors are accused of participating in illegal behavior. These matters are largely handled by the District Attorney Juvenile Division. The family court can also approve work permits for minors under the age of 14. Visit Juvenile Work Permits for more information about this.</dl>
+                                <dt>Emancipation and Approval of Underage Marriages.</dt>
+                                <dl>Those under the age of 18 who wish to marry or want to be “emancipated” (meaning, being legally free from the control of their parents) can petition the family court for approval. The Self-Help Center does not have forms for approval of underage marriages, but does have information about emancipation in the Emancipation section of this website.</dl>
+                            </div>
+                          </div>
+                       </div>
+                    </div>
+                    <!-- end accordion -->
+
+                    <p class="uk21 mt-5 text-black"><a href="#">Can't find your answer?. Contact us now!</a></p>
+
+                    <div class="spacer-content"></div>
+                
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+ 
+{% endblock %}

@@ -300,3 +300,19 @@ def status1(request):
     #     # return HttpResponseRedirect("/login")
     # return HttpResponseRedirect("/view_case_request?case_id=case_id&u_id=u_id")
     return render(request,"adv_case_status.html")
+
+def adv_feedback(request):
+    adv_id = request.session["adv_id"]
+    tdate = now.date()
+
+    if 'submit' in request.POST:
+        subject = request.POST.get("subject")
+        feedback_desc = request.POST.get("feedback_desc")
+        s = "insert into feedback(`u_id`,`feed_subject`,`feed_description`,`type`,`posted_date`) values('"+str(adv_id)+"','"+str(subject)+"','"+str(feedback_desc)+"','advocate','"+str(tdate)+"')"
+        c.execute(s)
+        conn.commit()
+        msg = "Feedback Send Successfully"
+    # if request.POST:
+    #     return HttpResponseRedirect("/payment5/")
+        return render(request,"adv_feedback.html",{"msg":msg})
+    return render(request,"adv_feedback.html")

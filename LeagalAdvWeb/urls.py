@@ -82,6 +82,9 @@ urlpatterns = [
     
     path('add_doc/', user_views.add_doc),
     path('status1/', user_views.status1),
+    path('user_feedback/', user_views.user_feedback),
+     path('user_about/', user_views.user_about),
+
     #-------------------------User End -----------------------------------#
 
     #-------------------------Advocate End -----------------------------------#
@@ -101,6 +104,7 @@ urlpatterns = [
     path('add_fee/', adv_views.add_fee),
     path('add_doc_adv/', adv_views.add_doc),
     path('Case_status1/', adv_views.status1),
+    path('adv_feedback/', adv_views.adv_feedback),
 
     #-------------------------Advocate End -----------------------------------#
 
