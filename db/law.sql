@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 08, 2023 at 06:50 PM
+-- Generation Time: Dec 03, 2023 at 07:23 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -72,7 +72,7 @@ CREATE TABLE `case_request` (
 --
 
 INSERT INTO `case_request` (`case_id`, `adv_id`, `user_id`, `case_title`, `case_desc`, `case_file`, `status`, `ipc_sections`, `posted_date`) VALUES
-(1, '3', '2', 'test 1', 'test111', '/Media/case.txt', 'Applied', NULL, NULL);
+(1, '3', '2', 'test 1', 'test111', '/Media/case.txt', 'Proceeding', 'Section 463 to 489 -E', NULL);
 
 -- --------------------------------------------------------
 
@@ -120,7 +120,8 @@ CREATE TABLE `documents` (
 --
 
 INSERT INTO `documents` (`doc_id`, `case_id`, `u_id`, `adv_id`, `doc_name`, `document`, `posted_date`) VALUES
-(1, '1', '2', NULL, 'doctest1', '/Media/case2.txt', '2023-11-08');
+(1, '1', '2', NULL, 'doctest1', '/Media/case2.txt', '2023-11-08'),
+(4, '1', NULL, '3', 'advTestDoc3', '/Media/adv_doc_AdqN3TP.txt', '2023-11-16');
 
 -- --------------------------------------------------------
 
@@ -189,7 +190,7 @@ CREATE TABLE `login` (
 INSERT INTO `login` (`user_id`, `username`, `password`, `type`, `status`) VALUES
 (1, 'admin', '123', 'admin', '1'),
 (2, 'aju123@gmail.com', '123', 'user', '1'),
-(3, 'raj123@gmail.com', '123', 'advocate', '1');
+(3, 'raj123@gmail.com', '1234', 'advocate', '1');
 
 -- --------------------------------------------------------
 
@@ -207,6 +208,13 @@ CREATE TABLE `payment` (
   `paid_date` varchar(100) DEFAULT NULL,
   `status` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `payment`
+--
+
+INSERT INTO `payment` (`pay_id`, `user_id`, `adv_id`, `case_id`, `posted_date`, `amount`, `paid_date`, `status`) VALUES
+(1, '2', '3', '1', '2023-11-16', '2000', '2023-12-03', 'Not Paid');
 
 -- --------------------------------------------------------
 
@@ -344,7 +352,7 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `documents`
 --
 ALTER TABLE `documents`
-  MODIFY `doc_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `doc_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `feedback`
@@ -368,7 +376,7 @@ ALTER TABLE `login`
 -- AUTO_INCREMENT for table `payment`
 --
 ALTER TABLE `payment`
-  MODIFY `pay_id` int(100) NOT NULL AUTO_INCREMENT;
+  MODIFY `pay_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `rating`
