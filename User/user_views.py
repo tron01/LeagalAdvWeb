@@ -313,3 +313,42 @@ def user_feedback(request):
     #     return HttpResponseRedirect("/payment5/")
         return render(request,"user_feedback.html",{"msg":msg})
     return render(request,"user_feedback.html")
+
+
+def payment1(request):
+    u_id = request.session["uid"]
+    case_id = request.GET.get("case_id")
+    adv_id = request.GET.get("adv_id")
+    
+    request.session["amt"] = request.GET.get("amt")
+    #fix need here too
+    request.session["pay_id"] = request.GET.get("pay_id")
+    
+    # 2.add payment approve  @admin
+    #  ..
+    if request.POST:
+        cardno=request.POST.get("cardno")
+        pinno=request.POST.get("pinno")
+        print("payment1")
+        print(request.GET.get("pay_id"))
+        return HttpResponseRedirect("/payment4/")
+
+    return render(request,"payment1.html")
+
+def payment4(request):
+    if request.POST:
+        print("payment4")
+        return HttpResponseRedirect("/payment5/")
+    return render(request,"payment4.html")
+
+def payment5(request):
+    pay_id=request.session['pay_id']
+    amt= request.session["amt"] 
+    tdate=now.date()
+    #need fix for  where part
+    print("payment5")
+    print(pay_id)
+    s= "update payment set paid_date = '"+str(tdate)+"',status = 'Paid' where  where pay_id = '"+str(pay_id)+"'"
+    c.execute(s)
+    conn.commit()
+    return render(request,"payment5.html",{'tdate':tdate,'amt':amt})

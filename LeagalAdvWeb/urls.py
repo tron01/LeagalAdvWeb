@@ -83,8 +83,11 @@ urlpatterns = [
     path('add_doc/', user_views.add_doc),
     path('status1/', user_views.status1),
     path('user_feedback/', user_views.user_feedback),
-     path('user_about/', user_views.user_about),
+    path('user_about/', user_views.user_about),
 
+    path('payment1/', user_views.payment1),
+    path('payment4/', user_views.payment4),
+    path('payment5/', user_views.payment5),
     #-------------------------User End -----------------------------------#
 
     #-------------------------Advocate End -----------------------------------#
