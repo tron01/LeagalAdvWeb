@@ -47,7 +47,6 @@
               <a href="/Case_status1?case_id={{data.0.0}}&u_id={{data.0.2}}&st=Completed" class="btn btn-primary"
                 title="Completed the case request">COMPLETED</a>
               <!-- <a href="/status?case_id={{data.0.0}}&u_id={{data.0.2}}&st=Proceeding" class="btn btn-primary" title="Proceed the case request">PROCEED</a>  -->
-
               {% endif %}
             </div>
           </div>
@@ -81,8 +80,13 @@
             <p class="uk18"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{data.0.16}}</b></p>
             <footer class="blockquote-footer"><b>Address : </b></footer>
             <p class="uk18"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{data.0.18}}</b></p>
-            <footer class="blockquote-footer"><b>Ip Sections : &nbsp;&nbsp;&nbsp;&nbsp;<a class="btn btn-primary"
-                  href="/case_ipc?case_id={{data.0.0}}&u_id={{data.0.2}}">ADD</a></b></footer>
+            <footer class="blockquote-footer"><b>Ip Sections : &nbsp;&nbsp;&nbsp;&nbsp;
+                {% if data.0.6 == 'Proceeding' %}
+                <a class="btn btn-primary" href="/case_ipc?case_id={{data.0.0}}&u_id={{data.0.2}}">ADD</a>
+                {% endif %}
+              </b>
+
+            </footer>
 
 
             <p style="color: green;"></p>
@@ -99,10 +103,11 @@
           <h2 class="section-heading mt-3">
             Documents
           </h2>
-          <p class="subheading mb-4">"Documents regarding the case submited by users"</p>
 
 
           {% if data.0.6 == 'Proceeding' %}
+          <p class="subheading mb-4">"Documents regarding the case submited by users"</p>
+
           <table>
 
             <tr>
@@ -135,11 +140,12 @@
                                 {% endif %} -->
 
 
-          <p class="subheading mb-4">"Documents regarding the case submited by advocates"</p>
+
 
 
 
           {% if data.0.6 == 'Proceeding' %}
+          <p class="subheading mb-4">"Documents regarding the case submited by advocates"</p>
           <center><a href="/add_doc_adv?case_id={{data.0.0}}&u_id={{data.0.2}}" class="btn btn-primary">ADD Document</a>
           </center>
           <br>
@@ -210,8 +216,9 @@
           <h2 class="section-heading mt-3">
             Payment
           </h2>
-          <p class="subheading mb-4">"Payment regarding the case Review"</p>
+
           {% if data.0.6 == 'Proceeding' %}
+          <p class="subheading mb-4">"Payment regarding the case Review"</p>
           <center><a href="/add_fee?case_id={{data.0.0}}&u_id={{data.0.2}}" class="btn btn-primary">ADD FEE</a></center>
           <br>
           {% endif %}
