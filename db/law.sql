@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 03, 2023 at 07:23 PM
+-- Generation Time: Dec 06, 2023 at 10:26 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -47,7 +47,8 @@ CREATE TABLE `advocate` (
 --
 
 INSERT INTO `advocate` (`adv_id`, `user_id`, `adv_img`, `adv_name`, `adv_enroll_no`, `adv_qual`, `adv_age`, `adv_gender`, `adv_email`, `adv_phone`, `adv_address`, `adv_category`) VALUES
-(1, '3', '/Media/team5_77dr4IM.jpg', 'Raj', '#442422424', 'llb', '54', 'male', 'raj123@gmail.com', '4324242424', 'kochi', 'Criminal lawyer');
+(1, '3', '/Media/team5_77dr4IM.jpg', 'Raj', '#442422424', 'llb', '54', 'male', 'raj123@gmail.com', '4324242424', 'kochi', 'Criminal lawyer'),
+(2, '4', '/Media/team04.jpg', 'John', '#4324242331', 'llb', '34', 'male', 'john123@gmail.com', '4454654664', 'delhi', 'Family lawyer');
 
 -- --------------------------------------------------------
 
@@ -72,7 +73,9 @@ CREATE TABLE `case_request` (
 --
 
 INSERT INTO `case_request` (`case_id`, `adv_id`, `user_id`, `case_title`, `case_desc`, `case_file`, `status`, `ipc_sections`, `posted_date`) VALUES
-(1, '3', '2', 'test 1', 'test111', '/Media/case.txt', 'Proceeding', 'Section 463 to 489 -E', NULL);
+(1, '3', '2', 'test 1', 'test111', '/Media/case.txt', 'Proceeding', 'Section 463 to 489 -E', '2023-12-03'),
+(2, '4', '2', 'Traffic accident 2', 'test 2', '/Media/case2_hMAbYvz.txt', 'Rejected', NULL, '2023-12-07'),
+(3, '3', '5', 'case demo 3', 'test case3 ', '/Media/case2_cJ71lQf.txt', 'Rejected', NULL, '2023-12-07');
 
 -- --------------------------------------------------------
 
@@ -138,6 +141,14 @@ CREATE TABLE `feedback` (
   `posted_date` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `feedback`
+--
+
+INSERT INTO `feedback` (`feed_id`, `user_id`, `feed_subject`, `feed_description`, `type`, `posted_date`) VALUES
+(1, 4, 'test', 'good', 'advocate', '2023-12-07'),
+(2, 2, 'user test feedbck', 'good1', 'user', '2023-12-07');
+
 -- --------------------------------------------------------
 
 --
@@ -190,7 +201,9 @@ CREATE TABLE `login` (
 INSERT INTO `login` (`user_id`, `username`, `password`, `type`, `status`) VALUES
 (1, 'admin', '123', 'admin', '1'),
 (2, 'aju123@gmail.com', '123', 'user', '1'),
-(3, 'raj123@gmail.com', '1234', 'advocate', '1');
+(3, 'raj123@gmail.com', '1234', 'advocate', '1'),
+(4, 'john123@gmail.com', '123', 'advocate', '1'),
+(5, 'anu12@gmail.com', '123', 'user', '1');
 
 -- --------------------------------------------------------
 
@@ -206,15 +219,17 @@ CREATE TABLE `payment` (
   `posted_date` varchar(100) DEFAULT NULL,
   `amount` varchar(100) DEFAULT NULL,
   `paid_date` varchar(100) DEFAULT NULL,
-  `status` varchar(100) DEFAULT NULL
+  `status` varchar(100) DEFAULT NULL,
+  `Approval` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `payment`
 --
 
-INSERT INTO `payment` (`pay_id`, `user_id`, `adv_id`, `case_id`, `posted_date`, `amount`, `paid_date`, `status`) VALUES
-(1, '2', '3', '1', '2023-11-16', '2000', '2023-12-03', 'Not Paid');
+INSERT INTO `payment` (`pay_id`, `user_id`, `adv_id`, `case_id`, `posted_date`, `amount`, `paid_date`, `status`, `Approval`) VALUES
+(1, '2', '3', '1', '2023-11-16', '2000', '2023-12-07', 'Paid', 'Approved'),
+(2, '2', '3', '1', '2023-12-07', '10000', NULL, 'Not Paid', 'Rejected');
 
 -- --------------------------------------------------------
 
@@ -257,7 +272,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`u_id`, `user_id`, `u_img`, `u_name`, `u_age`, `u_gender`, `u_email`, `u_phone`, `u_aadhar`, `u_address`, `u_account`, `u_cvv`) VALUES
-(1, '2', '/Media/team7_g6zZjcY.jpg', 'Aju', '20', 'male', 'aju123@gmail.com', '1231313131', '313131233131', 'nnn', '', '');
+(1, '2', '/Media/team7_g6zZjcY.jpg', 'Aju', '20', 'male', 'aju123@gmail.com', '1231313131', '313131233131', 'nnn', '', ''),
+(2, '5', '/Media/team03.jpg', 'Anu', '22', 'female', 'anu12@gmail.com', '9412449492', '222222222222', 'qdwd', '', '');
 
 --
 -- Indexes for dumped tables
@@ -334,13 +350,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `advocate`
 --
 ALTER TABLE `advocate`
-  MODIFY `adv_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `adv_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `case_request`
 --
 ALTER TABLE `case_request`
-  MODIFY `case_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `case_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `category`
@@ -358,7 +374,7 @@ ALTER TABLE `documents`
 -- AUTO_INCREMENT for table `feedback`
 --
 ALTER TABLE `feedback`
-  MODIFY `feed_id` int(100) NOT NULL AUTO_INCREMENT;
+  MODIFY `feed_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `ipc`
@@ -370,13 +386,13 @@ ALTER TABLE `ipc`
 -- AUTO_INCREMENT for table `login`
 --
 ALTER TABLE `login`
-  MODIFY `user_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `user_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `payment`
 --
 ALTER TABLE `payment`
-  MODIFY `pay_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `pay_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `rating`
@@ -388,7 +404,7 @@ ALTER TABLE `rating`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `u_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `u_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables
