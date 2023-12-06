@@ -305,7 +305,7 @@ def user_feedback(request):
         subject = request.POST.get("subject")
         feedback_desc = request.POST.get("feedback_desc")
         user="user"
-        s = "insert into feedback(`u_id`,`feed_subject`,`feed_description`,`type`,`posted_date`) values('"+str(u_id)+"','"+str(subject)+"','"+str(feedback_desc)+"','"+ user +"','"+str(tdate)+"')"
+        s = "insert into feedback(`user_id`,`feed_subject`,`feed_description`,`type`,`posted_date`) values('"+str(u_id)+"','"+str(subject)+"','"+str(feedback_desc)+"','"+ user +"','"+str(tdate)+"')"
         c.execute(s)
         conn.commit()
         msg = "Feedback Send Successfully"

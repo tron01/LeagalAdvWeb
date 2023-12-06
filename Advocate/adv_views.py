@@ -346,7 +346,7 @@ def adv_feedback(request):
     if 'submit' in request.POST:
         subject = request.POST.get("subject")
         feedback_desc = request.POST.get("feedback_desc")
-        s = "insert into feedback(`u_id`,`feed_subject`,`feed_description`,`type`,`posted_date`) values('"+str(adv_id)+"','"+str(subject)+"','"+str(feedback_desc)+"','advocate','"+str(tdate)+"')"
+        s = "insert into feedback(`user_id`,`feed_subject`,`feed_description`,`type`,`posted_date`) values('"+str(adv_id)+"','"+str(subject)+"','"+str(feedback_desc)+"','advocate','"+str(tdate)+"')"
         c.execute(s)
         conn.commit()
         msg = "Feedback Send Successfully"
