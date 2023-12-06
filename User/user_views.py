@@ -320,7 +320,7 @@ def payment1(request):
     u_id = request.session["uid"]
     case_id = request.GET.get("case_id")
     adv_id = request.GET.get("adv_id")
-    
+    amot=request.GET.get("amt")
     request.session["amt"] = request.GET.get("amt")
     #fix need here too
     request.session["pay_id"] = request.GET.get("pay_id")
@@ -332,9 +332,10 @@ def payment1(request):
         pinno=request.POST.get("pinno")
         print("payment1")
         print(request.GET.get("pay_id"))
+        
         return HttpResponseRedirect("/payment4/")
 
-    return render(request,"payment1.html")
+    return render(request,"payment1.html",{"amot":amot})
 
 def payment4(request):
     if request.POST:
