@@ -108,6 +108,7 @@ urlpatterns = [
     path('add_doc_adv/', adv_views.add_doc),
     path('Case_status1/', adv_views.status1),
     path('adv_feedback/', adv_views.adv_feedback),
+    path('rej_com_case/', adv_views.rej_com_case),
 
     #-------------------------Advocate End -----------------------------------#
 

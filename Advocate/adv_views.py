@@ -82,6 +82,44 @@ def adv_case_request(request):
         return render(request,"adv_case_request.html",{"data":data,"msgg":msgg})
     return render(request,"adv_case_request.html",{"data":data})
 
+
+
+def rej_com_case(request):
+    adv_id = request.session["adv_id"]
+    print(adv_id)
+    s = "select * from case_request c , advocate a, user u where c.adv_id = '"+str(adv_id)+"' and c.adv_id = a.user_id  and c.user_id = u.user_id and c.status = 'Completed'  order by c.case_id desc"
+
+    # s = "select * from case_request c , user u  where c.user_id = '"+str(uid)+"' and c.user_id = u.u_id  order by c.case_id desc"
+    print(s)
+    c.execute(s)
+    conn.commit()
+    data = c.fetchall()
+    print(data)
+
+    s1 = "select * from case_request c , advocate a, user u where c.adv_id = '"+str(adv_id)+"' and c.adv_id = a.user_id  and c.user_id = u.user_id and c.status = 'Rejected'  order by c.case_id desc"
+
+    # s = "select * from case_request c , user u  where c.user_id = '"+str(uid)+"' and c.user_id = u.u_id  order by c.case_id desc"
+    print(s1)
+    c.execute(s1)
+    conn.commit()
+    data1 = c.fetchall()
+    print(data1)
+
+
+
+    if not bool(data):
+        msgg = "No case Applications"
+    if not bool(data1):
+        msgg2 = "No case Applications"
+    # if 'login' in request.POST:
+        # return HttpResponseRedirect("/login")
+        return render(request,"rej_com_case.html",{"data":data,"msgg":msgg,"data1":data1,"msgg2":msgg2})
+
+    
+    return render(request,"rej_com_case.html",{"data":data,"data1":data1})
+
+
+
 def view_case_request(request):
     adv_id = request.session["adv_id"]
     case_id = request.GET.get("case_id")
@@ -316,3 +354,4 @@ def adv_feedback(request):
     #     return HttpResponseRedirect("/payment5/")
         return render(request,"adv_feedback.html",{"msg":msg})
     return render(request,"adv_feedback.html")
+
