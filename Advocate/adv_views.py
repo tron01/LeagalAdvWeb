@@ -161,6 +161,14 @@ def status(request):
         msg = "Mark as Accepted"
         # return render(request,"adv_case_request.html",{"msg":msg})
         return HttpResponseRedirect("/adv_case_request")
+    if st == 'Rejected':
+        s = "update case_request set status= '"+str(st)+"' where case_id='"+str(case_id)+"'"
+        print(s)
+        c.execute(s)
+        conn.commit()
+        msg = "Mark as Rejected"
+        # return render(request,"adv_case_request.html",{"msg":msg})
+        return HttpResponseRedirect("/adv_case_request")
 
 
 def adv_case_status(request):
