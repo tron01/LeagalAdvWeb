@@ -119,6 +119,7 @@ def add_case(request):
     print(uid)
     adv_id = request.GET.get("adv_id")
     print(adv_id)
+    tdate = now.date()
     s = "select * from advocate where user_id = '"+str(adv_id)+"' "
     c.execute(s)
     conn.commit()
@@ -134,7 +135,7 @@ def add_case(request):
         filename = fs.save(myfile.name, myfile)
         uploaded_file_url = fs.url(filename)
 
-        s1 = "insert into case_request(`adv_id`,`user_id`,`case_title`,`case_desc`,`case_file`,`status`) values('"+str(adv_id)+"','"+str(uid)+"','"+str(case_title)+"','"+str(case_desc)+"','"+str(uploaded_file_url)+"','Applied')"
+        s1 = "insert into case_request(`adv_id`,`user_id`,`case_title`,`case_desc`,`case_file`,`status`,`posted_date`) values('"+str(adv_id)+"','"+str(uid)+"','"+str(case_title)+"','"+str(case_desc)+"','"+str(uploaded_file_url)+"','Applied','"+str(tdate)+"')"
         c.execute(s1)
         conn.commit()   
         msg = "Case Registered Successfully"    
