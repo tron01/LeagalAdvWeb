@@ -87,7 +87,7 @@ urlpatterns = [
 
     path('payment1/', user_views.payment1),
     path('payment4/', user_views.payment4),
-    path('payment5/', user_views.payment5),
+    
     #-------------------------User End -----------------------------------#
 
     #-------------------------Advocate End -----------------------------------#

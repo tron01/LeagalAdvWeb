@@ -179,6 +179,7 @@ def user_view_case_status(request):
     c.execute(s1)
     conn.commit()
     data1 = c.fetchall()
+    print(data1)
 
     s2 = "select * from documents where case_id = '"+str(case_id)+"' and u_id ='"+str(u_id)+"' order by doc_id"
     print(s2)
@@ -318,11 +319,9 @@ def user_feedback(request):
 
 def payment1(request):
     u_id = request.session["uid"]
-    case_id = request.GET.get("case_id")
-    adv_id = request.GET.get("adv_id")
+    pay_id=request.GET.get("pay_id")
     amot=request.GET.get("amt")
-    request.session["amt"] = request.GET.get("amt")
-    #fix need here too
+    print(pay_id)
     request.session["pay_id"] = request.GET.get("pay_id")
     
     # 2.add payment approve  @admin
@@ -331,26 +330,17 @@ def payment1(request):
         cardno=request.POST.get("cardno")
         pinno=request.POST.get("pinno")
         print("payment1")
-        print(request.GET.get("pay_id"))
-        
         return HttpResponseRedirect("/payment4/")
 
     return render(request,"payment1.html",{"amot":amot})
 
 def payment4(request):
-    if request.POST:
-        print("payment4")
-        return HttpResponseRedirect("/payment5/")
-    return render(request,"payment4.html")
-
-def payment5(request):
     pay_id=request.session['pay_id']
-    amt= request.session["amt"] 
-    tdate=now.date()
-    #need fix for  where part
-    print("payment5")
+    print("payment4")
     print(pay_id)
-    s= "update payment set paid_date = '"+str(tdate)+"',status = 'Paid' where  where pay_id = '"+str(pay_id)+"'"
+    tdate=now.date()
+    s= "update payment set paid_date = '"+str(tdate)+"',status = 'Paid' where pay_id = '"+str(pay_id)+"'"
+    print(s)
     c.execute(s)
     conn.commit()
-    return render(request,"payment5.html",{'tdate':tdate,'amt':amt})
+    return render(request,"payment4.html")
