@@ -36,10 +36,14 @@
               {% endif %}
               <br><br>
 
-              {% if data.0.6 != 'Rejected' and data.0.6 != 'Completed' %}
+              {% if data.0.6 != 'Proceeding' %}
+              {% if data.0.6 != 'Completed' %}
+              {% if data.0.6 != 'Rejected' %}
 
               <a href="/status1?case_id={{data.0.0}}&adv_id={{data.0.1}}&st=Rejected"
                 class="btn btn-secondary bg-danger">Cancel</a>
+              {% endif %}
+              {% endif %}
               {% endif %}
               <br>
               <br>
@@ -89,9 +93,12 @@
         </div>
         <div class="col-sm-12 col-md-12 col-lg-6">
           <h2 class="section-heading mt-3">
-            Documents &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a
-              href="/add_doc?case_id={{data.0.0}}&u_id={{data.0.2}}" class="btn btn-secondary bg-success ">Add
+            Documents &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            {% if data.0.6 == 'Proceeding' %}
+            <a href="/add_doc?case_id={{data.0.0}}&u_id={{data.0.2}}" class="btn btn-secondary bg-success ">Add
               Documents </a>
+            {% endif %}
+
           </h2>
           <p class="subheading mb-4">&nbsp; My Documents </p>
 
@@ -164,7 +171,9 @@
 
           <h2 class="section-heading mt-3">
             Payments
+
           </h2>
+
           <p class="subheading mb-4">&nbsp;we always take care of clients seriously</p>
 
           <style>
@@ -208,6 +217,7 @@
               <!-- <th>Next Review</th> -->
               <!-- <th>View</th> -->
 
+              {% if data.0.6 == 'Proceeding' %}
             </tr>
             {% for d in data1 %}
             <tr>
@@ -232,6 +242,8 @@
 
             </tr>
             {% endfor %}
+
+            {% endif %}
           </table><br><br><br>
 
           {% if data.0.6 == 'Completed' %}
