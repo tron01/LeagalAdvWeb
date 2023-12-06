@@ -59,6 +59,9 @@ urlpatterns = [
 
 
     path('view_feedback/', views.view_feedback),
+    path('approve_pay/',views.approve_pay),
+    path('reject_pay/',views.reject_pay),
+
     #-------------------------Admin End-----------------------------------#
 
     #-------------------------User-----------------------------------#

@@ -526,6 +526,7 @@ def view_case_list(request):
     c.execute(s1)
     conn.commit()
     data1 = c.fetchall()
+    print(data1)
 
     s2 = "select * from documents where case_id = '"+str(case_id)+"' and u_id ='"+str(u_id)+"' order by doc_id"
     print(s2)
@@ -588,4 +589,28 @@ def view_feedback(request):
             else:
                 return render(request,"view_feedback.html",{"data_feed":data_feed,"user":user_type})
     return render(request,"view_feedback.html")
+
+
+def approve_pay(request):
+    pay_id = request.GET.get("pay_id")
+    print("inside approve_pay")
+    value="Approved";
+    s = "update payment set Approval ='"+str(value)+"' where pay_id = "+(pay_id)+""
+    print(s)
+    c.execute(s)
+    data = c.fetchone()
+    print(data)
+    return HttpResponseRedirect("/user_case")
+   
+def reject_pay(request):
+    pay_id = request.GET.get("pay_id")
+    print("inside reject_pay")
+    value="Rejected";
+    s = "update payment set Approval ='"+str(value)+"' where pay_id = "+(pay_id)+""
+    print(s)
+    c.execute(s)
+    data = c.fetchone()
+    print(data)
+    return HttpResponseRedirect("/user_case")
+    
 #-------------------------admin end-----------------------------------#

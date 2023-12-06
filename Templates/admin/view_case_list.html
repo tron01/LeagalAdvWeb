@@ -196,6 +196,8 @@
                             <th>Posted On</th>
                             <th>Paid Date</th>
                             <th>Status</th>
+                            <th>Approvel</th>
+                            <th colspan="4">Action</th>
 
                             <!-- <th>Next Review</th> -->
                             <!-- <th>View</th> -->
@@ -208,6 +210,25 @@
                             <td>{{d.4}}</td>
                             <td>{{d.6}}</td>
                             <td>{{d.7}}</td>
+                            <td>
+                                {{d.8}}
+                            <td>
+                                <center><a href="/approve_pay?pay_id={{d.0}}"><img src="{% static 'images/tick1.png' %}"
+                                            width="30px;" height="30px;">
+
+
+                                    </a></center>
+                            </td>
+                            <td>
+                                <center><a href="/reject_pay?pay_id={{d.0}}"><img src="{% static 'images/cancel.png' %}"
+                                            width="30px;" height="30px;">
+
+
+                                    </a></center>
+                            </td>
+
+
+                            </td>
 
 
 
