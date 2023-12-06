@@ -174,7 +174,7 @@ def user_view_case_status(request):
     data = c.fetchall()
     print(data)
     
-    s1 = "select * from payment where case_id= '"+str(case_id)+"' order by pay_id desc"
+    s1 = "select * from payment where case_id= '"+str(case_id)+"' and Approval='Approved' order by pay_id desc"
     print(s1)
     c.execute(s1)
     conn.commit()
