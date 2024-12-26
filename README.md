@@ -6,7 +6,7 @@
 
 #### 1. Create Virtual Env 
       py -m venv myenv
-      py myenv\Scripts\activate
+      myenv\Scripts\activate
 
 #### 2. Install Packages 
     
@@ -22,11 +22,21 @@
 #### To Deactivate Virtual Env 
     py deactivate
 
+#
+#
+
 ## To Run [1-2]
 
 #### 1. Open myenv
-    py myenv\Scripts\activate
+    myenv\Scripts\activate
 #### 2. RunServer
     py manage.py runserver
 
+#
+#
+
+## Admin Login 
+
+    username: admin
+    password: 123
 
