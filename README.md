@@ -1,7 +1,4 @@
-# LeagalAdvWeb
-
-
-
+# 
 ##  First  time only [1-5]
 
 #### 1. Create Virtual Env 
@@ -16,25 +13,22 @@
 #### 3. Migrate 
     py manage.py migrate
 
-#### 4. RunServer
+#### 4. Run Server
     py manage.py runserver
 
 #### To Deactivate Virtual Env 
-    py deactivate
+    deactivate
+
 
 #
-#
-
 ## To Run [1-2]
 
-#### 1. Open myenv
+#### 1. Activate myenv
     myenv\Scripts\activate
-#### 2. RunServer
+#### 2. Run Server
     py manage.py runserver
 
 #
-#
-
 ## Admin Login 
 
     username: admin
