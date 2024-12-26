@@ -9,7 +9,7 @@ from django.core.files.storage import FileSystemStorage
 
 # Create your views here.
 
-conn = MySQLdb.connect("localhost","root","","law")
+conn = MySQLdb.connect("localhost","root","root","law")
 c = conn.cursor()
 
 

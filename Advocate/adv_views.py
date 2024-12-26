@@ -8,7 +8,7 @@ now = datetime.datetime.now()
 from django.core.files.storage import FileSystemStorage
 
 
-conn = MySQLdb.connect("localhost","root","","law")
+conn = MySQLdb.connect("localhost","root","root","law")
 c = conn.cursor()
 
 

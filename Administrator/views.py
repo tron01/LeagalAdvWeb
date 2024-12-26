@@ -7,7 +7,7 @@ now = datetime.datetime.now()
 from django.core.files.storage import FileSystemStorage
 
 
-conn = MySQLdb.connect("localhost","root","","law")
+conn = MySQLdb.connect("localhost","root","root","law")
 c = conn.cursor()
 
  #-------------------------main-----------------------------------#
@@ -183,7 +183,12 @@ def user_register(request):
     return render(request,"user_register.html",{"msg":msg})
 
 def user_bank(request):
-    
+    if 'admin_id' not in request.session:
+        return HttpResponseRedirect("/login")
+    elif 'adv_id' in request.session:
+        return HttpResponseRedirect("/adv_home/")
+    elif 'uid' in request.session:
+        return HttpResponseRedirect("/user_home/")
         # return render(request,"user_bank.html") 
     return render(request,"user_bank.html")
 #-------------------------main end-----------------------------------#
@@ -201,6 +206,10 @@ def admin_header_footer(request):
 def admin_home(request):
     if 'admin_id' not in request.session:
         return HttpResponseRedirect("/login")
+    elif 'adv_id' in request.session:
+        return HttpResponseRedirect("/adv_home/")
+    elif 'uid' in request.session:
+        return HttpResponseRedirect("/user_home/")
     
     s1 ="select COUNT(*) from user"
     s2 ="select COUNT(*)from advocate" 
@@ -216,6 +225,9 @@ def admin_home(request):
     return render(request,"admin_home.html")
 
 def admin_logout(request):
+    if 'admin_id' not in request.session:
+        return HttpResponseRedirect("/login")
+    
     if 'admin_id'  in request.session:
         request.session.pop('admin_id')
         return HttpResponseRedirect("/login")
@@ -223,6 +235,12 @@ def admin_logout(request):
 
 #--------------------------------- Advocate_list manage- -----------------------------#
 def advocate_list(request):
+    if 'admin_id' not in request.session:
+        return HttpResponseRedirect("/login")
+    elif 'adv_id' in request.session:
+        return HttpResponseRedirect("/adv_home/")
+    elif 'uid' in request.session:
+        return HttpResponseRedirect("/user_home/")
     s1 = "select * from advocate a , login l where l.status = '1' and l.type = 'advocate' and a.user_id = l.user_id "
     print(s1)
     c.execute(s1)
@@ -236,6 +254,12 @@ def advocate_list(request):
 
 
 def adv_request(request):
+    if 'admin_id' not in request.session:
+        return HttpResponseRedirect("/login")
+    elif 'adv_id' in request.session:
+        return HttpResponseRedirect("/adv_home/")
+    elif 'uid' in request.session:
+        return HttpResponseRedirect("/user_home/")
 
     s1 = "select * from advocate a , login l where  l.status =0 and l.type = 'advocate' and a.user_id = l.user_id"
     print(s1)
@@ -251,6 +275,12 @@ def adv_request(request):
 
 
 def action_adv(request):
+    if 'admin_id' not in request.session:
+        return HttpResponseRedirect("/login")
+    elif 'adv_id' in request.session:
+        return HttpResponseRedirect("/adv_home/")
+    elif 'uid' in request.session:
+        return HttpResponseRedirect("/user_home/")
     reg_id = request.GET.get("reg_id")
     st = request.GET.get("st")
     print("inside action_adv")
@@ -280,6 +310,12 @@ def action_adv(request):
     return HttpResponseRedirect("/adv_request")
 
 def adv_remove(request):
+    if 'admin_id' not in request.session:
+        return HttpResponseRedirect("/login")
+    elif 'adv_id' in request.session:
+        return HttpResponseRedirect("/adv_home/")
+    elif 'uid' in request.session:
+        return HttpResponseRedirect("/user_home/")
     reg_id = request.GET.get("reg_id")
     
     print("inside adv_remove")
@@ -298,6 +334,12 @@ def adv_remove(request):
 
 
 def advocate_status(request):
+    if 'admin_id' not in request.session:
+        return HttpResponseRedirect("/login")
+    elif 'adv_id' in request.session:
+        return HttpResponseRedirect("/adv_home/")
+    elif 'uid' in request.session:
+        return HttpResponseRedirect("/user_home/")
     reg_id = request.GET.get("reg_id")
     
     print("inside adv_status")
@@ -310,6 +352,12 @@ def advocate_status(request):
 #--------------------------------- Advocate_list manage End---------------------------#
 #--------------------------------- user List manage------------------------------------#
 def user_list(request):
+    if 'admin_id' not in request.session:
+        return HttpResponseRedirect("/login")
+    elif 'adv_id' in request.session:
+        return HttpResponseRedirect("/adv_home/")
+    elif 'uid' in request.session:
+        return HttpResponseRedirect("/user_home/")
     print("inside user_list")
     s1 = "select * from user u , login l where l.status = '1' and l.type = 'user' and l.user_id = u.user_id"
     print(s1)
@@ -323,6 +371,13 @@ def user_list(request):
     return render(request,"user_list.html",{"data":data})
 
 def user_status(request):
+    if 'admin_id' not in request.session:
+        return HttpResponseRedirect("/login")
+    elif 'adv_id' in request.session:
+        return HttpResponseRedirect("/adv_home/")
+    elif 'uid' in request.session:
+        return HttpResponseRedirect("/user_home/")
+
     reg_id = request.GET.get("reg_id")
     
     print("inside user_status")
@@ -334,6 +389,13 @@ def user_status(request):
     return HttpResponseRedirect("/user_list")
 
 def user_request(request):
+    if 'admin_id' not in request.session:
+        return HttpResponseRedirect("/login")
+    elif 'adv_id' in request.session:
+        return HttpResponseRedirect("/adv_home/")
+    elif 'uid' in request.session:
+        return HttpResponseRedirect("/user_home/")
+
     s1 = "select * from user u , login l where u.user_id = l.user_id and l.status = '0' and l.type = 'user'"
     print(s1)
     c.execute(s1)
@@ -346,6 +408,13 @@ def user_request(request):
     return render(request,"user_request.html",{"data":data})
 
 def action_user(request):
+    if 'admin_id' not in request.session:
+        return HttpResponseRedirect("/login")
+    elif 'adv_id' in request.session:
+        return HttpResponseRedirect("/adv_home/")
+    elif 'uid' in request.session:
+        return HttpResponseRedirect("/user_home/")
+
     reg_id = request.GET.get("reg_id")
     st = request.GET.get("st")
     print("inside action_adv")
@@ -374,6 +443,13 @@ def action_user(request):
     return HttpResponseRedirect("/user_request")
 
 def user_remove(request):
+    if 'admin_id' not in request.session:
+        return HttpResponseRedirect("/login")
+    elif 'adv_id' in request.session:
+        return HttpResponseRedirect("/adv_home/")
+    elif 'uid' in request.session:
+        return HttpResponseRedirect("/user_home/")
+
     reg_id = request.GET.get("reg_id")
     
     print("inside action_adv")
@@ -390,6 +466,13 @@ def user_remove(request):
 #--------------------------------- user List manage End----------------#
 
 def case_category(request):
+    if 'admin_id' not in request.session:
+        return HttpResponseRedirect("/login")
+    elif 'adv_id' in request.session:
+        return HttpResponseRedirect("/adv_home/")
+    elif 'uid' in request.session:
+        return HttpResponseRedirect("/user_home/")
+
     ss = "select * from category"
     c.execute(ss)
     data1 = c.fetchall()
@@ -412,6 +495,13 @@ def case_category(request):
     return render(request,"case_category.html",{"data1":data1})
 
 def cat_remove(request):
+    if 'admin_id' not in request.session:
+        return HttpResponseRedirect("/login")
+    elif 'adv_id' in request.session:
+        return HttpResponseRedirect("/adv_home/")
+    elif 'uid' in request.session:
+        return HttpResponseRedirect("/user_home/")
+
     cat_id = request.GET.get("cat_id")
     
     print("inside cat_remove")
@@ -425,6 +515,13 @@ def cat_remove(request):
 
 
 def edit_cat(request):
+    if 'admin_id' not in request.session:
+        return HttpResponseRedirect("/login")
+    elif 'adv_id' in request.session:
+        return HttpResponseRedirect("/adv_home/")
+    elif 'uid' in request.session:
+        return HttpResponseRedirect("/user_home/")
+
     cat_id = request.GET.get("cat_id")
     print("inside edit_cat")
     s = "select * from category where cat_id = "+(cat_id)+""
@@ -445,6 +542,13 @@ def edit_cat(request):
 
 
 def ipc_section(request):
+    if 'admin_id' not in request.session:
+        return HttpResponseRedirect("/login")
+    elif 'adv_id' in request.session:
+        return HttpResponseRedirect("/adv_home/")
+    elif 'uid' in request.session:
+        return HttpResponseRedirect("/user_home/")
+
     ss = "select * from ipc"
     c.execute(ss)
     data1 = c.fetchall()
@@ -467,6 +571,13 @@ def ipc_section(request):
     return render(request,"ipc_section.html",{"data1":data1})
 
 def ipc_remove(request):
+    if 'admin_id' not in request.session:
+        return HttpResponseRedirect("/login")
+    elif 'adv_id' in request.session:
+        return HttpResponseRedirect("/adv_home/")
+    elif 'uid' in request.session:
+        return HttpResponseRedirect("/user_home/")
+
     ipc_id = request.GET.get("ipc_id")
     
     print("inside ipc_remove")
@@ -479,6 +590,13 @@ def ipc_remove(request):
     return HttpResponseRedirect("/ipc_section")
 
 def edit_ipc(request):
+    if 'admin_id' not in request.session:
+        return HttpResponseRedirect("/login")
+    elif 'adv_id' in request.session:
+        return HttpResponseRedirect("/adv_home/")
+    elif 'uid' in request.session:
+        return HttpResponseRedirect("/user_home/")
+
     ipc_id = request.GET.get("ipc_id")
     print("inside edit_ipc")
     s = "select * from ipc where ipc_id = "+(ipc_id)+""
@@ -498,7 +616,13 @@ def edit_ipc(request):
     return render(request,"update_ipc.html",{"data":data})
 
 def user_case(request):
-    
+    if 'admin_id' not in request.session:
+        return HttpResponseRedirect("/login")
+    elif 'adv_id' in request.session:
+        return HttpResponseRedirect("/adv_home/")
+    elif 'uid' in request.session:
+        return HttpResponseRedirect("/user_home/")
+
     print("inside user_case")
     s = "select * from case_request"
     print(s)
@@ -509,6 +633,13 @@ def user_case(request):
 
 
 def view_case_list(request):
+    if 'admin_id' not in request.session:
+        return HttpResponseRedirect("/login")
+    elif 'adv_id' in request.session:
+        return HttpResponseRedirect("/adv_home/")
+    elif 'uid' in request.session:
+        return HttpResponseRedirect("/user_home/")
+
     u_id = request.GET.get("u_id")
     case_id = request.GET.get("case_id")
     adv_id = request.GET.get("adv_id")
@@ -557,6 +688,13 @@ def view_case_list(request):
     return render(request,"view_case_list.html",{"data":data,"data1":data1,"data2":data2,"data3":data3,"data4":data4})
 
 def view_feedback(request):
+    if 'admin_id' not in request.session:
+        return HttpResponseRedirect("/login")
+    elif 'adv_id' in request.session:
+        return HttpResponseRedirect("/adv_home/")
+    elif 'uid' in request.session:
+        return HttpResponseRedirect("/user_home/")
+
     print("inside feedback")
 
     if 'submit' in request.POST:
@@ -592,6 +730,13 @@ def view_feedback(request):
 
 
 def approve_pay(request):
+    if 'admin_id' not in request.session:
+        return HttpResponseRedirect("/login")
+    elif 'adv_id' in request.session:
+        return HttpResponseRedirect("/adv_home/")
+    elif 'uid' in request.session:
+        return HttpResponseRedirect("/user_home/")
+
     pay_id = request.GET.get("pay_id")
     print("inside approve_pay")
     value="Approved";
@@ -603,6 +748,13 @@ def approve_pay(request):
     return HttpResponseRedirect("/user_case")
    
 def reject_pay(request):
+    if 'admin_id' not in request.session:
+        return HttpResponseRedirect("/login")
+    elif 'adv_id' in request.session:
+        return HttpResponseRedirect("/adv_home/")
+    elif 'uid' in request.session:
+        return HttpResponseRedirect("/user_home/")
+        
     pay_id = request.GET.get("pay_id")
     print("inside reject_pay")
     value="Rejected";
