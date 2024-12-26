@@ -26,11 +26,19 @@ def adv_header_footer(request):
 def adv_home(request):
     if 'adv_id' not in request.session:
         return HttpResponseRedirect("/login")
+    elif 'admin_id' in request.session:
+        return HttpResponseRedirect("/admin_home/")
+    elif 'uid' in request.session:
+        return HttpResponseRedirect("/user_home/")
     return render(request,"adv_home.html")
 
 def adv_ipc(request):
     if 'adv_id' not in request.session:
         return HttpResponseRedirect("/login")
+    elif 'admin_id' in request.session:
+        return HttpResponseRedirect("/admin_home/")
+    elif 'uid' in request.session:
+        return HttpResponseRedirect("/user_home/")
     
     s = "select * from ipc order by ipc_section"
     # s = "SELECT *,BIN(ipc_section) AS binray_not_needed_column FROM ipc ORDER BY binray_not_needed_column ASC , ipc_section ASC"
@@ -44,6 +52,12 @@ def adv_ipc(request):
     return render(request,"adv_ipc.html",{"data":data})
 
 def advocate_profile(request):
+    if 'adv_id' not in request.session:
+        return HttpResponseRedirect("/login")
+    elif 'admin_id' in request.session:
+        return HttpResponseRedirect("/admin_home/")
+    elif 'uid' in request.session:
+        return HttpResponseRedirect("/user_home/")
     adv_id = request.session["adv_id"]
 
     s = "select * from advocate a , login l where a.user_id = '"+str(adv_id)+"' and a.user_id = l.user_id and l.type = 'advocate' "
@@ -53,6 +67,13 @@ def advocate_profile(request):
     return render(request,"advocate_profile.html",{"data":data})
 
 def adv_change_password(request):
+    if 'adv_id' not in request.session:
+        return HttpResponseRedirect("/login")
+    elif 'admin_id' in request.session:
+        return HttpResponseRedirect("/admin_home/")
+    elif 'uid' in request.session:
+        return HttpResponseRedirect("/user_home/")
+
     adv_id = request.session["adv_id"]
     if 'change_pass' in request.POST:
         password = request.POST.get("new_pass")
@@ -65,6 +86,12 @@ def adv_change_password(request):
 
 
 def adv_case_request(request):
+    if 'adv_id' not in request.session:
+        return HttpResponseRedirect("/login")
+    elif 'admin_id' in request.session:
+        return HttpResponseRedirect("/admin_home/")
+    elif 'uid' in request.session:
+        return HttpResponseRedirect("/user_home/")
     adv_id = request.session["adv_id"]
     print(adv_id)
     s = "select * from case_request c , advocate a, user u where c.adv_id = '"+str(adv_id)+"' and c.adv_id = a.user_id  and c.user_id = u.user_id and c.status = 'Applied'  order by c.case_id desc"
@@ -85,6 +112,12 @@ def adv_case_request(request):
 
 
 def rej_com_case(request):
+    if 'adv_id' not in request.session:
+        return HttpResponseRedirect("/login")
+    elif 'admin_id' in request.session:
+        return HttpResponseRedirect("/admin_home/")
+    elif 'uid' in request.session:
+        return HttpResponseRedirect("/user_home/")
     adv_id = request.session["adv_id"]
     print(adv_id)
     s = "select * from case_request c , advocate a, user u where c.adv_id = '"+str(adv_id)+"' and c.adv_id = a.user_id  and c.user_id = u.user_id and c.status = 'Completed'  order by c.case_id desc"
@@ -121,6 +154,12 @@ def rej_com_case(request):
 
 
 def view_case_request(request):
+    if 'adv_id' not in request.session:
+        return HttpResponseRedirect("/login")
+    elif 'admin_id' in request.session:
+        return HttpResponseRedirect("/admin_home/")
+    elif 'uid' in request.session:
+        return HttpResponseRedirect("/user_home/")
     adv_id = request.session["adv_id"]
     case_id = request.GET.get("case_id")
     u_id = request.GET.get("u_id")
@@ -148,6 +187,13 @@ def view_case_request(request):
 
 
 def status(request):
+    if 'adv_id' not in request.session:
+        return HttpResponseRedirect("/login")
+    elif 'admin_id' in request.session:
+        return HttpResponseRedirect("/admin_home/")
+    elif 'uid' in request.session:
+        return HttpResponseRedirect("/user_home/")
+
     adv_id = request.session["adv_id"]
     case_id = request.GET.get("case_id")
     u_id = request.GET.get("u_id")
@@ -172,6 +218,13 @@ def status(request):
 
 
 def adv_case_status(request):
+    if 'adv_id' not in request.session:
+        return HttpResponseRedirect("/login")
+    elif 'admin_id' in request.session:
+        return HttpResponseRedirect("/admin_home/")
+    elif 'uid' in request.session:
+        return HttpResponseRedirect("/user_home/")
+
     adv_id = request.session["adv_id"]
     print(adv_id)
     s = "select * from case_request c , advocate a, user u where c.adv_id = '"+str(adv_id)+"' and c.adv_id = a.user_id  and c.user_id = u.user_id and c.status != 'Applied' and c.status != 'Rejected' and c.status != 'Completed'   order by c.case_id desc"
@@ -191,6 +244,13 @@ def adv_case_status(request):
 
 
 def view_case_status(request):
+    if 'adv_id' not in request.session:
+        return HttpResponseRedirect("/login")
+    elif 'admin_id' in request.session:
+        return HttpResponseRedirect("/admin_home/")
+    elif 'uid' in request.session:
+        return HttpResponseRedirect("/user_home/")
+
     adv_id = request.session["adv_id"]
     case_id = request.GET.get("case_id")
     u_id = request.GET.get("u_id")
@@ -232,6 +292,13 @@ def view_case_status(request):
     return render(request,"view_case_status.html",{"data":data,"data1":data1,"data2":data2,"data3":data3})
 
 def case_ipc(request):
+    if 'adv_id' not in request.session:
+        return HttpResponseRedirect("/login")
+    elif 'admin_id' in request.session:
+        return HttpResponseRedirect("/admin_home/")
+    elif 'uid' in request.session:
+        return HttpResponseRedirect("/user_home/")
+
     adv_id = request.session["adv_id"]
     case_id = request.GET.get("case_id")
     u_id = request.GET.get("u_id")
@@ -250,6 +317,13 @@ def case_ipc(request):
 
 
 def add_fee(request):
+    if 'adv_id' not in request.session:
+        return HttpResponseRedirect("/login")
+    elif 'admin_id' in request.session:
+        return HttpResponseRedirect("/admin_home/")
+    elif 'uid' in request.session:
+        return HttpResponseRedirect("/user_home/")
+
     adv_id = request.session["adv_id"]
     case_id = request.GET.get("case_id")
     u_id = request.GET.get("u_id")
@@ -266,6 +340,13 @@ def add_fee(request):
 
 
 def add_doc(request):
+    if 'adv_id' not in request.session:
+        return HttpResponseRedirect("/login")
+    elif 'admin_id' in request.session:
+        return HttpResponseRedirect("/admin_home/")
+    elif 'uid' in request.session:
+        return HttpResponseRedirect("/user_home/")
+
     adv_id = request.session["adv_id"]
     case_id = request.GET.get("case_id")
     u_id = request.GET.get("u_id")
@@ -295,6 +376,13 @@ def add_doc(request):
 
         
 def status1(request):
+    if 'adv_id' not in request.session:
+        return HttpResponseRedirect("/login")
+    elif 'admin_id' in request.session:
+        return HttpResponseRedirect("/admin_home/")
+    elif 'uid' in request.session:
+        return HttpResponseRedirect("/user_home/")
+
     adv_id = request.session["adv_id"]
     case_id = request.GET.get("case_id")
     u_id = request.GET.get("u_id")
@@ -348,6 +436,13 @@ def status1(request):
     return render(request,"adv_case_status.html")
 
 def adv_feedback(request):
+    if 'adv_id' not in request.session:
+        return HttpResponseRedirect("/login")
+    elif 'admin_id' in request.session:
+        return HttpResponseRedirect("/admin_home/")
+    elif 'uid' in request.session:
+        return HttpResponseRedirect("/user_home/")
+        
     adv_id = request.session["adv_id"]
     tdate = now.date()
 
