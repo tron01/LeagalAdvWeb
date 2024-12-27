@@ -6,7 +6,7 @@
 
         db -> new db -> law.sql
 
-    2. Import it your Mysql to work
+    2. Import it to your Mysql to work
 
 #
 ##  First  time only [1-5]
